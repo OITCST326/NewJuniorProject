@@ -1,0 +1,198 @@
+﻿@using AIM.Application.Service.Entities.Models
+@model AIM.Application.Service.Entities.Models.Applicant
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <script>
+        $("#wizard").steps({
+            bodyTag: "fieldset"
+        });
+    </script>
+    <div id="wizard">
+        <section id="form-application">
+            <h2 class="page-header">Employment Application</h2>
+            <form id="advanced-form">
+                <hr />
+                @Html.ValidationSummary(true)
+                <h3>Personal</h3>
+                <fieldset>
+                    <legend>Personal Information:</legend>
+                    @*@foreach(var user in Model.Users) {
+                        <div class="form-group">
+                            @Html.LabelFor(x => user.firstName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(x => user.firstName)
+                                @Html.ValidationMessageFor(x => user.firstName)
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(x => user.middleName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(x => user.middleName)
+                                @Html.ValidationMessageFor(x => user.middleName)
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(x => user.lastName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(x => user.lastName)
+                                @Html.ValidationMessageFor(x => user.lastName)
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(x => user.socialSecurityNumber, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(x => user.socialSecurityNumber)
+                                @Html.ValidationMessageFor(x => user.socialSecurityNumber)
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(x => user.userName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(x => user.userName)
+                                @Html.ValidationMessageFor(x => user.userName)
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(x => user.email, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(x => user.email)
+                                @Html.ValidationMessageFor(x => user.email)
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(x => user.password, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(x => user.password)
+                                @Html.ValidationMessageFor(x => user.password)
+                            </div>
+                        </div>
+                    }*@
+                </fieldset>
+                
+                <h3>Position</h3>
+                <fieldset>
+                    <legend>Position Applying For:</legend>
+                </fieldset>
+                
+                <h3>Job History</h3>
+                <fieldset>
+                    <legend>Job History:</legend>
+                </fieldset>
+                
+                <h3>Education</h3>
+                <fieldset>
+                    <legend>Education:</legend>
+                </fieldset>
+                
+                <h3>References</h3>
+                <fieldset>
+                    <legend>References:</legend>
+                </fieldset>
+                
+                <h3>Statement</h3>
+                <fieldset>
+                    <legend>Pre-Emplyment Statment:</legend>
+                </fieldset>
+                
+                <h3>Submit</h3>
+                <fieldset>
+                    <legend>Review and Submit:</legend>
+                </fieldset>
+
+            </form>
+        </section>
+    </div>
+
+    <div class="form-horizontal">
+        <h4>Applicant</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.educationId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.educationId)
+                @Html.ValidationMessageFor(model => model.educationId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobHistoryId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.jobHistoryId)
+                @Html.ValidationMessageFor(model => model.jobHistoryId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.referenceId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.referenceId)
+                @Html.ValidationMessageFor(model => model.referenceId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.userId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userId)
+                @Html.ValidationMessageFor(model => model.userId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.applicationId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.applicationId)
+                @Html.ValidationMessageFor(model => model.applicationId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.answerId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.answerId)
+                @Html.ValidationMessageFor(model => model.answerId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hoursId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hoursId)
+                @Html.ValidationMessageFor(model => model.hoursId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquerysteps")
+}

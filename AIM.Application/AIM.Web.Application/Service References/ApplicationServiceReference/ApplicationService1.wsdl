@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="urn:trackable-entities:service" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:trackable-entities:service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:trackable-entities:service/Imports">
+      <xsd:import schemaLocation="http://localhost:7622/ApplicationService.svc?xsd=xsd0" namespace="urn:trackable-entities:service" />
+      <xsd:import schemaLocation="http://localhost:7622/ApplicationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7622/ApplicationService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TrackableEntities.Models" />
+      <xsd:import schemaLocation="http://localhost:7622/ApplicationService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:7622/ApplicationService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/TrackableEntities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IApplicationService_GetApplicantsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicantsList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetApplicantsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicantsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetApplicant_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicant" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetApplicant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateApplicant_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApplicant" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateApplicant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApplicantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateApplicant_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateApplicant" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateApplicant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateApplicantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteApplicant_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteApplicant" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteApplicant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteApplicantResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IApplicationService">
+    <wsdl:operation name="GetApplicantsList">
+      <wsdl:input wsaw:Action="urn:trackable-entities:service/IApplicationService/GetApplicantsList" message="tns:IApplicationService_GetApplicantsList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:trackable-entities:service/IApplicationService/GetApplicantsListResponse" message="tns:IApplicationService_GetApplicantsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicant">
+      <wsdl:input wsaw:Action="urn:trackable-entities:service/IApplicationService/GetApplicant" message="tns:IApplicationService_GetApplicant_InputMessage" />
+      <wsdl:output wsaw:Action="urn:trackable-entities:service/IApplicationService/GetApplicantResponse" message="tns:IApplicationService_GetApplicant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicant">
+      <wsdl:input wsaw:Action="urn:trackable-entities:service/IApplicationService/UpdateApplicant" message="tns:IApplicationService_UpdateApplicant_InputMessage" />
+      <wsdl:output wsaw:Action="urn:trackable-entities:service/IApplicationService/UpdateApplicantResponse" message="tns:IApplicationService_UpdateApplicant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateApplicant">
+      <wsdl:input wsaw:Action="urn:trackable-entities:service/IApplicationService/CreateApplicant" message="tns:IApplicationService_CreateApplicant_InputMessage" />
+      <wsdl:output wsaw:Action="urn:trackable-entities:service/IApplicationService/CreateApplicantResponse" message="tns:IApplicationService_CreateApplicant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplicant">
+      <wsdl:input wsaw:Action="urn:trackable-entities:service/IApplicationService/DeleteApplicant" message="tns:IApplicationService_DeleteApplicant_InputMessage" />
+      <wsdl:output wsaw:Action="urn:trackable-entities:service/IApplicationService/DeleteApplicantResponse" message="tns:IApplicationService_DeleteApplicant_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
