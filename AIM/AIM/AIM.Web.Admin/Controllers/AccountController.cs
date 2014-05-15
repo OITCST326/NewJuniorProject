@@ -12,6 +12,7 @@ using AIM.Web.Admin.Models;
 
 namespace AIM.Web.Admin.Controllers
 {
+    // My git test change
     [Authorize]
     public class AccountController : Controller
     {
