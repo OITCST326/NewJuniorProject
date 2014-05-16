@@ -1,25 +1,49 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Web.Mvc;
+﻿using System.IO;
+using System.Text;
 using AIM.Service.Entities.Models;
 using AIM.Web.Admin.QuestionServiceReference;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
 
 namespace AIM.Web.Admin.Controllers
 {
     public class QuestionController : Controller
     {
         private readonly QuestionServiceClient _client = new QuestionServiceClient();
+        private static readonly StringBuilder Sb = new StringBuilder();
+        private readonly StringWriter _sw = new StringWriter(Sb);
 
         // GET: /Question/
         public ActionResult Index()
         {
             var questions = _client.GetQuestionsList();
 
-            //foreach (Question question in questions)
-            //{
-            //}
+            // expand JSON Proterties
+            foreach (Question question in questions)
+            {
+                question.qJsonOptionList = new List<string>();
+                question.qJsonAnswerList = new List<string>();
+
+                var expandedQJsonProperties = JsonConvert.DeserializeObject<Question>(question.qJsonProperties);
+
+                question.qJsonId = expandedQJsonProperties.qJsonId;
+                question.qJsonType = expandedQJsonProperties.qJsonType;
+                question.qJsonText = expandedQJsonProperties.qJsonText;
+
+                for (var i = 0; i < expandedQJsonProperties.qJsonOptionList.Count(); ++i)
+                {
+                    question.qJsonOptionList.Add(expandedQJsonProperties.qJsonOptionList[i]);
+                }
+
+                for (var i = 0; i < expandedQJsonProperties.qJsonAnswerList.Count(); ++i)
+                {
+                    question.qJsonAnswerList.Add(expandedQJsonProperties.qJsonAnswerList[i]);
+                }
+            }
             return View(questions.ToList());
         }
 
@@ -35,6 +59,27 @@ namespace AIM.Web.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
+            // expand JSON Proterties
+            question.qJsonOptionList = new List<string>();
+            question.qJsonAnswerList = new List<string>();
+
+            var expandedQJsonProperties = JsonConvert.DeserializeObject<Question>(question.qJsonProperties);
+
+            question.qJsonId = expandedQJsonProperties.qJsonId;
+            question.qJsonType = expandedQJsonProperties.qJsonType;
+            question.qJsonText = expandedQJsonProperties.qJsonText;
+
+            for (var i = 0; i < expandedQJsonProperties.qJsonOptionList.Count(); ++i)
+            {
+                question.qJsonOptionList.Add(expandedQJsonProperties.qJsonOptionList[i]);
+            }
+
+            for (var i = 0; i < expandedQJsonProperties.qJsonAnswerList.Count(); ++i)
+            {
+                question.qJsonAnswerList.Add(expandedQJsonProperties.qJsonAnswerList[i]);
+            }
+
             return View(question);
         }
 
@@ -45,12 +90,42 @@ namespace AIM.Web.Admin.Controllers
         }
 
         // POST: /Question/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="questionId,qJsonProperties,questionnaireId,interviewQuestionsId")] Question question)
+        public ActionResult Create([Bind(Include = "questionId,qJsonProperties,qJsonId,qJsonType,qJsonText,qJsonOptionList," +
+                                                   "qJsonAnswerList,questionnaireId,interviewQuestionsId")] Question question)
         {
+            using (JsonWriter writer = new JsonTextWriter(_sw))
+            {
+                writer.Formatting = Formatting.Indented;
+
+                writer.WriteStartObject();
+                writer.WritePropertyName("qJsonId");
+                writer.WriteValue(question.qJsonId);
+                writer.WritePropertyName("qJsonType");
+                writer.WriteValue(question.qJsonType);
+                writer.WritePropertyName("qJsonText");
+                writer.WriteValue(question.qJsonText);
+
+                writer.WritePropertyName("qJsonOptionList");
+                writer.WriteStartArray();
+                for (var i = 0; i < question.qJsonOptionList.Count(); ++i)
+                {
+                    writer.WriteValue(question.qJsonOptionList[i]);
+                }
+
+                writer.WritePropertyName("qJsonAnswerList");
+                writer.WriteStartArray();
+                for (var i = 0; i < question.qJsonAnswerList.Count(); ++i)
+                {
+                    writer.WriteValue(question.qJsonAnswerList[i]);
+                }
+            }
+
+            question.qJsonProperties = Sb.ToString();
+
             if (ModelState.IsValid)
             {
                 _client.CreateQuestion(question);
@@ -72,22 +147,74 @@ namespace AIM.Web.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
+            // expand JSON Proterties
+            question.qJsonOptionList = new List<string>();
+            question.qJsonAnswerList = new List<string>();
+
+            var expandedQJsonProperties = JsonConvert.DeserializeObject<Question>(question.qJsonProperties);
+
+            question.qJsonId = expandedQJsonProperties.qJsonId;
+            question.qJsonType = expandedQJsonProperties.qJsonType;
+            question.qJsonText = expandedQJsonProperties.qJsonText;
+
+            for (var i = 0; i < expandedQJsonProperties.qJsonOptionList.Count(); ++i)
+            {
+                question.qJsonOptionList.Add(expandedQJsonProperties.qJsonOptionList[i]);
+            }
+
+            for (var i = 0; i < expandedQJsonProperties.qJsonAnswerList.Count(); ++i)
+            {
+                question.qJsonAnswerList.Add(expandedQJsonProperties.qJsonAnswerList[i]);
+            }
+
             return View(question);
         }
 
         // POST: /Question/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="questionId,qJsonProperties,questionnaireId,interviewQuestionsId")] Question question)
+        public ActionResult Edit([Bind(Include = "questionId,qJsonProperties,qJsonId,qJsonType,qJsonText,qJsonOptionList," +
+                                                 "qJsonAnswerList,questionnaireId,interviewQuestionsId")] Question question)
         {
+            using (JsonWriter writer = new JsonTextWriter(_sw))
+            {
+                writer.Formatting = Formatting.Indented;
+
+                writer.WriteStartObject();
+                writer.WritePropertyName("qJsonId");
+                writer.WriteValue(question.qJsonId);
+                writer.WritePropertyName("qJsonType");
+                writer.WriteValue(question.qJsonType);
+                writer.WritePropertyName("qJsonText");
+                writer.WriteValue(question.qJsonText);
+
+                writer.WritePropertyName("qJsonOptionList");
+                writer.WriteStartArray();
+                for (var i = 0; i < question.qJsonOptionList.Count(); ++i)
+                {
+                    writer.WriteValue(question.qJsonOptionList[i]);
+                }
+
+                writer.WritePropertyName("qJsonAnswerList");
+                writer.WriteStartArray();
+                for (var i = 0; i < question.qJsonAnswerList.Count(); ++i)
+                {
+                    writer.WriteValue(question.qJsonAnswerList[i]);
+                }
+            }
+
+            question.qJsonProperties = Sb.ToString();
+
             if (ModelState.IsValid)
             {
                 _client.DeleteQuestion(question.questionId);
                 _client.CreateQuestion(question);
                 return RedirectToAction("Index");
             }
+
             return View(question);
         }
 
@@ -98,11 +225,34 @@ namespace AIM.Web.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Question question = _client.GetQuestion(id);
+
             if (question == null)
             {
                 return HttpNotFound();
             }
+
+            // expand JSON Proterties
+            question.qJsonOptionList = new List<string>();
+            question.qJsonAnswerList = new List<string>();
+
+            var expandedQJsonProperties = JsonConvert.DeserializeObject<Question>(question.qJsonProperties);
+
+            question.qJsonId = expandedQJsonProperties.qJsonId;
+            question.qJsonType = expandedQJsonProperties.qJsonType;
+            question.qJsonText = expandedQJsonProperties.qJsonText;
+
+            for (var i = 0; i < expandedQJsonProperties.qJsonOptionList.Count(); ++i)
+            {
+                question.qJsonOptionList.Add(expandedQJsonProperties.qJsonOptionList[i]);
+            }
+
+            for (var i = 0; i < expandedQJsonProperties.qJsonAnswerList.Count(); ++i)
+            {
+                question.qJsonAnswerList.Add(expandedQJsonProperties.qJsonAnswerList[i]);
+            }
+
             return View(question);
         }
 

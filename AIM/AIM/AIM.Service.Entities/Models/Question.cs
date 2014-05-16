@@ -65,11 +65,11 @@ namespace AIM.Service.Entities.Models
         public string qJsonText { get; set; }
 
         [DataMember]
-        [Display(Name = "Question Option(s)")]
+        [Display(Name = "Question Option")]
         public IList<string> qJsonOptionList { get; set; }
 
         [DataMember]
-        [Display(Name = "Desired Answer(s)")]
+        [Display(Name = "Desired Answer")]
         public IList<string> qJsonAnswerList { get; set; }
     }
 }

@@ -571,10 +571,10 @@ dd {
 
 .dl-horizontal dt {
   float: left;
-  width: 120px;
+  width: 150px;
   overflow: hidden;
   clear: left;
-  text-align: right;
+  text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

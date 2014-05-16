@@ -36,35 +36,66 @@
             <div>
                 <dl class="dl-horizontal">
                     <dt>
-                        @Html.DisplayNameFor(model => model.qJsonProperties)
+                        Question Type:
                     </dt>
 
-
                     <dd>
-                        @Html.DisplayFor(model => model.qJsonProperties)
+                        @{
+                            switch (Model.qJsonType)
+                            {
+                                case AIM.Service.Entities.Models.TypeEnum.MultipleChoice:
+                                    <text>
+                                        Multiple Choice
+                                    </text>
+                                    break;
+                                case AIM.Service.Entities.Models.TypeEnum.AllThatApply:
+                                    <text>
+                                        Select All That Apply
+                                    </text>
+                                    break;
+                                case AIM.Service.Entities.Models.TypeEnum.FreeForm:
+                                    <text>
+                                        Free Form Question
+                                    </text>
+                                    break;
+                                default:
+                                    <text>
+                                        Type Not Set
+                                    </text>
+                                    break;
+                            }
+                        }
                     </dd>
-
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.questionnaireId)
+                        @Html.DisplayNameFor(model => model.qJsonText):
                     </dt>
 
-
                     <dd>
-                        @Html.DisplayFor(model => model.questionnaireId)
+                        @Html.DisplayFor(model => model.qJsonText)
                     </dd>
 
+                    @for (var i = 0; i < Model.qJsonOptionList.Count(); ++i)
+                    {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.qJsonOptionList) @(i + 1):
+                        </dt>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.interviewQuestionsId)
-                    </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.qJsonOptionList[i])
+                        </dd>
+                    }
 
+                    @for (var i = 0; i < Model.qJsonAnswerList.Count(); ++i)
+                    {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.qJsonAnswerList) @(i + 1):
+                        </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.interviewQuestionsId)
-                    </dd>
-
-
+                        <dd>
+                            @Html.DisplayFor(model => model.qJsonAnswerList[i])
+                        </dd>
+                    }
                 </dl>
             </div>
             <p>

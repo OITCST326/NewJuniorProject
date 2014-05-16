@@ -40,13 +40,16 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.qJsonProperties)
+                            @Html.DisplayNameFor(model => model.qJsonText)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.questionnaireId)
+                            @Html.DisplayNameFor(model => model.qJsonType)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.interviewQuestionsId)
+                            @Html.DisplayNameFor(model => model.qJsonOptionList)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.qJsonAnswerList)
                         </th>
                         <th></th>
                         <th></th>
@@ -58,13 +61,60 @@
                     {
                         <tr>
                             <td class="center">
-                                @Html.DisplayFor(modelItem => item.qJsonProperties)
+                                @Html.DisplayFor(modelItem => item.qJsonText)
                             </td>
                             <td class="center">
-                                @Html.DisplayFor(modelItem => item.questionnaireId)
+                                @{
+                                    switch (item.qJsonType)
+                                    {
+                                        case AIM.Service.Entities.Models.TypeEnum.MultipleChoice:
+                                            <text>
+                                                Multiple Choice
+                                            </text>
+                                            break;
+                                        case AIM.Service.Entities.Models.TypeEnum.AllThatApply:
+                                            <text>
+                                                Select All That Apply
+                                            </text>
+                                            break;
+                                        case AIM.Service.Entities.Models.TypeEnum.FreeForm:
+                                            <text>
+                                                Free Form Question
+                                            </text>
+                                            break;
+                                        default:
+                                            <text>
+                                                Type Not Set
+                                            </text>
+                                            break;
+                                    }
+                                }
                             </td>
                             <td class="center">
-                                @Html.DisplayFor(modelItem => item.interviewQuestionsId)
+                                @for (var i = 0; i < item.qJsonOptionList.Count(); ++i)
+                                {
+                                    if (i != item.qJsonOptionList.Count - 1)
+                                    {
+                                        <p>@item.qJsonOptionList[i], </p>
+                                    }
+                                    else
+                                    {
+                                        <p>@item.qJsonOptionList[i]</p>
+                                    }
+                                }
+                            </td>
+                            <td class="center">
+                                @for (var i = 0; i < item.qJsonAnswerList.Count(); ++i)
+                                {
+                                    if (i != item.qJsonAnswerList.Count - 1)
+                                    {
+                                        <p>@item.qJsonAnswerList[i], </p>
+                                    }
+                                    else
+                                    {
+                                        <p>@item.qJsonAnswerList[i]</p>
+                                    }
+                                }
                             </td>
                             <td class="center">
                                 <div>

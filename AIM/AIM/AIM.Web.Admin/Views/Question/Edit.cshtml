@@ -40,22 +40,21 @@
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.questionId)
-
-
+                    
                     <div class="form-group">
-                        @Html.LabelFor(model => model.qJsonProperties, new { @class = "control-label col-md-2" })
+                        @Html.DropDownListFor(model => model.qJsonText, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.qJsonProperties)
-                            @Html.ValidationMessageFor(model => model.qJsonProperties)
+                            @Html.EditorFor(model => model.qJsonText)
+                            @Html.ValidationMessageFor(model => model.qJsonText)
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.questionnaireId, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.qJsonText, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.questionnaireId)
-                            @Html.ValidationMessageFor(model => model.questionnaireId)
+                            @Html.EditorFor(model => model.qJsonText)
+                            @Html.ValidationMessageFor(model => model.qJsonText)
                         </div>
                     </div>
 
