@@ -84,7 +84,7 @@ namespace AIM.ConsoleClient
                     User updatedUser = userService.UpdateUserAsync(changedUser).Result;
 
                     // Merge changes
-                    changeTracker.MergeChanges(ref createdUser, updatedUser);
+                    changeTracker.GetChanges();
                     Console.WriteLine("Updated user:");
                     PrintUser(createdUser);
 
@@ -150,7 +150,7 @@ namespace AIM.ConsoleClient
                     Job updatedJob = jobService.UpdateJobAsync(changedJob).Result;
 
                     // Merge changes
-                    changeTrackerJob.MergeChanges(ref createdJob, updatedJob);
+                    changeTrackerJob.GetChanges();
                     Console.WriteLine("Updated job:");
                     PrintJob(createdJob);
 
