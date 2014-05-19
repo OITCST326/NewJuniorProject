@@ -1,4 +1,3 @@
-using AIM.Service.Client.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Application : ModelBase<Application>, ITrackable
+    public partial class Application : ModelBase<Application>, IEquatable<Application>, ITrackable
     {
         [DataMember]
         public int applicationId
@@ -18,7 +17,7 @@ namespace AIM.Client.Entities.Models
             get { return _applicationId; }
             set
             {
-                if (value == _applicationId) return;
+                if (Equals(value, _applicationId)) return;
                 _applicationId = value;
                 NotifyPropertyChanged(m => m.applicationId);
             }
@@ -32,7 +31,7 @@ namespace AIM.Client.Entities.Models
             get { return _applicantId; }
             set
             {
-                if (value == _applicantId) return;
+                if (Equals(value, _applicantId)) return;
                 _applicantId = value;
                 NotifyPropertyChanged(m => m.applicantId);
             }
@@ -41,18 +40,18 @@ namespace AIM.Client.Entities.Models
         private Nullable<int> _applicantId;
 
         [DataMember]
-        public Nullable<DateTime> dateCreated
+        public Nullable<System.DateTime> dateCreated
         {
             get { return _dateCreated; }
             set
             {
-                if (value == _dateCreated) return;
+                if (Equals(value, _dateCreated)) return;
                 _dateCreated = value;
                 NotifyPropertyChanged(m => m.dateCreated);
             }
         }
 
-        private Nullable<DateTime> _dateCreated;
+        private Nullable<System.DateTime> _dateCreated;
 
         [DataMember]
         public string preEmploymentStatement
@@ -60,7 +59,7 @@ namespace AIM.Client.Entities.Models
             get { return _preEmploymentStatement; }
             set
             {
-                if (value == _preEmploymentStatement) return;
+                if (Equals(value, _preEmploymentStatement)) return;
                 _preEmploymentStatement = value;
                 NotifyPropertyChanged(m => m.preEmploymentStatement);
             }
@@ -74,7 +73,7 @@ namespace AIM.Client.Entities.Models
             get { return _jobId; }
             set
             {
-                if (value == _jobId) return;
+                if (Equals(value, _jobId)) return;
                 _jobId = value;
                 NotifyPropertyChanged(m => m.jobId);
             }
@@ -83,18 +82,18 @@ namespace AIM.Client.Entities.Models
         private Nullable<int> _jobId;
 
         [DataMember]
-        public Nullable<StatusEnum> status
+        public Nullable<int> status
         {
             get { return _status; }
             set
             {
-                if (value == _status) return;
+                if (Equals(value, _status)) return;
                 _status = value;
                 NotifyPropertyChanged(m => m.status);
             }
         }
 
-        private Nullable<StatusEnum> _status;
+        private Nullable<int> _status;
 
         [DataMember]
         public string salaryExpectation
@@ -102,7 +101,7 @@ namespace AIM.Client.Entities.Models
             get { return _salaryExpectation; }
             set
             {
-                if (value == _salaryExpectation) return;
+                if (Equals(value, _salaryExpectation)) return;
                 _salaryExpectation = value;
                 NotifyPropertyChanged(m => m.salaryExpectation);
             }
@@ -111,60 +110,60 @@ namespace AIM.Client.Entities.Models
         private string _salaryExpectation;
 
         [DataMember]
-        public bool isFullTime
+        public Nullable<bool> isFullTime
         {
             get { return _isFullTime; }
             set
             {
-                if (value == _isFullTime) return;
+                if (Equals(value, _isFullTime)) return;
                 _isFullTime = value;
                 NotifyPropertyChanged(m => m.isFullTime);
             }
         }
 
-        private bool _isFullTime;
+        private Nullable<bool> _isFullTime;
 
         [DataMember]
-        public bool isDays
+        public Nullable<bool> isDays
         {
             get { return _isDays; }
             set
             {
-                if (value == _isDays) return;
+                if (Equals(value, _isDays)) return;
                 _isDays = value;
                 NotifyPropertyChanged(m => m.isDays);
             }
         }
 
-        private bool _isDays;
+        private Nullable<bool> _isDays;
 
         [DataMember]
-        public bool isEvenings
+        public Nullable<bool> isEvenings
         {
             get { return _isEvenings; }
             set
             {
-                if (value == _isEvenings) return;
+                if (Equals(value, _isEvenings)) return;
                 _isEvenings = value;
                 NotifyPropertyChanged(m => m.isEvenings);
             }
         }
 
-        private bool _isEvenings;
+        private Nullable<bool> _isEvenings;
 
         [DataMember]
-        public bool isWeekends
+        public Nullable<bool> isWeekends
         {
             get { return _isWeekends; }
             set
             {
-                if (value == _isWeekends) return;
+                if (Equals(value, _isWeekends)) return;
                 _isWeekends = value;
                 NotifyPropertyChanged(m => m.isWeekends);
             }
         }
 
-        private bool _isWeekends;
+        private Nullable<bool> _isWeekends;
 
         [DataMember]
         public Applicant Applicant
@@ -172,13 +171,17 @@ namespace AIM.Client.Entities.Models
             get { return _Applicant; }
             set
             {
-                if (value == _Applicant) return;
+                if (Equals(value, _Applicant)) return;
                 _Applicant = value;
+                ApplicantChangeTracker = _Applicant == null ? null
+                    : new ChangeTrackingCollection<Applicant> { _Applicant };
                 NotifyPropertyChanged(m => m.Applicant);
             }
         }
 
         private Applicant _Applicant;
+
+        private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
 
         [DataMember]
         public Job Job
@@ -186,18 +189,43 @@ namespace AIM.Client.Entities.Models
             get { return _Job; }
             set
             {
-                if (value == _Job) return;
+                if (Equals(value, _Job)) return;
                 _Job = value;
+                JobChangeTracker = _Job == null ? null
+                    : new ChangeTrackingCollection<Job> { _Job };
                 NotifyPropertyChanged(m => m.Job);
             }
         }
 
         private Job _Job;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        private ChangeTrackingCollection<Job> JobChangeTracker { get; set; }
+
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Application>.Equals(Application other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

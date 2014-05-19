@@ -1,5 +1,5 @@
-using System;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
@@ -9,7 +9,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Reference : ModelBase<Reference>, ITrackable
+    public partial class Reference : ModelBase<Reference>, IEquatable<Reference>, ITrackable
     {
         [DataMember]
         public int referenceId
@@ -17,7 +17,7 @@ namespace AIM.Client.Entities.Models
             get { return _referenceId; }
             set
             {
-                if (value == _referenceId) return;
+                if (Equals(value, _referenceId)) return;
                 _referenceId = value;
                 NotifyPropertyChanged(m => m.referenceId);
             }
@@ -31,7 +31,7 @@ namespace AIM.Client.Entities.Models
             get { return _refFullName; }
             set
             {
-                if (value == _refFullName) return;
+                if (Equals(value, _refFullName)) return;
                 _refFullName = value;
                 NotifyPropertyChanged(m => m.refFullName);
             }
@@ -45,7 +45,7 @@ namespace AIM.Client.Entities.Models
             get { return _refCompany; }
             set
             {
-                if (value == _refCompany) return;
+                if (Equals(value, _refCompany)) return;
                 _refCompany = value;
                 NotifyPropertyChanged(m => m.refCompany);
             }
@@ -59,7 +59,7 @@ namespace AIM.Client.Entities.Models
             get { return _refTitle; }
             set
             {
-                if (value == _refTitle) return;
+                if (Equals(value, _refTitle)) return;
                 _refTitle = value;
                 NotifyPropertyChanged(m => m.refTitle);
             }
@@ -73,7 +73,7 @@ namespace AIM.Client.Entities.Models
             get { return _refPhone; }
             set
             {
-                if (value == _refPhone) return;
+                if (Equals(value, _refPhone)) return;
                 _refPhone = value;
                 NotifyPropertyChanged(m => m.refPhone);
             }
@@ -87,7 +87,7 @@ namespace AIM.Client.Entities.Models
             get { return _applicantId; }
             set
             {
-                if (value == _applicantId) return;
+                if (Equals(value, _applicantId)) return;
                 _applicantId = value;
                 NotifyPropertyChanged(m => m.applicantId);
             }
@@ -101,18 +101,43 @@ namespace AIM.Client.Entities.Models
             get { return _Applicant; }
             set
             {
-                if (value == _Applicant) return;
+                if (Equals(value, _Applicant)) return;
                 _Applicant = value;
+                ApplicantChangeTracker = _Applicant == null ? null
+                    : new ChangeTrackingCollection<Applicant> { _Applicant };
                 NotifyPropertyChanged(m => m.Applicant);
             }
         }
 
         private Applicant _Applicant;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
+
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Reference>.Equals(Reference other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

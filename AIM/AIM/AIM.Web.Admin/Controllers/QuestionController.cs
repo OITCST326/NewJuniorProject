@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using AIM.Service.Entities.Models;
+using AIM.Web.Admin.Models;
 using AIM.Web.Admin.QuestionServiceReference;
 using Newtonsoft.Json;
 using System;
@@ -97,34 +98,19 @@ namespace AIM.Web.Admin.Controllers
         public ActionResult Create([Bind(Include = "questionId,qJsonProperties,qJsonId,qJsonType,qJsonText,qJsonOptionList," +
                                                    "qJsonAnswerList,questionnaireId,interviewQuestionsId")] Question question)
         {
-            using (JsonWriter writer = new JsonTextWriter(_sw))
+            // Create JSON string for JSON Properties
+            var jsonQuestion = new JsonQuestion
             {
-                writer.Formatting = Formatting.Indented;
+                qJsonId = question.qJsonId,
+                qJsonType = question.qJsonType,
+                qJsonText = question.qJsonText,
+                qJsonOptionList = new List<string>(question.qJsonOptionList),
+                qJsonAnswerList = new List<string>(question.qJsonAnswerList)
+            };
 
-                writer.WriteStartObject();
-                writer.WritePropertyName("qJsonId");
-                writer.WriteValue(question.qJsonId);
-                writer.WritePropertyName("qJsonType");
-                writer.WriteValue(question.qJsonType);
-                writer.WritePropertyName("qJsonText");
-                writer.WriteValue(question.qJsonText);
+            string json = JsonConvert.SerializeObject(jsonQuestion, Formatting.Indented);
 
-                writer.WritePropertyName("qJsonOptionList");
-                writer.WriteStartArray();
-                for (var i = 0; i < question.qJsonOptionList.Count(); ++i)
-                {
-                    writer.WriteValue(question.qJsonOptionList[i]);
-                }
-
-                writer.WritePropertyName("qJsonAnswerList");
-                writer.WriteStartArray();
-                for (var i = 0; i < question.qJsonAnswerList.Count(); ++i)
-                {
-                    writer.WriteValue(question.qJsonAnswerList[i]);
-                }
-            }
-
-            question.qJsonProperties = Sb.ToString();
+            question.qJsonProperties = json;
 
             if (ModelState.IsValid)
             {
@@ -179,39 +165,23 @@ namespace AIM.Web.Admin.Controllers
         public ActionResult Edit([Bind(Include = "questionId,qJsonProperties,qJsonId,qJsonType,qJsonText,qJsonOptionList," +
                                                  "qJsonAnswerList,questionnaireId,interviewQuestionsId")] Question question)
         {
-            using (JsonWriter writer = new JsonTextWriter(_sw))
+            // Create JSON string for JSON Properties
+            var jsonQuestion = new JsonQuestion
             {
-                writer.Formatting = Formatting.Indented;
+                qJsonId = question.qJsonId,
+                qJsonType = question.qJsonType,
+                qJsonText = question.qJsonText,
+                qJsonOptionList = new List<string>(question.qJsonOptionList),
+                qJsonAnswerList = new List<string>(question.qJsonAnswerList)
+            };
 
-                writer.WriteStartObject();
-                writer.WritePropertyName("qJsonId");
-                writer.WriteValue(question.qJsonId);
-                writer.WritePropertyName("qJsonType");
-                writer.WriteValue(question.qJsonType);
-                writer.WritePropertyName("qJsonText");
-                writer.WriteValue(question.qJsonText);
+            string json = JsonConvert.SerializeObject(jsonQuestion, Formatting.Indented);
 
-                writer.WritePropertyName("qJsonOptionList");
-                writer.WriteStartArray();
-                for (var i = 0; i < question.qJsonOptionList.Count(); ++i)
-                {
-                    writer.WriteValue(question.qJsonOptionList[i]);
-                }
-
-                writer.WritePropertyName("qJsonAnswerList");
-                writer.WriteStartArray();
-                for (var i = 0; i < question.qJsonAnswerList.Count(); ++i)
-                {
-                    writer.WriteValue(question.qJsonAnswerList[i]);
-                }
-            }
-
-            question.qJsonProperties = Sb.ToString();
+            question.qJsonProperties = json;
 
             if (ModelState.IsValid)
             {
-                _client.DeleteQuestion(question.questionId);
-                _client.CreateQuestion(question);
+                _client.UpdateQuestion(question);
                 return RedirectToAction("Index");
             }
 

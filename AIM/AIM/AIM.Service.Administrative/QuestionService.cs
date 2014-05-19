@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
+using TrackableEntities;
 using TrackableEntities.Common;
 using TrackableEntities.EF6;
 
@@ -72,23 +73,37 @@ namespace AIM.Service.Administrative
 
         public async Task<Question> UpdateQuestion(Question entity)
         {
+            _dbContext.ApplyChanges(entity);
+
             try
-            {
-                _dbContext.ApplyChanges(entity);
+            {    
                 await _dbContext.SaveChangesAsync();
-                entity.AcceptChanges();
-                return entity;
             }
             catch (DbUpdateConcurrencyException updateEx)
             {
                 throw new FaultException(updateEx.Message);
             }
+
+            await _dbContext.LoadRelatedEntitiesAsync(entity);
+            entity.AcceptChanges();
+            return entity;
         }
 
         public async Task<Question> CreateQuestion(Question entity)
         {
-            _dbContext.Questions.Add(entity);
-            await _dbContext.SaveChangesAsync();
+            entity.TrackingState = TrackingState.Added;
+            _dbContext.ApplyChanges(entity);
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException updateEx)
+            {
+                throw new FaultException(updateEx.Message);
+            }
+
+            await _dbContext.LoadRelatedEntitiesAsync(entity);
             entity.AcceptChanges();
             return entity;
         }
@@ -100,10 +115,11 @@ namespace AIM.Service.Administrative
             if (entity == null)
                 return false;
 
+            entity.TrackingState = TrackingState.Deleted;
+            _dbContext.ApplyChanges(entity);
+
             try
             {
-                _dbContext.Questions.Attach(entity);
-                _dbContext.Questions.Remove(entity);
                 await _dbContext.SaveChangesAsync();
                 return true;
             }

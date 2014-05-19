@@ -1,6 +1,6 @@
-using System;
 using AIM.Service.Client.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
@@ -10,7 +10,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class PersonalInfo : ModelBase<PersonalInfo>, ITrackable
+    public partial class PersonalInfo : ModelBase<PersonalInfo>, IEquatable<PersonalInfo>, ITrackable
     {
         public PersonalInfo()
         {
@@ -23,7 +23,7 @@ namespace AIM.Client.Entities.Models
             get { return _PersonalInfoId; }
             set
             {
-                if (value == _PersonalInfoId) return;
+                if (Equals(value, _PersonalInfoId)) return;
                 _PersonalInfoId = value;
                 NotifyPropertyChanged(m => m.PersonalInfoId);
             }
@@ -37,7 +37,7 @@ namespace AIM.Client.Entities.Models
             get { return _alias; }
             set
             {
-                if (value == _alias) return;
+                if (Equals(value, _alias)) return;
                 _alias = value;
                 NotifyPropertyChanged(m => m.alias);
             }
@@ -51,7 +51,7 @@ namespace AIM.Client.Entities.Models
             get { return _street; }
             set
             {
-                if (value == _street) return;
+                if (Equals(value, _street)) return;
                 _street = value;
                 NotifyPropertyChanged(m => m.street);
             }
@@ -65,7 +65,7 @@ namespace AIM.Client.Entities.Models
             get { return _street2; }
             set
             {
-                if (value == _street2) return;
+                if (Equals(value, _street2)) return;
                 _street2 = value;
                 NotifyPropertyChanged(m => m.street2);
             }
@@ -79,7 +79,7 @@ namespace AIM.Client.Entities.Models
             get { return _city; }
             set
             {
-                if (value == _city) return;
+                if (Equals(value, _city)) return;
                 _city = value;
                 NotifyPropertyChanged(m => m.city);
             }
@@ -93,7 +93,7 @@ namespace AIM.Client.Entities.Models
             get { return _state; }
             set
             {
-                if (value == _state) return;
+                if (Equals(value, _state)) return;
                 _state = value;
                 NotifyPropertyChanged(m => m.state);
             }
@@ -107,7 +107,7 @@ namespace AIM.Client.Entities.Models
             get { return _zip; }
             set
             {
-                if (value == _zip) return;
+                if (Equals(value, _zip)) return;
                 _zip = value;
                 NotifyPropertyChanged(m => m.zip);
             }
@@ -121,7 +121,7 @@ namespace AIM.Client.Entities.Models
             get { return _phone; }
             set
             {
-                if (value == _phone) return;
+                if (Equals(value, _phone)) return;
                 _phone = value;
                 NotifyPropertyChanged(m => m.phone);
             }
@@ -135,7 +135,7 @@ namespace AIM.Client.Entities.Models
             get { return _userId; }
             set
             {
-                if (value == _userId) return;
+                if (Equals(value, _userId)) return;
                 _userId = value;
                 NotifyPropertyChanged(m => m.userId);
             }
@@ -157,10 +157,31 @@ namespace AIM.Client.Entities.Models
 
         private ChangeTrackingCollection<User> _Users;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<PersonalInfo>.Equals(PersonalInfo other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

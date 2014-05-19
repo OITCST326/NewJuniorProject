@@ -1,5 +1,7 @@
-﻿@model AIM.Service.Entities.Models.Question
-
+﻿@using System.Diagnostics
+@using AIM.Service.Entities.Models
+@using Microsoft.Ajax.Utilities
+@model AIM.Service.Entities.Models.Question
 
 @{
     ViewBag.Title = "Details";
@@ -36,7 +38,7 @@
             <div>
                 <dl class="dl-horizontal">
                     <dt>
-                        Question Type:
+                        @Html.DisplayNameFor(model => model.qJsonType):
                     </dt>
 
                     <dd>

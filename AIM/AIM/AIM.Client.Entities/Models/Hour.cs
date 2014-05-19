@@ -9,7 +9,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Hour : ModelBase<Hour>, ITrackable
+    public partial class Hour : ModelBase<Hour>, IEquatable<Hour>, ITrackable
     {
         public Hour()
         {
@@ -22,7 +22,7 @@ namespace AIM.Client.Entities.Models
             get { return _hoursId; }
             set
             {
-                if (value == _hoursId) return;
+                if (Equals(value, _hoursId)) return;
                 _hoursId = value;
                 NotifyPropertyChanged(m => m.hoursId);
             }
@@ -36,7 +36,7 @@ namespace AIM.Client.Entities.Models
             get { return _applicantId; }
             set
             {
-                if (value == _applicantId) return;
+                if (Equals(value, _applicantId)) return;
                 _applicantId = value;
                 NotifyPropertyChanged(m => m.applicantId);
             }
@@ -45,200 +45,200 @@ namespace AIM.Client.Entities.Models
         private Nullable<int> _applicantId;
 
         [DataMember]
-        public Nullable<TimeSpan> monOpen
+        public Nullable<System.TimeSpan> monOpen
         {
             get { return _monOpen; }
             set
             {
-                if (value == _monOpen) return;
+                if (Equals(value, _monOpen)) return;
                 _monOpen = value;
                 NotifyPropertyChanged(m => m.monOpen);
             }
         }
 
-        private Nullable<TimeSpan> _monOpen;
+        private Nullable<System.TimeSpan> _monOpen;
 
         [DataMember]
-        public Nullable<TimeSpan> monClose
+        public Nullable<System.TimeSpan> monClose
         {
             get { return _monClose; }
             set
             {
-                if (value == _monClose) return;
+                if (Equals(value, _monClose)) return;
                 _monClose = value;
                 NotifyPropertyChanged(m => m.monClose);
             }
         }
 
-        private Nullable<TimeSpan> _monClose;
+        private Nullable<System.TimeSpan> _monClose;
 
         [DataMember]
-        public Nullable<TimeSpan> tueOpen
+        public Nullable<System.TimeSpan> tueOpen
         {
             get { return _tueOpen; }
             set
             {
-                if (value == _tueOpen) return;
+                if (Equals(value, _tueOpen)) return;
                 _tueOpen = value;
                 NotifyPropertyChanged(m => m.tueOpen);
             }
         }
 
-        private Nullable<TimeSpan> _tueOpen;
+        private Nullable<System.TimeSpan> _tueOpen;
 
         [DataMember]
-        public Nullable<TimeSpan> tueClose
+        public Nullable<System.TimeSpan> tueClose
         {
             get { return _tueClose; }
             set
             {
-                if (value == _tueClose) return;
+                if (Equals(value, _tueClose)) return;
                 _tueClose = value;
                 NotifyPropertyChanged(m => m.tueClose);
             }
         }
 
-        private Nullable<TimeSpan> _tueClose;
+        private Nullable<System.TimeSpan> _tueClose;
 
         [DataMember]
-        public Nullable<TimeSpan> wedOpen
+        public Nullable<System.TimeSpan> wedOpen
         {
             get { return _wedOpen; }
             set
             {
-                if (value == _wedOpen) return;
+                if (Equals(value, _wedOpen)) return;
                 _wedOpen = value;
                 NotifyPropertyChanged(m => m.wedOpen);
             }
         }
 
-        private Nullable<TimeSpan> _wedOpen;
+        private Nullable<System.TimeSpan> _wedOpen;
 
         [DataMember]
-        public Nullable<TimeSpan> wedClose
+        public Nullable<System.TimeSpan> wedClose
         {
             get { return _wedClose; }
             set
             {
-                if (value == _wedClose) return;
+                if (Equals(value, _wedClose)) return;
                 _wedClose = value;
                 NotifyPropertyChanged(m => m.wedClose);
             }
         }
 
-        private Nullable<TimeSpan> _wedClose;
+        private Nullable<System.TimeSpan> _wedClose;
 
         [DataMember]
-        public Nullable<TimeSpan> thursOpen
+        public Nullable<System.TimeSpan> thursOpen
         {
             get { return _thursOpen; }
             set
             {
-                if (value == _thursOpen) return;
+                if (Equals(value, _thursOpen)) return;
                 _thursOpen = value;
                 NotifyPropertyChanged(m => m.thursOpen);
             }
         }
 
-        private Nullable<TimeSpan> _thursOpen;
+        private Nullable<System.TimeSpan> _thursOpen;
 
         [DataMember]
-        public Nullable<TimeSpan> thursClose
+        public Nullable<System.TimeSpan> thursClose
         {
             get { return _thursClose; }
             set
             {
-                if (value == _thursClose) return;
+                if (Equals(value, _thursClose)) return;
                 _thursClose = value;
                 NotifyPropertyChanged(m => m.thursClose);
             }
         }
 
-        private Nullable<TimeSpan> _thursClose;
+        private Nullable<System.TimeSpan> _thursClose;
 
         [DataMember]
-        public Nullable<TimeSpan> friOpen
+        public Nullable<System.TimeSpan> friOpen
         {
             get { return _friOpen; }
             set
             {
-                if (value == _friOpen) return;
+                if (Equals(value, _friOpen)) return;
                 _friOpen = value;
                 NotifyPropertyChanged(m => m.friOpen);
             }
         }
 
-        private Nullable<TimeSpan> _friOpen;
+        private Nullable<System.TimeSpan> _friOpen;
 
         [DataMember]
-        public Nullable<TimeSpan> friClose
+        public Nullable<System.TimeSpan> friClose
         {
             get { return _friClose; }
             set
             {
-                if (value == _friClose) return;
+                if (Equals(value, _friClose)) return;
                 _friClose = value;
                 NotifyPropertyChanged(m => m.friClose);
             }
         }
 
-        private Nullable<TimeSpan> _friClose;
+        private Nullable<System.TimeSpan> _friClose;
 
         [DataMember]
-        public Nullable<TimeSpan> satOpen
+        public Nullable<System.TimeSpan> satOpen
         {
             get { return _satOpen; }
             set
             {
-                if (value == _satOpen) return;
+                if (Equals(value, _satOpen)) return;
                 _satOpen = value;
                 NotifyPropertyChanged(m => m.satOpen);
             }
         }
 
-        private Nullable<TimeSpan> _satOpen;
+        private Nullable<System.TimeSpan> _satOpen;
 
         [DataMember]
-        public Nullable<TimeSpan> satClose
+        public Nullable<System.TimeSpan> satClose
         {
             get { return _satClose; }
             set
             {
-                if (value == _satClose) return;
+                if (Equals(value, _satClose)) return;
                 _satClose = value;
                 NotifyPropertyChanged(m => m.satClose);
             }
         }
 
-        private Nullable<TimeSpan> _satClose;
+        private Nullable<System.TimeSpan> _satClose;
 
         [DataMember]
-        public Nullable<TimeSpan> sunOpen
+        public Nullable<System.TimeSpan> sunOpen
         {
             get { return _sunOpen; }
             set
             {
-                if (value == _sunOpen) return;
+                if (Equals(value, _sunOpen)) return;
                 _sunOpen = value;
                 NotifyPropertyChanged(m => m.sunOpen);
             }
         }
 
-        private Nullable<TimeSpan> _sunOpen;
+        private Nullable<System.TimeSpan> _sunOpen;
 
         [DataMember]
-        public Nullable<TimeSpan> sunClose
+        public Nullable<System.TimeSpan> sunClose
         {
             get { return _sunClose; }
             set
             {
-                if (value == _sunClose) return;
+                if (Equals(value, _sunClose)) return;
                 _sunClose = value;
                 NotifyPropertyChanged(m => m.sunClose);
             }
         }
 
-        private Nullable<TimeSpan> _sunClose;
+        private Nullable<System.TimeSpan> _sunClose;
 
         [DataMember]
         public Applicant Applicant
@@ -246,13 +246,17 @@ namespace AIM.Client.Entities.Models
             get { return _Applicant; }
             set
             {
-                if (value == _Applicant) return;
+                if (Equals(value, _Applicant)) return;
                 _Applicant = value;
+                ApplicantChangeTracker = _Applicant == null ? null
+                    : new ChangeTrackingCollection<Applicant> { _Applicant };
                 NotifyPropertyChanged(m => m.Applicant);
             }
         }
 
         private Applicant _Applicant;
+
+        private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
 
         [DataMember]
         public ChangeTrackingCollection<Job> Jobs
@@ -268,10 +272,31 @@ namespace AIM.Client.Entities.Models
 
         private ChangeTrackingCollection<Job> _Jobs;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Hour>.Equals(Hour other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

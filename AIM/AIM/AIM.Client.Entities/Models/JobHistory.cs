@@ -10,7 +10,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class JobHistory : ModelBase<JobHistory>, ITrackable
+    public partial class JobHistory : ModelBase<JobHistory>, IEquatable<JobHistory>, ITrackable
     {
         [DataMember]
         public int jobHistoryId
@@ -18,7 +18,7 @@ namespace AIM.Client.Entities.Models
             get { return _jobHistoryId; }
             set
             {
-                if (value == _jobHistoryId) return;
+                if (Equals(value, _jobHistoryId)) return;
                 _jobHistoryId = value;
                 NotifyPropertyChanged(m => m.jobHistoryId);
             }
@@ -32,7 +32,7 @@ namespace AIM.Client.Entities.Models
             get { return _employerName; }
             set
             {
-                if (value == _employerName) return;
+                if (Equals(value, _employerName)) return;
                 _employerName = value;
                 NotifyPropertyChanged(m => m.employerName);
             }
@@ -46,7 +46,7 @@ namespace AIM.Client.Entities.Models
             get { return _position; }
             set
             {
-                if (value == _position) return;
+                if (Equals(value, _position)) return;
                 _position = value;
                 NotifyPropertyChanged(m => m.position);
             }
@@ -60,7 +60,7 @@ namespace AIM.Client.Entities.Models
             get { return _responsibilities; }
             set
             {
-                if (value == _responsibilities) return;
+                if (Equals(value, _responsibilities)) return;
                 _responsibilities = value;
                 NotifyPropertyChanged(m => m.responsibilities);
             }
@@ -74,7 +74,7 @@ namespace AIM.Client.Entities.Models
             get { return _supervisor; }
             set
             {
-                if (value == _supervisor) return;
+                if (Equals(value, _supervisor)) return;
                 _supervisor = value;
                 NotifyPropertyChanged(m => m.supervisor);
             }
@@ -88,7 +88,7 @@ namespace AIM.Client.Entities.Models
             get { return _startingSalary; }
             set
             {
-                if (value == _startingSalary) return;
+                if (Equals(value, _startingSalary)) return;
                 _startingSalary = value;
                 NotifyPropertyChanged(m => m.startingSalary);
             }
@@ -102,7 +102,7 @@ namespace AIM.Client.Entities.Models
             get { return _endingSalary; }
             set
             {
-                if (value == _endingSalary) return;
+                if (Equals(value, _endingSalary)) return;
                 _endingSalary = value;
                 NotifyPropertyChanged(m => m.endingSalary);
             }
@@ -116,7 +116,7 @@ namespace AIM.Client.Entities.Models
             get { return _reasonForLeaving; }
             set
             {
-                if (value == _reasonForLeaving) return;
+                if (Equals(value, _reasonForLeaving)) return;
                 _reasonForLeaving = value;
                 NotifyPropertyChanged(m => m.reasonForLeaving);
             }
@@ -125,32 +125,32 @@ namespace AIM.Client.Entities.Models
         private string _reasonForLeaving;
 
         [DataMember]
-        public Nullable<DateTime> dateFrom
+        public Nullable<System.DateTime> dateFrom
         {
             get { return _dateFrom; }
             set
             {
-                if (value == _dateFrom) return;
+                if (Equals(value, _dateFrom)) return;
                 _dateFrom = value;
                 NotifyPropertyChanged(m => m.dateFrom);
             }
         }
 
-        private Nullable<DateTime> _dateFrom;
+        private Nullable<System.DateTime> _dateFrom;
 
         [DataMember]
-        public Nullable<DateTime> dateTo
+        public Nullable<System.DateTime> dateTo
         {
             get { return _dateTo; }
             set
             {
-                if (value == _dateTo) return;
+                if (Equals(value, _dateTo)) return;
                 _dateTo = value;
                 NotifyPropertyChanged(m => m.dateTo);
             }
         }
 
-        private Nullable<DateTime> _dateTo;
+        private Nullable<System.DateTime> _dateTo;
 
         [DataMember]
         public string street
@@ -158,7 +158,7 @@ namespace AIM.Client.Entities.Models
             get { return _street; }
             set
             {
-                if (value == _street) return;
+                if (Equals(value, _street)) return;
                 _street = value;
                 NotifyPropertyChanged(m => m.street);
             }
@@ -172,7 +172,7 @@ namespace AIM.Client.Entities.Models
             get { return _street2; }
             set
             {
-                if (value == _street2) return;
+                if (Equals(value, _street2)) return;
                 _street2 = value;
                 NotifyPropertyChanged(m => m.street2);
             }
@@ -186,7 +186,7 @@ namespace AIM.Client.Entities.Models
             get { return _city; }
             set
             {
-                if (value == _city) return;
+                if (Equals(value, _city)) return;
                 _city = value;
                 NotifyPropertyChanged(m => m.city);
             }
@@ -200,7 +200,7 @@ namespace AIM.Client.Entities.Models
             get { return _state; }
             set
             {
-                if (value == _state) return;
+                if (Equals(value, _state)) return;
                 _state = value;
                 NotifyPropertyChanged(m => m.state);
             }
@@ -214,7 +214,7 @@ namespace AIM.Client.Entities.Models
             get { return _zip; }
             set
             {
-                if (value == _zip) return;
+                if (Equals(value, _zip)) return;
                 _zip = value;
                 NotifyPropertyChanged(m => m.zip);
             }
@@ -228,7 +228,7 @@ namespace AIM.Client.Entities.Models
             get { return _phone; }
             set
             {
-                if (value == _phone) return;
+                if (Equals(value, _phone)) return;
                 _phone = value;
                 NotifyPropertyChanged(m => m.phone);
             }
@@ -242,7 +242,7 @@ namespace AIM.Client.Entities.Models
             get { return _applicantId; }
             set
             {
-                if (value == _applicantId) return;
+                if (Equals(value, _applicantId)) return;
                 _applicantId = value;
                 NotifyPropertyChanged(m => m.applicantId);
             }
@@ -256,18 +256,43 @@ namespace AIM.Client.Entities.Models
             get { return _Applicant; }
             set
             {
-                if (value == _Applicant) return;
+                if (Equals(value, _Applicant)) return;
                 _Applicant = value;
+                ApplicantChangeTracker = _Applicant == null ? null
+                    : new ChangeTrackingCollection<Applicant> { _Applicant };
                 NotifyPropertyChanged(m => m.Applicant);
             }
         }
 
         private Applicant _Applicant;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
+
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<JobHistory>.Equals(JobHistory other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

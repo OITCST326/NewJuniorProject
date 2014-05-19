@@ -10,7 +10,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Education : ModelBase<Education>, ITrackable
+    public partial class Education : ModelBase<Education>, IEquatable<Education>, ITrackable
     {
         [DataMember]
         public int educationId
@@ -18,7 +18,7 @@ namespace AIM.Client.Entities.Models
             get { return _educationId; }
             set
             {
-                if (value == _educationId) return;
+                if (Equals(value, _educationId)) return;
                 _educationId = value;
                 NotifyPropertyChanged(m => m.educationId);
             }
@@ -32,7 +32,7 @@ namespace AIM.Client.Entities.Models
             get { return _schoolName; }
             set
             {
-                if (value == _schoolName) return;
+                if (Equals(value, _schoolName)) return;
                 _schoolName = value;
                 NotifyPropertyChanged(m => m.schoolName);
             }
@@ -46,7 +46,7 @@ namespace AIM.Client.Entities.Models
             get { return _degree; }
             set
             {
-                if (value == _degree) return;
+                if (Equals(value, _degree)) return;
                 _degree = value;
                 NotifyPropertyChanged(m => m.degree);
             }
@@ -55,18 +55,18 @@ namespace AIM.Client.Entities.Models
         private string _degree;
 
         [DataMember]
-        public Nullable<DateTime> graduated
+        public Nullable<System.DateTime> graduated
         {
             get { return _graduated; }
             set
             {
-                if (value == _graduated) return;
+                if (Equals(value, _graduated)) return;
                 _graduated = value;
                 NotifyPropertyChanged(m => m.graduated);
             }
         }
 
-        private Nullable<DateTime> _graduated;
+        private Nullable<System.DateTime> _graduated;
 
         [DataMember]
         public string yearsAttended
@@ -74,7 +74,7 @@ namespace AIM.Client.Entities.Models
             get { return _yearsAttended; }
             set
             {
-                if (value == _yearsAttended) return;
+                if (Equals(value, _yearsAttended)) return;
                 _yearsAttended = value;
                 NotifyPropertyChanged(m => m.yearsAttended);
             }
@@ -88,7 +88,7 @@ namespace AIM.Client.Entities.Models
             get { return _street; }
             set
             {
-                if (value == _street) return;
+                if (Equals(value, _street)) return;
                 _street = value;
                 NotifyPropertyChanged(m => m.street);
             }
@@ -102,7 +102,7 @@ namespace AIM.Client.Entities.Models
             get { return _street2; }
             set
             {
-                if (value == _street2) return;
+                if (Equals(value, _street2)) return;
                 _street2 = value;
                 NotifyPropertyChanged(m => m.street2);
             }
@@ -116,7 +116,7 @@ namespace AIM.Client.Entities.Models
             get { return _city; }
             set
             {
-                if (value == _city) return;
+                if (Equals(value, _city)) return;
                 _city = value;
                 NotifyPropertyChanged(m => m.city);
             }
@@ -130,7 +130,7 @@ namespace AIM.Client.Entities.Models
             get { return _state; }
             set
             {
-                if (value == _state) return;
+                if (Equals(value, _state)) return;
                 _state = value;
                 NotifyPropertyChanged(m => m.state);
             }
@@ -144,7 +144,7 @@ namespace AIM.Client.Entities.Models
             get { return _zip; }
             set
             {
-                if (value == _zip) return;
+                if (Equals(value, _zip)) return;
                 _zip = value;
                 NotifyPropertyChanged(m => m.zip);
             }
@@ -158,7 +158,7 @@ namespace AIM.Client.Entities.Models
             get { return _applicantId; }
             set
             {
-                if (value == _applicantId) return;
+                if (Equals(value, _applicantId)) return;
                 _applicantId = value;
                 NotifyPropertyChanged(m => m.applicantId);
             }
@@ -172,18 +172,43 @@ namespace AIM.Client.Entities.Models
             get { return _Applicant; }
             set
             {
-                if (value == _Applicant) return;
+                if (Equals(value, _Applicant)) return;
                 _Applicant = value;
+                ApplicantChangeTracker = _Applicant == null ? null
+                    : new ChangeTrackingCollection<Applicant> { _Applicant };
                 NotifyPropertyChanged(m => m.Applicant);
             }
         }
 
         private Applicant _Applicant;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
+
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Education>.Equals(Education other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

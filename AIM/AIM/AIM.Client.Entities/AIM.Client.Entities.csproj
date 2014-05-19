@@ -38,6 +38,10 @@
     <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\ApplicantQuestionAnswer.cs" />
     <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\AspNetRole.cs" />
+    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\AspNetUserClaim.cs" />
+    <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Hour.cs" />

@@ -60,6 +60,10 @@ namespace AIM.Service.Entities.Models
             modelBuilder.Configurations.Add(new ApplicantQuestionAnswerMap());
             modelBuilder.Configurations.Add(new ApplicantMap());
             modelBuilder.Configurations.Add(new ApplicationMap());
+            modelBuilder.Configurations.Add(new AspNetRoleMap());
+            modelBuilder.Configurations.Add(new AspNetUserClaimMap());
+            modelBuilder.Configurations.Add(new AspNetUserLoginMap());
+            modelBuilder.Configurations.Add(new AspNetUserMap());
             modelBuilder.Configurations.Add(new EducationMap());
             modelBuilder.Configurations.Add(new EmployeeMap());
             modelBuilder.Configurations.Add(new HourMap());

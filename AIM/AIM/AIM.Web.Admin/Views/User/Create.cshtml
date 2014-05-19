@@ -40,7 +40,6 @@
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true)
 
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.firstName, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -57,7 +56,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.lastName, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -65,7 +63,6 @@
                             @Html.ValidationMessageFor(model => model.lastName)
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.email, new { @class = "control-label col-md-2" })
@@ -75,7 +72,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.socialSecurityNumber, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -83,16 +79,6 @@
                             @Html.ValidationMessageFor(model => model.socialSecurityNumber)
                         </div>
                     </div>
-
-
-                    @*<div class="form-group">
-                        @Html.LabelFor(model => model.socialSecurityNumberCoder, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.socialSecurityNumberCoder)
-                            @Html.ValidationMessageFor(model => model.socialSecurityNumberCoder)
-                        </div>
-                    </div>*@
-
 
                     @*<div class="form-group">
                             @Html.LabelFor(model => model.PersonalInfoId, "PersonalInfoId", new { @class = "control-label col-md-2" })
@@ -128,7 +114,6 @@
                                 @Html.ValidationMessageFor(model => model.employeeId)
                             </div>
                         </div>*@
-
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">

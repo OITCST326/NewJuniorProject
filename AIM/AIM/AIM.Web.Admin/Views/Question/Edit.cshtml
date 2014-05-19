@@ -40,33 +40,56 @@
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.questionId)
+                    @Html.HiddenFor(model => model.qJsonId)
+                    @Html.HiddenFor(model => model.qJsonProperties)
+                    @Html.HiddenFor(model => model.questionnaireId)
+                    @Html.HiddenFor(model => model.interviewQuestionsId)
                     
                     <div class="form-group">
-                        @Html.DropDownListFor(model => model.qJsonText, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.qJsonText)
+                        <label class="control-label">
+                            @Html.DisplayNameFor(model => model.qJsonType):
+                        </label>
+                        <div class="form-control">
+                            @Html.EnumDropDownListFor(model => model.qJsonType)
+                            @Html.ValidationMessageFor(model => model.qJsonType)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            @Html.DisplayNameFor(model => model.qJsonText):
+                        </label>
+                        <div class="form-control">
+                            <textarea rows="4">@Model.qJsonText</textarea>
                             @Html.ValidationMessageFor(model => model.qJsonText)
                         </div>
                     </div>
 
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.qJsonText, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.qJsonText)
-                            @Html.ValidationMessageFor(model => model.qJsonText)
+                    @for (var i = 0; i < Model.qJsonOptionList.Count(); ++i)
+                    {
+                        <div class="form-group">
+                            <label class="control-label">
+                                @Html.DisplayNameFor(model => model.qJsonOptionList) @(i + 1):
+                            </label>
+                            <div class="form-control">
+                                @Html.EditorFor(model => model.qJsonOptionList[i])
+                                @Html.ValidationMessageFor(model => model.qJsonOptionList[i])
+                            </div>
                         </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.interviewQuestionsId, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.interviewQuestionsId)
-                            @Html.ValidationMessageFor(model => model.interviewQuestionsId)
+                    }
+                    
+                    @for (var i = 0; i < Model.qJsonAnswerList.Count(); ++i)
+                    {
+                        <div class="form-group">
+                            <label class="control-label">
+                                @Html.DisplayNameFor(model => model.qJsonAnswerList) @(i + 1):
+                            </label>
+                            <div class="form-control">
+                                @Html.EditorFor(model => model.qJsonAnswerList[i])
+                                @Html.ValidationMessageFor(model => model.qJsonAnswerList[i])
+                            </div>
                         </div>
-                    </div>
-
+                    }
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">

@@ -1,6 +1,5 @@
-using System;
-using AIM.Service.Client.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
@@ -10,7 +9,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Store : ModelBase<Store>, ITrackable
+    public partial class Store : ModelBase<Store>, IEquatable<Store>, ITrackable
     {
         public Store()
         {
@@ -23,7 +22,7 @@ namespace AIM.Client.Entities.Models
             get { return _storeId; }
             set
             {
-                if (value == _storeId) return;
+                if (Equals(value, _storeId)) return;
                 _storeId = value;
                 NotifyPropertyChanged(m => m.storeId);
             }
@@ -37,7 +36,7 @@ namespace AIM.Client.Entities.Models
             get { return _name; }
             set
             {
-                if (value == _name) return;
+                if (Equals(value, _name)) return;
                 _name = value;
                 NotifyPropertyChanged(m => m.name);
             }
@@ -51,7 +50,7 @@ namespace AIM.Client.Entities.Models
             get { return _regionId; }
             set
             {
-                if (value == _regionId) return;
+                if (Equals(value, _regionId)) return;
                 _regionId = value;
                 NotifyPropertyChanged(m => m.regionId);
             }
@@ -65,7 +64,7 @@ namespace AIM.Client.Entities.Models
             get { return _street; }
             set
             {
-                if (value == _street) return;
+                if (Equals(value, _street)) return;
                 _street = value;
                 NotifyPropertyChanged(m => m.street);
             }
@@ -79,7 +78,7 @@ namespace AIM.Client.Entities.Models
             get { return _street2; }
             set
             {
-                if (value == _street2) return;
+                if (Equals(value, _street2)) return;
                 _street2 = value;
                 NotifyPropertyChanged(m => m.street2);
             }
@@ -93,7 +92,7 @@ namespace AIM.Client.Entities.Models
             get { return _city; }
             set
             {
-                if (value == _city) return;
+                if (Equals(value, _city)) return;
                 _city = value;
                 NotifyPropertyChanged(m => m.city);
             }
@@ -102,18 +101,18 @@ namespace AIM.Client.Entities.Models
         private string _city;
 
         [DataMember]
-        public Nullable<StateEnum> state
+        public Nullable<int> state
         {
             get { return _state; }
             set
             {
-                if (value == _state) return;
+                if (Equals(value, _state)) return;
                 _state = value;
                 NotifyPropertyChanged(m => m.state);
             }
         }
 
-        private Nullable<StateEnum> _state;
+        private Nullable<int> _state;
 
         [DataMember]
         public string zip
@@ -121,7 +120,7 @@ namespace AIM.Client.Entities.Models
             get { return _zip; }
             set
             {
-                if (value == _zip) return;
+                if (Equals(value, _zip)) return;
                 _zip = value;
                 NotifyPropertyChanged(m => m.zip);
             }
@@ -149,18 +148,43 @@ namespace AIM.Client.Entities.Models
             get { return _Region; }
             set
             {
-                if (value == _Region) return;
+                if (Equals(value, _Region)) return;
                 _Region = value;
+                RegionChangeTracker = _Region == null ? null
+                    : new ChangeTrackingCollection<Region> { _Region };
                 NotifyPropertyChanged(m => m.Region);
             }
         }
 
         private Region _Region;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        private ChangeTrackingCollection<Region> RegionChangeTracker { get; set; }
+
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Store>.Equals(Store other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

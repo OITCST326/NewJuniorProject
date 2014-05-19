@@ -71,5 +71,8 @@ namespace AIM.Service.Entities.Models
         [DataMember]
         [Display(Name = "Desired Answer")]
         public IList<string> qJsonAnswerList { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
     }
 }

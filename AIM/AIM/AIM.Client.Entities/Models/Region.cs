@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
@@ -8,7 +9,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Region : ModelBase<Region>, ITrackable
+    public partial class Region : ModelBase<Region>, IEquatable<Region>, ITrackable
     {
         public Region()
         {
@@ -22,7 +23,7 @@ namespace AIM.Client.Entities.Models
             get { return _regionId; }
             set
             {
-                if (value == _regionId) return;
+                if (Equals(value, _regionId)) return;
                 _regionId = value;
                 NotifyPropertyChanged(m => m.regionId);
             }
@@ -36,7 +37,7 @@ namespace AIM.Client.Entities.Models
             get { return _regionName; }
             set
             {
-                if (value == _regionName) return;
+                if (Equals(value, _regionName)) return;
                 _regionName = value;
                 NotifyPropertyChanged(m => m.regionName);
             }
@@ -72,10 +73,31 @@ namespace AIM.Client.Entities.Models
 
         private ChangeTrackingCollection<Store> _Stores;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Region>.Equals(Region other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

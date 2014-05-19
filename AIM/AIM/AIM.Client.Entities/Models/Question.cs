@@ -1,7 +1,6 @@
-using System;
-using System.Linq;
 using AIM.Service.Client.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
@@ -11,7 +10,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Question : ModelBase<Question>, ITrackable
+    public partial class Question : ModelBase<Question>, IEquatable<Question>, ITrackable
     {
         public Question()
         {
@@ -26,7 +25,7 @@ namespace AIM.Client.Entities.Models
             get { return _questionId; }
             set
             {
-                if (value == _questionId) return;
+                if (Equals(value, _questionId)) return;
                 _questionId = value;
                 NotifyPropertyChanged(m => m.questionId);
             }
@@ -40,7 +39,7 @@ namespace AIM.Client.Entities.Models
             get { return _qJsonProperties; }
             set
             {
-                if (value == _qJsonProperties) return;
+                if (Equals(value, _qJsonProperties)) return;
                 _qJsonProperties = value;
                 NotifyPropertyChanged(m => m.qJsonProperties);
             }
@@ -54,7 +53,7 @@ namespace AIM.Client.Entities.Models
             get { return _questionnaireId; }
             set
             {
-                if (value == _questionnaireId) return;
+                if (Equals(value, _questionnaireId)) return;
                 _questionnaireId = value;
                 NotifyPropertyChanged(m => m.questionnaireId);
             }
@@ -63,18 +62,18 @@ namespace AIM.Client.Entities.Models
         private Nullable<int> _questionnaireId;
 
         [DataMember]
-        public int interviewQuestionsId
+        public Nullable<int> interviewQuestionsId
         {
             get { return _interviewQuestionsId; }
             set
             {
-                if (value == _interviewQuestionsId) return;
+                if (Equals(value, _interviewQuestionsId)) return;
                 _interviewQuestionsId = value;
                 NotifyPropertyChanged(m => m.interviewQuestionsId);
             }
         }
 
-        private int _interviewQuestionsId;
+        private Nullable<int> _interviewQuestionsId;
 
         [DataMember]
         public ChangeTrackingCollection<ApplicantQuestionAnswer> ApplicantQuestionAnswers
@@ -119,18 +118,12 @@ namespace AIM.Client.Entities.Models
         private ChangeTrackingCollection<QuestionQuestionnaire> _QuestionQuestionnaires;
 
         [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
-
-        [DataMember]
-        public TrackingState TrackingState { get; set; }
-
-        [DataMember]
         public Nullable<int> qJsonId
         {
             get { return _qJsonId; }
             set
             {
-                if (value == _qJsonId) return;
+                if (Equals(value == _qJsonId)) return;
                 _qJsonId = value;
                 NotifyPropertyChanged(m => m.questionnaireId);
             }
@@ -144,7 +137,7 @@ namespace AIM.Client.Entities.Models
             get { return _qJsonType; }
             set
             {
-                if (value == _qJsonType) return;
+                if (Equals(value == _qJsonType)) return;
                 _qJsonType = value;
                 NotifyPropertyChanged(m => m.qJsonType);
             }
@@ -155,10 +148,10 @@ namespace AIM.Client.Entities.Models
         [DataMember]
         public string qJsonText
         {
-            get { return _qJsonText;  }
+            get { return _qJsonText; }
             set
             {
-                if (value == _qJsonText) return;
+                if (Equals(value == _qJsonText)) return;
                 _qJsonText = value;
                 NotifyPropertyChanged(m => m.qJsonText);
             }
@@ -172,7 +165,7 @@ namespace AIM.Client.Entities.Models
             get { return _qJsonOptionList; }
             set
             {
-                if (value.Equals(_qJsonOptionList)) return;
+                if (Equals(value, _qJsonOptionList)) return;
                 _qJsonOptionList = value;
                 NotifyPropertyChanged(m => m.qJsonOptionList);
             }
@@ -186,12 +179,39 @@ namespace AIM.Client.Entities.Models
             get { return _qJsonAnswerList; }
             set
             {
-                if (value.Equals(_qJsonAnswerList)) return;
+                if (Equals(value, _qJsonAnswerList)) return;
                 _qJsonAnswerList = value;
                 NotifyPropertyChanged(m => m.qJsonAnswerList);
             }
         }
 
         private IList<string> _qJsonAnswerList = new List<string>();
+
+        #region Change Tracking
+
+        [DataMember]
+        public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Question>.Equals(Question other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

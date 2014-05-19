@@ -1,5 +1,5 @@
-using System;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
@@ -9,7 +9,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class InterviewQuestion : ModelBase<InterviewQuestion>, ITrackable
+    public partial class InterviewQuestion : ModelBase<InterviewQuestion>, IEquatable<InterviewQuestion>, ITrackable
     {
         public InterviewQuestion()
         {
@@ -23,7 +23,7 @@ namespace AIM.Client.Entities.Models
             get { return _interviewQuestionsId; }
             set
             {
-                if (value == _interviewQuestionsId) return;
+                if (Equals(value, _interviewQuestionsId)) return;
                 _interviewQuestionsId = value;
                 NotifyPropertyChanged(m => m.interviewQuestionsId);
             }
@@ -37,7 +37,7 @@ namespace AIM.Client.Entities.Models
             get { return _questionId; }
             set
             {
-                if (value == _questionId) return;
+                if (Equals(value, _questionId)) return;
                 _questionId = value;
                 NotifyPropertyChanged(m => m.questionId);
             }
@@ -51,7 +51,7 @@ namespace AIM.Client.Entities.Models
             get { return _jobId; }
             set
             {
-                if (value == _jobId) return;
+                if (Equals(value, _jobId)) return;
                 _jobId = value;
                 NotifyPropertyChanged(m => m.jobId);
             }
@@ -87,10 +87,31 @@ namespace AIM.Client.Entities.Models
 
         private ChangeTrackingCollection<QuestionInterviewQuestionMapping> _QuestionInterviewQuestionMappings;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<InterviewQuestion>.Equals(InterviewQuestion other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

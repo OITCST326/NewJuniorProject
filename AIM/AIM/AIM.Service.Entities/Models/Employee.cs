@@ -41,5 +41,8 @@ namespace AIM.Service.Entities.Models
 
         [DataMember]
         public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
     }
 }

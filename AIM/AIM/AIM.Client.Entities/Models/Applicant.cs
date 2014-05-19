@@ -1,5 +1,5 @@
-using System;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
@@ -9,7 +9,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Applicant : ModelBase<Applicant>, ITrackable
+    public partial class Applicant : ModelBase<Applicant>, IEquatable<Applicant>, ITrackable
     {
         public Applicant()
         {
@@ -28,7 +28,7 @@ namespace AIM.Client.Entities.Models
             get { return _applicantId; }
             set
             {
-                if (value == _applicantId) return;
+                if (Equals(value, _applicantId)) return;
                 _applicantId = value;
                 NotifyPropertyChanged(m => m.applicantId);
             }
@@ -42,7 +42,7 @@ namespace AIM.Client.Entities.Models
             get { return _educationId; }
             set
             {
-                if (value == _educationId) return;
+                if (Equals(value, _educationId)) return;
                 _educationId = value;
                 NotifyPropertyChanged(m => m.educationId);
             }
@@ -56,7 +56,7 @@ namespace AIM.Client.Entities.Models
             get { return _jobHistoryId; }
             set
             {
-                if (value == _jobHistoryId) return;
+                if (Equals(value, _jobHistoryId)) return;
                 _jobHistoryId = value;
                 NotifyPropertyChanged(m => m.jobHistoryId);
             }
@@ -70,7 +70,7 @@ namespace AIM.Client.Entities.Models
             get { return _referenceId; }
             set
             {
-                if (value == _referenceId) return;
+                if (Equals(value, _referenceId)) return;
                 _referenceId = value;
                 NotifyPropertyChanged(m => m.referenceId);
             }
@@ -84,7 +84,7 @@ namespace AIM.Client.Entities.Models
             get { return _userId; }
             set
             {
-                if (value == _userId) return;
+                if (Equals(value, _userId)) return;
                 _userId = value;
                 NotifyPropertyChanged(m => m.userId);
             }
@@ -98,7 +98,7 @@ namespace AIM.Client.Entities.Models
             get { return _applicationId; }
             set
             {
-                if (value == _applicationId) return;
+                if (Equals(value, _applicationId)) return;
                 _applicationId = value;
                 NotifyPropertyChanged(m => m.applicationId);
             }
@@ -112,7 +112,7 @@ namespace AIM.Client.Entities.Models
             get { return _answerId; }
             set
             {
-                if (value == _answerId) return;
+                if (Equals(value, _answerId)) return;
                 _answerId = value;
                 NotifyPropertyChanged(m => m.answerId);
             }
@@ -126,7 +126,7 @@ namespace AIM.Client.Entities.Models
             get { return _hoursId; }
             set
             {
-                if (value == _hoursId) return;
+                if (Equals(value, _hoursId)) return;
                 _hoursId = value;
                 NotifyPropertyChanged(m => m.hoursId);
             }
@@ -232,10 +232,31 @@ namespace AIM.Client.Entities.Models
 
         private ChangeTrackingCollection<User> _Users;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Applicant>.Equals(Applicant other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }

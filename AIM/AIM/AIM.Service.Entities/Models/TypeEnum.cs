@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace AIM.Service.Entities.Models
@@ -7,15 +7,15 @@ namespace AIM.Service.Entities.Models
     public enum TypeEnum : int
     {
         [EnumMember]
-        [Description("Multiple Choice")]
+        [Display(Name = "Multiple Choice")]
         MultipleChoice = 0,
 
         [EnumMember]
-        [Description("Select All That Apply")]
+        [Display(Name = "Select All That Apply")]
         AllThatApply = 1,
 
         [EnumMember]
-        [Description("Free Form Question")]
+        [Display(Name = "Free Form Question")]
         FreeForm = 2
     }
 }

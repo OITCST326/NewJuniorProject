@@ -1,6 +1,6 @@
-using System;
 using AIM.Service.Client.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
@@ -10,7 +10,7 @@ namespace AIM.Client.Entities.Models
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class Employee : ModelBase<Employee>, ITrackable
+    public partial class Employee : ModelBase<Employee>, IEquatable<Employee>, ITrackable
     {
         public Employee()
         {
@@ -23,7 +23,7 @@ namespace AIM.Client.Entities.Models
             get { return _employeeId; }
             set
             {
-                if (value == _employeeId) return;
+                if (Equals(value, _employeeId)) return;
                 _employeeId = value;
                 NotifyPropertyChanged(m => m.employeeId);
             }
@@ -37,7 +37,7 @@ namespace AIM.Client.Entities.Models
             get { return _permissions; }
             set
             {
-                if (value == _permissions) return;
+                if (Equals(value, _permissions)) return;
                 _permissions = value;
                 NotifyPropertyChanged(m => m.permissions);
             }
@@ -51,7 +51,7 @@ namespace AIM.Client.Entities.Models
             get { return _jobId; }
             set
             {
-                if (value == _jobId) return;
+                if (Equals(value, _jobId)) return;
                 _jobId = value;
                 NotifyPropertyChanged(m => m.jobId);
             }
@@ -65,13 +65,17 @@ namespace AIM.Client.Entities.Models
             get { return _Job; }
             set
             {
-                if (value == _Job) return;
+                if (Equals(value, _Job)) return;
                 _Job = value;
+                JobChangeTracker = _Job == null ? null
+                    : new ChangeTrackingCollection<Job> { _Job };
                 NotifyPropertyChanged(m => m.Job);
             }
         }
 
         private Job _Job;
+
+        private ChangeTrackingCollection<Job> JobChangeTracker { get; set; }
 
         [DataMember]
         public ChangeTrackingCollection<User> Users
@@ -87,10 +91,31 @@ namespace AIM.Client.Entities.Models
 
         private ChangeTrackingCollection<User> _Users;
 
-        [DataMember]
-        public ICollection<string> ModifiedProperties { get; set; }
+        #region Change Tracking
 
         [DataMember]
         public TrackingState TrackingState { get; set; }
+
+        [DataMember]
+        public ICollection<string> ModifiedProperties { get; set; }
+
+        [JsonProperty, DataMember]
+        private Guid EntityIdentifier { get; set; }
+
+#pragma warning disable 414
+
+        [JsonProperty, DataMember]
+        private Guid _entityIdentity = default(Guid);
+
+#pragma warning restore 414
+
+        bool IEquatable<Employee>.Equals(Employee other)
+        {
+            if (EntityIdentifier != default(Guid))
+                return EntityIdentifier == other.EntityIdentifier;
+            return false;
+        }
+
+        #endregion Change Tracking
     }
 }
