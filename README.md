@@ -5,10 +5,10 @@ Recreation of JuniorProject with a correct .gitignore file!
 
 Team members:
 
-Chase Marcum - Team Leader
-John Price - QA 
-Jordan Ringo - Architect
-Josh Hartwell - Repository and Documentation Specialist 
+Chase Marcum - Team Leader,
+John Price - QA, 
+Jordan Ringo - Architect,
+Josh Hartwell - Repository and Documentation Specialist, 
 Patrick Jarofski - Requirements
 
 Goal: Create a prototype of an n-tier web application
