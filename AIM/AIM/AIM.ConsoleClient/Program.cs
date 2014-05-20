@@ -23,10 +23,16 @@ namespace AIM.ConsoleClient
             IUserService userService = new ChannelFactory<IUserService>("userService").CreateChannel();
             IQuestionService questionService = new ChannelFactory<IQuestionService>("questionService").CreateChannel();
             IJobService jobService = new ChannelFactory<IJobService>("jobService").CreateChannel();
+            IApplicationService applicationService =
+                new ChannelFactory<IApplicationService>("applicationService").CreateChannel();
+            IPersonalInfoService personalInfoService =
+                new ChannelFactory<IPersonalInfoService>("personalInfoService").CreateChannel();
 
             using ((IDisposable)userService)
             using ((IDisposable)questionService)
             using ((IDisposable)jobService)
+            using ((IDisposable)applicationService)
+            using ((IDisposable)personalInfoService)
             {
                 try
                 {
