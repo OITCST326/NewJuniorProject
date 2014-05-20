@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Details";
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
 }
 
 <!-- This view's content starts HERE-->

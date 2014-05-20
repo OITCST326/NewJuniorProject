@@ -55,7 +55,20 @@ namespace AIM.Service.Administrative
         public async Task<User> GetUser(int? id)
         {
             User entity = await _dbContext.Users
+                .Include(u => u.Applicant)
+                .Include(u => u.Employee)
+                .Include(u => u.PersonalInfo)
                 .SingleOrDefaultAsync(x => x.userId == id);
+            return entity;
+        }
+
+        public async Task<User> GetUser(string userName, string password)
+        {
+            User entity = await _dbContext.Users
+                .Include(u => u.Applicant)
+                .Include(u => u.Employee)
+                .Include(u => u.PersonalInfo)
+                .SingleOrDefaultAsync(x => x.userName == userName && x.password == password);
             return entity;
         }
 

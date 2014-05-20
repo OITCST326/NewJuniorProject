@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Index";
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
 }
 
 <div>

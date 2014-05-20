@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using AIM.Service.Administrative;
 using AIM.Web.Admin.Models;
 
 namespace AIM.Web.Admin.Controllers
@@ -42,14 +43,22 @@ namespace AIM.Web.Admin.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(AIM.Service.Entities.Models.User model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
+                UserService quickService = new UserService();
+                var user = await quickService.GetUser(model.userName, model.password);
+                //var user = await UserManager.FindAsync(model.userName, model.password);
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);
+                    //await SignInAsync(user, true);//model.RememberMe);
+                    ViewBag.ReturnUrl = returnUrl;
+                    //ViewBag.UserID = model.userName;
+                    //ViewBag.myStuff = "myStuff";
+                    TempData["userName"] = user.userName;
+                    TempData["Permissions"] = user.Employee.permissions;
+                    //return View();
                     return RedirectToLocal(returnUrl);
                 }
                 else

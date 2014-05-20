@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Edit";
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
 }
 
 <h2>Edit</h2>

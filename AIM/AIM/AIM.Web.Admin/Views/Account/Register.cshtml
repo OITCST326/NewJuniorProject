@@ -1,6 +1,10 @@
 ﻿@model AIM.Web.Admin.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
     Layout = "~/Views/Shared/_Layout_Account.cshtml";
 }
 
