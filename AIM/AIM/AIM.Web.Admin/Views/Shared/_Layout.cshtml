@@ -3,6 +3,13 @@
 
 @using Microsoft.Ajax.Utilities
 @using Microsoft.AspNet.Identity
+@{
+
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
+}
 
 <head>
     <!--
@@ -96,7 +103,7 @@
                 <!-- user dropdown starts -->
                 <div class="btn-group pull-right">
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="icon-user"></i><span class="hidden-phone"> @User.Identity.GetUserName()</span>
+                        <i class="icon-user"></i><span class="hidden-phone"> @userName</span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
