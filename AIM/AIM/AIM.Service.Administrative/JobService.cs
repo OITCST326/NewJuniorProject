@@ -31,6 +31,15 @@ namespace AIM.Service.Administrative
 
         [OperationContract]
         Task<IEnumerable<OpenJob>> GetOpenJobs();
+
+        [OperationContract]
+        Task<IEnumerable<Store>> GetStoreList(int? regionId);
+
+        [OperationContract]
+        Task<IEnumerable<Region>> GetRegionList();
+
+        [OperationContract]
+        Task<IEnumerable<OpenJob>> GetOpenJobsForStore(int? storeId);
     }
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
@@ -112,6 +121,36 @@ namespace AIM.Service.Administrative
                 .OrderBy(op => op.Region.regionName)
                 .ThenBy(op => op.Job.description)
                 .ToListAsync();
+            return entities;
+        }
+
+        public async Task<IEnumerable<Region>> GetRegionList()
+        {
+            IEnumerable<Region> entities = await _dbContext.Regions
+                .OrderBy(r => r.regionName)
+                .ToListAsync();
+            return entities;
+
+        }
+
+        public async Task<IEnumerable<Store>> GetStoreList(int? region)
+        {
+            IEnumerable<Store> entities = await _dbContext.Stores
+                .Where(op => op.regionId == region)
+                .OrderBy(op => op.regionId)
+                .ThenBy(op => op.name)
+                .ToListAsync();
+            return entities;
+        }
+
+        public async Task<IEnumerable<OpenJob>> GetOpenJobsForStore(int? storeID)
+        {
+            IEnumerable<OpenJob> entities = await _dbContext.OpenJobs
+                .Include(oj => oj.Job)
+                .Where(oj => oj.storeId == storeID)
+                .OrderBy(oj => oj.Job.position)
+                .ToListAsync();
+
             return entities;
         }
 

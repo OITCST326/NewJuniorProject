@@ -46,6 +46,24 @@
   <wsdl:message name="IJobService_GetOpenJobs_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOpenJobsResponse" />
   </wsdl:message>
+  <wsdl:message name="IJobService_GetStoreList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreList" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_GetStoreList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_GetRegionList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegionList" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_GetRegionList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_GetOpenJobsForStore_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOpenJobsForStore" />
+  </wsdl:message>
+  <wsdl:message name="IJobService_GetOpenJobsForStore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOpenJobsForStoreResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJobService">
     <wsdl:operation name="GetJobsList">
       <wsdl:input wsaw:Action="urn:trackable-entities:service/IJobService/GetJobsList" message="tns:IJobService_GetJobsList_InputMessage" />
@@ -70,6 +88,18 @@
     <wsdl:operation name="GetOpenJobs">
       <wsdl:input wsaw:Action="urn:trackable-entities:service/IJobService/GetOpenJobs" message="tns:IJobService_GetOpenJobs_InputMessage" />
       <wsdl:output wsaw:Action="urn:trackable-entities:service/IJobService/GetOpenJobsResponse" message="tns:IJobService_GetOpenJobs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreList">
+      <wsdl:input wsaw:Action="urn:trackable-entities:service/IJobService/GetStoreList" message="tns:IJobService_GetStoreList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:trackable-entities:service/IJobService/GetStoreListResponse" message="tns:IJobService_GetStoreList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegionList">
+      <wsdl:input wsaw:Action="urn:trackable-entities:service/IJobService/GetRegionList" message="tns:IJobService_GetRegionList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:trackable-entities:service/IJobService/GetRegionListResponse" message="tns:IJobService_GetRegionList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpenJobsForStore">
+      <wsdl:input wsaw:Action="urn:trackable-entities:service/IJobService/GetOpenJobsForStore" message="tns:IJobService_GetOpenJobsForStore_InputMessage" />
+      <wsdl:output wsaw:Action="urn:trackable-entities:service/IJobService/GetOpenJobsForStoreResponse" message="tns:IJobService_GetOpenJobsForStore_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

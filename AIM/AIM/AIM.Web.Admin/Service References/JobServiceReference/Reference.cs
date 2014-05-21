@@ -32,6 +32,15 @@ namespace AIM.Web.Admin.JobServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="urn:trackable-entities:service/IJobService/GetOpenJobs", ReplyAction="urn:trackable-entities:service/IJobService/GetOpenJobsResponse")]
         AIM.Service.Entities.Models.OpenJob[] GetOpenJobs();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:trackable-entities:service/IJobService/GetStoreList", ReplyAction="urn:trackable-entities:service/IJobService/GetStoreListResponse")]
+        AIM.Service.Entities.Models.Store[] GetStoreList(System.Nullable<int> regionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:trackable-entities:service/IJobService/GetRegionList", ReplyAction="urn:trackable-entities:service/IJobService/GetRegionListResponse")]
+        AIM.Service.Entities.Models.Region[] GetRegionList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:trackable-entities:service/IJobService/GetOpenJobsForStore", ReplyAction="urn:trackable-entities:service/IJobService/GetOpenJobsForStoreResponse")]
+        AIM.Service.Entities.Models.OpenJob[] GetOpenJobsForStore(System.Nullable<int> storeId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +92,18 @@ namespace AIM.Web.Admin.JobServiceReference {
         
         public AIM.Service.Entities.Models.OpenJob[] GetOpenJobs() {
             return base.Channel.GetOpenJobs();
+        }
+        
+        public AIM.Service.Entities.Models.Store[] GetStoreList(System.Nullable<int> regionId) {
+            return base.Channel.GetStoreList(regionId);
+        }
+        
+        public AIM.Service.Entities.Models.Region[] GetRegionList() {
+            return base.Channel.GetRegionList();
+        }
+        
+        public AIM.Service.Entities.Models.OpenJob[] GetOpenJobsForStore(System.Nullable<int> storeId) {
+            return base.Channel.GetOpenJobsForStore(storeId);
         }
     }
 }

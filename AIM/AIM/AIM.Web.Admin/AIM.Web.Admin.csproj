@@ -419,6 +419,8 @@
     <Content Include="PersonalInfoService.svc" />
     <Content Include="JobService.svc" />
     <Content Include="QuestionService.svc" />
+    <Content Include="AIM.Service.Entities.Models.Region.datasource" />
+    <Content Include="AIM.Service.Entities.Models.Store.datasource" />
     <None Include="Resources\AIMLogo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

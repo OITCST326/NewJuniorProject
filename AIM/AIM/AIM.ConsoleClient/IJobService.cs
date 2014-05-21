@@ -25,5 +25,14 @@ namespace AIM.ConsoleClient
 
         [OperationContract(Name = "GetOpenJobs")]
         Task<IEnumerable<OpenJob>> GetOpenJobsAsync();
+
+        [OperationContract(Name = "GetStoreList")]
+        Task<IEnumerable<Store>> GetStoreListAsync(int? region);
+
+        [OperationContract(Name = "GetRegionList")]
+        Task<IEnumerable<Region>> GetRegionListAsync();
+
+        [OperationContract(Name = "GetOpenJobsForStore")]
+        Task<IEnumerable<OpenJob>> GetOpenJobsForStoreAsync(int? store);
     }
 }
