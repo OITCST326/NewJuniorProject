@@ -196,6 +196,7 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\OpenJobController.cs" />
     <Compile Include="Controllers\PersonalInfoController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -629,6 +630,13 @@
     <None Include="Service References\UserServiceReference\UserService5.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\OpenJob\Create.cshtml" />
+    <Content Include="Views\OpenJob\Delete.cshtml" />
+    <Content Include="Views\OpenJob\Details.cshtml" />
+    <Content Include="Views\OpenJob\Edit.cshtml" />
+    <Content Include="Views\OpenJob\Index.cshtml" />
+    <Content Include="Views\OpenJob\StoreSelect.cshtml" />
+    <Content Include="Views\OpenJob\OpenJobList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
