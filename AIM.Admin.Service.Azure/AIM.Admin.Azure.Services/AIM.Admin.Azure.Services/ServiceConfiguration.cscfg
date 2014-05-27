@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="WindowsAzureProject1" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
+  <Role name="AIMWorkerRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=aimadministrativeservice;AccountKey=/14JNsev1mYENcUenH+yvqjmuH8PX/yWbcwN4hJVrLRCZv0Bqcu4FFy6vYjff46Pwjj5vdAMK4cnH6PvVof+XA==" />
+    </ConfigurationSettings>
+  </Role>
+  <Role name="AIM.Admin.Service.WebRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=aimadministrativeservice;AccountKey=/14JNsev1mYENcUenH+yvqjmuH8PX/yWbcwN4hJVrLRCZv0Bqcu4FFy6vYjff46Pwjj5vdAMK4cnH6PvVof+XA==" />
+    </ConfigurationSettings>
+  </Role>
+  <Role name="AIM.Admin.Service.WorkerRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=aimadministrativeservice;AccountKey=/14JNsev1mYENcUenH+yvqjmuH8PX/yWbcwN4hJVrLRCZv0Bqcu4FFy6vYjff46Pwjj5vdAMK4cnH6PvVof+XA==" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

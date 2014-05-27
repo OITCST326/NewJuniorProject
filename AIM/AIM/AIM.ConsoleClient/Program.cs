@@ -28,7 +28,7 @@ namespace AIM.ConsoleClient
             using ((IDisposable)questionService)
             using ((IDisposable)jobService)
             {
-                try
+                try 
                 {
                     //////  Users  //////
                     
@@ -322,20 +322,5 @@ namespace AIM.ConsoleClient
                 q.qJsonProperties,
                 q.questionnaireId);
         }
-
-        //private static void PrintOrderWithDetails(Order o)
-        //{
-        //    Console.WriteLine("{0} {1}",
-        //        o.OrderId,
-        //        o.OrderDate.GetValueOrDefault().ToShortDateString());
-        //    foreach (var od in o.OrderDetails)
-        //    {
-        //        Console.WriteLine("\t{0} {1} {2} {3}",
-        //            od.OrderDetailId,
-        //            od.Product.ProductName,
-        //            od.Quantity,
-        //            od.UnitPrice.ToString("c"));
-        //    }
-        //}
     }
 }
