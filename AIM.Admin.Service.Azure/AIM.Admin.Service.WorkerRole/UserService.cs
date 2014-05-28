@@ -22,17 +22,17 @@ namespace AIM.Admin.Service.WorkerRole
             _dbContext = new AIM_DBContext();
         }
 
-        async Task<IEnumerable<Contract.Models.User>> IUserService.GetUsersList()
-        {
-            IEnumerable<User> entities = await _dbContext.Users
-                .OrderBy(u => u.FirstName)
-                .ThenBy(u => u.LastName)
-                .Include(u => u.Applicant)
-                .Include(u => u.Employee)
-                .Include(u => u.PersonalInfo)
-                .ToListAsync();
-            return entities;
-        }
+        //async Task<IEnumerable<Contract.Models.User>> IUserService.GetUsersList()
+        //{
+        //    IEnumerable<User> entities = await _dbContext.Users
+        //        .OrderBy(u => u.FirstName)
+        //        .ThenBy(u => u.LastName)
+        //        .Include(u => u.Applicant)
+        //        .Include(u => u.Employee)
+        //        .Include(u => u.PersonalInfo)
+        //        .ToListAsync();
+        //    return entities;
+        //}
 
         Task<Contract.Models.User> IUserService.GetUser(int? id)
         {
