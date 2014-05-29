@@ -9,21 +9,21 @@ namespace AIM.Admin.Service.Contract
     public interface IUserService
     {
         [OperationContract(Name = "GetUsersList")]
-        Task<IEnumerable<User>> GetUsersList();
+        Task<IEnumerable<User>> GetUsersListAsync();
 
         [OperationContract(Name = "GetUser")]
-        Task<User> GetUser(int? id);
+        Task<User> GetUserAsync(int? id);
 
         [OperationContract(Name = "GetUserLogin")]
-        Task<User> GetUserLogin(string userName, string password);
+        Task<User> GetUserLoginAsync(string userName, string password);
 
         [OperationContract(Name = "UpdateUser")]
-        Task<User> UpdateUser(User entity);
+        Task<User> UpdateUserAsync(User entity);
 
         [OperationContract(Name = "CreateUser")]
-        Task<User> CreateUser(User entity);
+        Task<User> CreateUserAsync(User entity);
 
         [OperationContract(Name = "DeleteUser")]
-        Task<bool> DeleteUser(int id);
+        Task<bool> DeleteUserAsync(int id);
     }
 }

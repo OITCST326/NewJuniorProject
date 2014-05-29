@@ -1,25 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Threading;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Diagnostics;
-using Microsoft.WindowsAzure.ServiceRuntime;
-using Microsoft.WindowsAzure.Storage;
-using System.ServiceModel;
 using AIM.Admin.Service.Contract;
+using Microsoft.WindowsAzure.ServiceRuntime;
+using System;
+using System.Diagnostics;
+using System.Net;
+using System.ServiceModel;
+using System.Threading;
 
 namespace AIM.Admin.Service.WorkerRole
 {
     public class WorkerRole : RoleEntryPoint
     {
-        private ServiceHost serviceHost;
+        private ServiceHost _serviceHost;
+
         public override void Run()
         {
-
-            this.StartWCFService();
+            this.StartUserService();
             while (true)
             {
                 Thread.Sleep(10000);
@@ -29,7 +24,7 @@ namespace AIM.Admin.Service.WorkerRole
 
         public override bool OnStart()
         {
-            // Set the maximum number of concurrent connections 
+            // Set the maximum number of concurrent connections
             ServicePointManager.DefaultConnectionLimit = 12;
 
             // For information on handling configuration changes
@@ -38,11 +33,10 @@ namespace AIM.Admin.Service.WorkerRole
             return base.OnStart();
         }
 
-        private void StartWCFService()
+        private void StartUserService()
         {
-
-            Trace.TraceInformation("Starting WCF service host...");
-            this.serviceHost = new ServiceHost(typeof(WCFServices));
+            Trace.TraceInformation("Starting User service host...");
+            this._serviceHost = new ServiceHost(typeof(IUserService));
 
             // Use NetTcpBinding with no security
             NetTcpBinding binding = new NetTcpBinding(SecurityMode.None);
@@ -50,23 +44,22 @@ namespace AIM.Admin.Service.WorkerRole
             // Define an external endpoint for client traffic
             RoleInstanceEndpoint externalEndPoint =
                 RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["External"];
-            this.serviceHost.AddServiceEndpoint(
-               typeof(IContract),
+            this._serviceHost.AddServiceEndpoint(
+               typeof(IUserService),
                binding,
                String.Format("net.tcp://{0}/External", externalEndPoint.IPEndpoint));
 
             // Define an internal endpoint for inter-role traffic
             RoleInstanceEndpoint internalEndPoint =
                 RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["Internal"];
-            this.serviceHost.AddServiceEndpoint(
-               typeof(IContract),
+            this._serviceHost.AddServiceEndpoint(
+               typeof(IUserService),
                binding,
                String.Format("net.tcp://{0}/Internal", internalEndPoint.IPEndpoint));
 
-
             try
             {
-                this.serviceHost.Open();
+                this._serviceHost.Open();
                 Trace.TraceInformation("WCF service host started successfully.");
             }
             catch (TimeoutException timeoutException)

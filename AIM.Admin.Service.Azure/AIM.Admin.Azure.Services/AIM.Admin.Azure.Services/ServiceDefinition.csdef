@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="WindowsAzureProject1" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-01.2.3">
-  <WorkerRole name="AIMWorkerRole">
-    <Imports>
-      <Import moduleName="Diagnostics" />
-    </Imports>
-    <Endpoints>
-      <InputEndpoint name="External" protocol="tcp" port="10000" />
-      <InternalEndpoint name="Internal" protocol="tcp" />
-    </Endpoints>
-  </WorkerRole>
   <WebRole name="AIM.Admin.Service.WebRole">
     <Sites>
       <Site name="Web">

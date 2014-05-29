@@ -1,17 +1,35 @@
-﻿using System;
+﻿using AIM.Admin.Service.WorkerRole.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using AIM.Admin.Service.Contract;
-using AIM.Admin.Service.WorkerRole.Models;
 using TrackableEntities.Common;
 using TrackableEntities.EF6;
 
 namespace AIM.Admin.Service.WorkerRole
 {
+    [ServiceContract(Namespace = "urn:trackable-entities:service")]
+    public interface IUserService
+    {
+        [OperationContract]
+        Task<IEnumerable<User>> GetUsersList();
+
+        [OperationContract]
+        Task<User> GetUser(int? id);
+
+        [OperationContract]
+        Task<User> UpdateUser(User entity);
+
+        [OperationContract]
+        Task<User> CreateUser(User entity);
+
+        [OperationContract]
+        Task<bool> DeleteUser(int id);
+    }
+
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class UserService : IUserService, IDisposable
     {
@@ -22,41 +40,16 @@ namespace AIM.Admin.Service.WorkerRole
             _dbContext = new AIM_DBContext();
         }
 
-        //async Task<IEnumerable<Contract.Models.User>> IUserService.GetUsersList()
-        //{
-        //    IEnumerable<User> entities = await _dbContext.Users
-        //        .OrderBy(u => u.FirstName)
-        //        .ThenBy(u => u.LastName)
-        //        .Include(u => u.Applicant)
-        //        .Include(u => u.Employee)
-        //        .Include(u => u.PersonalInfo)
-        //        .ToListAsync();
-        //    return entities;
-        //}
-
-        Task<Contract.Models.User> IUserService.GetUser(int? id)
+        public async Task<IEnumerable<User>> GetUsersList()
         {
-            throw new NotImplementedException();
-        }
-
-        Task<Contract.Models.User> IUserService.GetUserLogin(string userName, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Contract.Models.User> UpdateUser(Contract.Models.User entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Contract.Models.User> CreateUser(Contract.Models.User entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<Contract.Models.User>> IUserService.GetUsersList()
-        {
-            throw new NotImplementedException();
+            IEnumerable<User> entities = await _dbContext.Users
+                .OrderBy(u => u.FirstName)
+                .ThenBy(u => u.LastName)
+                .Include(u => u.Applicant)
+                .Include(u => u.Employee)
+                .Include(u => u.PersonalInfo)
+                .ToListAsync();
+            return entities;
         }
 
         public async Task<User> GetUser(int? id)
@@ -69,7 +62,7 @@ namespace AIM.Admin.Service.WorkerRole
             return entity;
         }
 
-        public async Task<User> GetUserLogin(string userName, string password)
+        public async Task<User> GetUser(string userName, string password)
         {
             User entity = await _dbContext.Users
                 .Include(u => u.Applicant)

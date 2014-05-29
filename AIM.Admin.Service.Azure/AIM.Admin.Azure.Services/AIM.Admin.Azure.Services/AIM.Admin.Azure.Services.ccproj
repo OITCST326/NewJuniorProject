@@ -52,13 +52,6 @@
       <RoleType>Web</RoleType>
       <RoleName>AIM.Admin.Service.WebRole</RoleName>
     </ProjectReference>
-    <ProjectReference Include="..\AIM.Admin.Service.WorkerRole\AIMWorkerRole.csproj">
-      <Name>AIMWorkerRole</Name>
-      <Project>{47a71088-eee5-4769-9168-0d2fec6a9c66}</Project>
-      <Private>True</Private>
-      <RoleType>Worker</RoleType>
-      <RoleName>AIMWorkerRole</RoleName>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AIM.Admin.Service.WorkerRoleContent\" />
