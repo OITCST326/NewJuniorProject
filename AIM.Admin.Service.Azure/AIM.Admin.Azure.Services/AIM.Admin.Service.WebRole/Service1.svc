@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="AIM.Admin.Service.WebRole.Service1" CodeBehind="Service1.svc.cs" %>
