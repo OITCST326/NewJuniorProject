@@ -56,10 +56,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.StorageClient" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,14 +71,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="TrackableEntities.Client, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b10b51e7b9be6a2e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\TrackableEntities.Client.2.0.0.0\lib\portable-net45+sl5+win8+windowsphone8\TrackableEntities.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="TrackableEntities.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b10b51e7b9be6a2e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\TrackableEntities.Common.2.0.0.0\lib\portable-net40+sl5+win8+windowsphone8\TrackableEntities.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service1.svc" />
@@ -94,6 +82,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService.svc.cs">
       <DependentUpon>UserService.svc</DependentUpon>
+    <Compile Include="Service2.svc.cs">
+      <DependentUpon>Service2.svc</DependentUpon>
     </Compile>
     <Compile Include="WebRole.cs" />
   </ItemGroup>
@@ -102,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="UserService.svc" />
+    <Content Include="Service2.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -111,9 +102,6 @@
       <Project>{53E44C96-7D73-4AD2-9E68-337A77AA1391}</Project>
       <Name>AIM.Admin.Service.Contract</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

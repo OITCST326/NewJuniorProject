@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace AIM.Admin.Service.Contract.Models
+namespace AIM.Service.Client.Models
 {
     [DataContract(Name = "EmployeePermissions")]
     public enum PermissionsEnum : int

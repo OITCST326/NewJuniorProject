@@ -20,8 +20,22 @@ namespace AIM.Admin.Service.WorkerRole
         [OperationContract]
         Task<User> GetUser(int? id);
 
+<<<<<<< HEAD
         [OperationContract]
         Task<User> UpdateUser(User entity);
+=======
+        async Task<IEnumerable<Contract.Models.User>> IUserService.GetUsersList()
+        {
+            IEnumerable<User> entities = await _dbContext.Users
+                .OrderBy(u => u.FirstName)
+                .ThenBy(u => u.LastName)
+                .Include(u => u.Applicant)
+                .Include(u => u.Employee)
+                .Include(u => u.PersonalInfo)
+                .ToListAsync();
+            return entities;
+        }
+>>>>>>> parent of b4cc5e8... Updated Enum and UserSerice
 
         [OperationContract]
         Task<User> CreateUser(User entity);
