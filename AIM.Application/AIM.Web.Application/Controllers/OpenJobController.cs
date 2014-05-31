@@ -42,23 +42,6 @@ namespace AIM.Web.Application.Controllers
             return View(openjob);
         }
 
-        public ActionResult Questionnaire()
-        {
-            return View();
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //OpenJob openjob = _client.GetOpenJob(id);
-            //if (openjob == null)
-            //{
-            //    return HttpNotFound();
-            //}
-
-            //ViewBag.Position = openjob.Job.position;
-            //return View(openjob);
-        }
-
      
     }
 }

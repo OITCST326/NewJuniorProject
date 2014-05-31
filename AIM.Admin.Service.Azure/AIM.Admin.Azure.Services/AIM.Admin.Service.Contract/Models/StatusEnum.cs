@@ -1,6 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 
-namespace AIM.Service.Client.Models
+namespace AIM.Admin.Service.Contract.Models
 {
     [DataContract(Name = "Status")]
     public enum StatusEnum : int

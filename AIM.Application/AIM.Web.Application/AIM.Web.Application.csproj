@@ -440,8 +440,6 @@
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\OpenJob\Details.cshtml" />
     <Content Include="Views\OpenJob\Index.cshtml" />
-    <Content Include="Views\OpenJob\Questionnaire.cshtml" />
-    <Content Include="Views\Shared\_Layout_Questionnaire.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,90 @@
+﻿@model AIM.Application.Service.Entities.Models.Job
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Job</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.jobId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.position, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.position)
+                @Html.ValidationMessageFor(model => model.position)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description)
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fullPartTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fullPartTime)
+                @Html.ValidationMessageFor(model => model.fullPartTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.salaryRange, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.salaryRange)
+                @Html.ValidationMessageFor(model => model.salaryRange)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.questionnaireId, "questionnaireId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("questionnaireId", String.Empty)
+                @Html.ValidationMessageFor(model => model.questionnaireId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hoursId, "hoursId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("hoursId", String.Empty)
+                @Html.ValidationMessageFor(model => model.hoursId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InterviewQuestionId, "InterviewQuestionId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("InterviewQuestionId", String.Empty)
+                @Html.ValidationMessageFor(model => model.InterviewQuestionId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

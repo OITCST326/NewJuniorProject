@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AIM.Application.Service.Entities.Models.OpenJob>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Job Openings in @ViewBag.RegionName</h2>
+
+<table class="table">
+    <tr>
+        <th></th> <!-- Details button column -->
+        <th>
+            @Html.DisplayNameFor(model => model.Job.position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Store.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a class="btn btn-success" href="@Url.Action("Details", "OpenJob", new { id = item.openJobsId })">
+                <i class="icon-zoom-in icon-white"></i>
+                Details
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Job.position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Store.name)
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Back to Region select", "Index", "Home")
+</p>
