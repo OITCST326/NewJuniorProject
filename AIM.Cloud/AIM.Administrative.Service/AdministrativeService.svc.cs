@@ -1,4 +1,13 @@
-﻿using System;
+﻿/****************************** Module Header ******************************\
+* Module Name:  AdministrativeService.cs
+* Project:	    A.I.M. - Automated Interview Manager
+* Copyright (c) 5 Programers Of Tomorrow.
+*
+* This class implements AdministrativeService methods.  Methods directly
+* returns data models from AIM_DB SQL Database.
+\***************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;

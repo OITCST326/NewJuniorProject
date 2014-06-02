@@ -1,5 +1,10 @@
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
+/****************************** Module Header ******************************\
+* Module Name:  Applicant.cs
+* Project:	    A.I.M. - Automated Interview Manager
+* Copyright (c) 5 Programers Of Tomorrow.
+*
+* Applicant Model.
+\***************************************************************************/
 
 namespace AIM.Administration.Entities
 {
@@ -8,11 +13,14 @@ namespace AIM.Administration.Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
 
+    [JsonObject(IsReference = true)]
+    [DataContract(IsReference = true)]
+    [Table("Applicant")]
     public partial class Applicant
     {
-        [JsonObject(IsReference = true)]
-        [DataContract(IsReference = true)]
         public Applicant()
         {
             ApplicantQuestionAnswers = new HashSet<ApplicantQuestionAnswer>();

@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ApplicationService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:21435/ApplicationService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:21435/ApplicationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:21435/ApplicationService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IApplicationService_GetApplicantsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicantsList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetApplicantsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicantsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetApplicant_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicant" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetApplicant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApplicantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateApplicant_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApplicant" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateApplicant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApplicantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateApplicant_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateApplicant" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateApplicant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateApplicantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteApplicant_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteApplicant" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteApplicant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteApplicantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetJobsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobsList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetJobsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetJob" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateJob" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateJob" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteJob_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteJob" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteJob_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetOpenJobs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOpenJobs" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetOpenJobs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOpenJobsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetOpenJobsForStore_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOpenJobsForStore" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetOpenJobsForStore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOpenJobsForStoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetPersonalInfoList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonalInfoList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetPersonalInfoList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonalInfoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetPersonalInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonalInfo" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetPersonalInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdatePersonalInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePersonalInfo" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdatePersonalInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePersonalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreatePersonalInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePersonalInfo" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreatePersonalInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePersonalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeletePersonalInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePersonalInfo" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeletePersonalInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePersonalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetQuestionsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionsList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetQuestionsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetQuestionnairesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionnairesList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetQuestionnairesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionnairesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetQuestionnaire_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionnaire" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetQuestionnaire_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionnaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateQuestionnaire_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateQuestionnaire" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateQuestionnaire_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateQuestionnaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateQuestionnaire_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateQuestionnaire" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateQuestionnaire_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateQuestionnaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteQuestionnaire_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteQuestionnaire" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteQuestionnaire_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteQuestionnaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetRegionList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegionList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetRegionList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetStoreList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetStoreList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetUsersList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersList" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetUsersList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetUserLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserLogin" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_GetUserLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_CreateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IApplicationService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IApplicationService">
+    <wsdl:operation name="GetApplicantsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetApplicantsList" message="tns:IApplicationService_GetApplicantsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetApplicantsListResponse" message="tns:IApplicationService_GetApplicantsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetApplicant" message="tns:IApplicationService_GetApplicant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetApplicantResponse" message="tns:IApplicationService_GetApplicant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/UpdateApplicant" message="tns:IApplicationService_UpdateApplicant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/UpdateApplicantResponse" message="tns:IApplicationService_UpdateApplicant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateApplicant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/CreateApplicant" message="tns:IApplicationService_CreateApplicant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/CreateApplicantResponse" message="tns:IApplicationService_CreateApplicant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplicant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/DeleteApplicant" message="tns:IApplicationService_DeleteApplicant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/DeleteApplicantResponse" message="tns:IApplicationService_DeleteApplicant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetJobsList" message="tns:IApplicationService_GetJobsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetJobsListResponse" message="tns:IApplicationService_GetJobsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetJob" message="tns:IApplicationService_GetJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetJobResponse" message="tns:IApplicationService_GetJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/UpdateJob" message="tns:IApplicationService_UpdateJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/UpdateJobResponse" message="tns:IApplicationService_UpdateJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/CreateJob" message="tns:IApplicationService_CreateJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/CreateJobResponse" message="tns:IApplicationService_CreateJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteJob">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/DeleteJob" message="tns:IApplicationService_DeleteJob_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/DeleteJobResponse" message="tns:IApplicationService_DeleteJob_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpenJobs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetOpenJobs" message="tns:IApplicationService_GetOpenJobs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetOpenJobsResponse" message="tns:IApplicationService_GetOpenJobs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpenJobsForStore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetOpenJobsForStore" message="tns:IApplicationService_GetOpenJobsForStore_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetOpenJobsForStoreResponse" message="tns:IApplicationService_GetOpenJobsForStore_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonalInfoList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetPersonalInfoList" message="tns:IApplicationService_GetPersonalInfoList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetPersonalInfoListResponse" message="tns:IApplicationService_GetPersonalInfoList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonalInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetPersonalInfo" message="tns:IApplicationService_GetPersonalInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetPersonalInfoResponse" message="tns:IApplicationService_GetPersonalInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonalInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/UpdatePersonalInfo" message="tns:IApplicationService_UpdatePersonalInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/UpdatePersonalInfoResponse" message="tns:IApplicationService_UpdatePersonalInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonalInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/CreatePersonalInfo" message="tns:IApplicationService_CreatePersonalInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/CreatePersonalInfoResponse" message="tns:IApplicationService_CreatePersonalInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePersonalInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/DeletePersonalInfo" message="tns:IApplicationService_DeletePersonalInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/DeletePersonalInfoResponse" message="tns:IApplicationService_DeletePersonalInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetQuestionsList" message="tns:IApplicationService_GetQuestionsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetQuestionsListResponse" message="tns:IApplicationService_GetQuestionsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetQuestion" message="tns:IApplicationService_GetQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetQuestionResponse" message="tns:IApplicationService_GetQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/UpdateQuestion" message="tns:IApplicationService_UpdateQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/UpdateQuestionResponse" message="tns:IApplicationService_UpdateQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/CreateQuestion" message="tns:IApplicationService_CreateQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/CreateQuestionResponse" message="tns:IApplicationService_CreateQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/DeleteQuestion" message="tns:IApplicationService_DeleteQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/DeleteQuestionResponse" message="tns:IApplicationService_DeleteQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnairesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetQuestionnairesList" message="tns:IApplicationService_GetQuestionnairesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetQuestionnairesListResponse" message="tns:IApplicationService_GetQuestionnairesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnaire">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetQuestionnaire" message="tns:IApplicationService_GetQuestionnaire_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetQuestionnaireResponse" message="tns:IApplicationService_GetQuestionnaire_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestionnaire">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/UpdateQuestionnaire" message="tns:IApplicationService_UpdateQuestionnaire_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/UpdateQuestionnaireResponse" message="tns:IApplicationService_UpdateQuestionnaire_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuestionnaire">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/CreateQuestionnaire" message="tns:IApplicationService_CreateQuestionnaire_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/CreateQuestionnaireResponse" message="tns:IApplicationService_CreateQuestionnaire_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteQuestionnaire">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/DeleteQuestionnaire" message="tns:IApplicationService_DeleteQuestionnaire_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/DeleteQuestionnaireResponse" message="tns:IApplicationService_DeleteQuestionnaire_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegionList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetRegionList" message="tns:IApplicationService_GetRegionList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetRegionListResponse" message="tns:IApplicationService_GetRegionList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetStoreList" message="tns:IApplicationService_GetStoreList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetStoreListResponse" message="tns:IApplicationService_GetStoreList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetUsersList" message="tns:IApplicationService_GetUsersList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetUsersListResponse" message="tns:IApplicationService_GetUsersList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetUser" message="tns:IApplicationService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetUserResponse" message="tns:IApplicationService_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/GetUserLogin" message="tns:IApplicationService_GetUserLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/GetUserLoginResponse" message="tns:IApplicationService_GetUserLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/UpdateUser" message="tns:IApplicationService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/UpdateUserResponse" message="tns:IApplicationService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/CreateUser" message="tns:IApplicationService_CreateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/CreateUserResponse" message="tns:IApplicationService_CreateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IApplicationService/DeleteUser" message="tns:IApplicationService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IApplicationService/DeleteUserResponse" message="tns:IApplicationService_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IApplicationService" type="tns:IApplicationService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetApplicantsList">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetApplicantsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicant">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetApplicant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicant">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/UpdateApplicant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateApplicant">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/CreateApplicant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplicant">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/DeleteApplicant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobsList">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetJobsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJob">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateJob">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/UpdateJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateJob">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/CreateJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteJob">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/DeleteJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpenJobs">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetOpenJobs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpenJobsForStore">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetOpenJobsForStore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonalInfoList">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetPersonalInfoList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonalInfo">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetPersonalInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersonalInfo">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/UpdatePersonalInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePersonalInfo">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/CreatePersonalInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePersonalInfo">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/DeletePersonalInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionsList">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetQuestionsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestion">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/UpdateQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuestion">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/CreateQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteQuestion">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/DeleteQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnairesList">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetQuestionnairesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnaire">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetQuestionnaire" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestionnaire">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/UpdateQuestionnaire" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuestionnaire">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/CreateQuestionnaire" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteQuestionnaire">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/DeleteQuestionnaire" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegionList">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetRegionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreList">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetStoreList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersList">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetUsersList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserLogin">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/GetUserLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IApplicationService/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ApplicationService">
+    <wsdl:port name="BasicHttpBinding_IApplicationService" binding="tns:BasicHttpBinding_IApplicationService">
+      <soap:address location="http://localhost:21435/ApplicationService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

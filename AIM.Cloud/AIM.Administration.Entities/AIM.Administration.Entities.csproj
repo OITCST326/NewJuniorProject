@@ -101,13 +101,17 @@
     <Compile Include="Job.cs" />
     <Compile Include="JobHistory.cs" />
     <Compile Include="OpenJob.cs" />
+    <Compile Include="PermissionsEnum.cs" />
     <Compile Include="PersonalInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Questionnaire.cs" />
     <Compile Include="Reference.cs" />
     <Compile Include="Region.cs" />
+    <Compile Include="StateEnum.cs" />
+    <Compile Include="StatusEnum.cs" />
     <Compile Include="Store.cs" />
+    <Compile Include="TypeEnum.cs" />
     <Compile Include="User.cs" />
     <Compile Include="WorkerRole.cs" />
   </ItemGroup>

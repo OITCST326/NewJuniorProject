@@ -1,3 +1,11 @@
+/****************************** Module Header ******************************\
+* Module Name:  WorkerRole.cs
+* Project:	    A.I.M. - Automated Interview Manager
+* Copyright (c) 5 Programers Of Tomorrow.
+*
+* WorkerRole connect to WebRole.
+\***************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

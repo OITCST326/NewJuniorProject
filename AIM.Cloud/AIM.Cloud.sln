@@ -2,6 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AIM.Cloud", "AIM.Cloud\AIM.Cloud.ccproj", "{E3FA137E-B20E-4835-BC88-471ABFD2FDE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Administrative.Service", "AIM.Administrative.Service\AIM.Administrative.Service.csproj", "{D5111BAA-ACC8-4BBB-B7A3-50281F266C22}"
@@ -13,10 +14,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Application.Entities", "AIM.Application.Entities\AIM.Application.Entities.csproj", "{ABF7B754-D5C0-4EAF-A75C-287826AA72AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Admin.Web", "AIM.Admin.Web\AIM.Admin.Web.csproj", "{F1D750DE-5A95-4C11-9432-C1015F048B62}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D5111BAA-ACC8-4BBB-B7A3-50281F266C22} = {D5111BAA-ACC8-4BBB-B7A3-50281F266C22}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Admin.Web.Tests", "AIM.Admin.Web.Tests\AIM.Admin.Web.Tests.csproj", "{757C8206-5AA0-4FBF-929C-3AD7A9D51609}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Application.Web", "AIM.Application.Web\AIM.Application.Web.csproj", "{077DA8FF-655B-410D-BA8A-21BDAEAA409C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{582493FA-624E-4286-8B87-1A714877C011} = {582493FA-624E-4286-8B87-1A714877C011}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Application.Web.Tests", "AIM.Application.Web.Tests\AIM.Application.Web.Tests.csproj", "{8A5AF9AA-D7F7-4418-B9EA-9AA4BC9E451C}"
 EndProject

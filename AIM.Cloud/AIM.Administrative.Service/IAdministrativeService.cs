@@ -1,4 +1,14 @@
-﻿using System;
+﻿/****************************** Module Header ******************************\
+* Module Name:  IAdministrativeService.cs
+* Project:	    A.I.M. - Automated Interview Manager
+* Copyright (c) 5 Programers Of Tomorrow.
+*
+* This class implements IAdministrativeService interface.  Methods directly
+* returns data models from AIM_DB SQL Database.
+\***************************************************************************/
+
+using AIM.Administration.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -7,14 +17,12 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Threading.Tasks;
-using AIM.Administration.Entities;
 
 namespace AIM.Administrative.Service
 {
     [ServiceContract]
     public interface IAdministrativeService
     {
-
         /********************************************************************************************************************************/
         /*                               Applicant Model Implementation calls for Administrative Service                                */
         /********************************************************************************************************************************/
