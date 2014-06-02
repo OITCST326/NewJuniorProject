@@ -198,6 +198,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -271,6 +272,9 @@
     <Content Include="Service References\AdministrativeServiceReference\AIM.Admin.Web.AdministrativeServiceReference.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Service References\AdministrativeServiceReference\AdministrativeService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\AdministrativeServiceReference\configuration91.svcinfo" />
     <None Include="Service References\AdministrativeServiceReference\configuration.svcinfo" />
     <None Include="Service References\AdministrativeServiceReference\Reference.svcmap">
@@ -316,6 +320,11 @@
     <None Include="Service References\AdministrativeServiceReference\AdministrativeService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

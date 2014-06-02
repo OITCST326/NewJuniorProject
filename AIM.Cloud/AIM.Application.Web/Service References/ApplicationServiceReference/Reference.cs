@@ -15,7 +15,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Applicant", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Applicant", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Applicant : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -284,7 +284,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ApplicantQuestionAnswer", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ApplicantQuestionAnswer", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class ApplicantQuestionAnswer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -296,6 +296,21 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string AnswerJsonStringField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] AnsweredQJsonAnswersListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> AnsweredQJsonIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] AnsweredQJsonOptionListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnsweredQJsonTextField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<AIM.Application.Web.ApplicationServiceReference.QuestionType> AnsweredQJsonTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private AIM.Application.Web.ApplicationServiceReference.Applicant ApplicantField;
@@ -341,6 +356,71 @@ namespace AIM.Application.Web.ApplicationServiceReference {
                 if ((object.ReferenceEquals(this.AnswerJsonStringField, value) != true)) {
                     this.AnswerJsonStringField = value;
                     this.RaisePropertyChanged("AnswerJsonString");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] AnsweredQJsonAnswersList {
+            get {
+                return this.AnsweredQJsonAnswersListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnsweredQJsonAnswersListField, value) != true)) {
+                    this.AnsweredQJsonAnswersListField = value;
+                    this.RaisePropertyChanged("AnsweredQJsonAnswersList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> AnsweredQJsonId {
+            get {
+                return this.AnsweredQJsonIdField;
+            }
+            set {
+                if ((this.AnsweredQJsonIdField.Equals(value) != true)) {
+                    this.AnsweredQJsonIdField = value;
+                    this.RaisePropertyChanged("AnsweredQJsonId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] AnsweredQJsonOptionList {
+            get {
+                return this.AnsweredQJsonOptionListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnsweredQJsonOptionListField, value) != true)) {
+                    this.AnsweredQJsonOptionListField = value;
+                    this.RaisePropertyChanged("AnsweredQJsonOptionList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AnsweredQJsonText {
+            get {
+                return this.AnsweredQJsonTextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnsweredQJsonTextField, value) != true)) {
+                    this.AnsweredQJsonTextField = value;
+                    this.RaisePropertyChanged("AnsweredQJsonText");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<AIM.Application.Web.ApplicationServiceReference.QuestionType> AnsweredQJsonType {
+            get {
+                return this.AnsweredQJsonTypeField;
+            }
+            set {
+                if ((this.AnsweredQJsonTypeField.Equals(value) != true)) {
+                    this.AnsweredQJsonTypeField = value;
+                    this.RaisePropertyChanged("AnsweredQJsonType");
                 }
             }
         }
@@ -409,7 +489,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Application", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Application", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Application : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -453,7 +533,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         private string SalaryExpectationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> StatusField;
+        private System.Nullable<AIM.Application.Web.ApplicationServiceReference.Status> StatusField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -622,7 +702,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Status {
+        public System.Nullable<AIM.Application.Web.ApplicationServiceReference.Status> Status {
             get {
                 return this.StatusField;
             }
@@ -646,7 +726,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Education", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Education", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Education : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -675,7 +755,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         private string SchoolNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> StateField;
+        private System.Nullable<AIM.Application.Web.ApplicationServiceReference.StateAbbreviation> StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StreetField;
@@ -791,7 +871,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> State {
+        public System.Nullable<AIM.Application.Web.ApplicationServiceReference.StateAbbreviation> State {
             get {
                 return this.StateField;
             }
@@ -867,7 +947,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Hour", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Hour", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Hour : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1184,7 +1264,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="JobHistory", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="JobHistory", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class JobHistory : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1231,7 +1311,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         private System.Nullable<decimal> StartingSalaryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> StateField;
+        private System.Nullable<AIM.Application.Web.ApplicationServiceReference.StateAbbreviation> StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StreetField;
@@ -1425,7 +1505,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> State {
+        public System.Nullable<AIM.Application.Web.ApplicationServiceReference.StateAbbreviation> State {
             get {
                 return this.StateField;
             }
@@ -1501,7 +1581,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Reference", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Reference", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Reference : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1642,7 +1722,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1943,7 +2023,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Question", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Question", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Question : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1960,7 +2040,22 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         private System.Nullable<int> InterviewQuestionsIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] QJsonAnswerListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> QJsonIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] QJsonOptionListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string QJsonPropertiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string QJsonTextField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<AIM.Application.Web.ApplicationServiceReference.QuestionType> QJsonTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int QuestionIdField;
@@ -2021,6 +2116,45 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] QJsonAnswerList {
+            get {
+                return this.QJsonAnswerListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QJsonAnswerListField, value) != true)) {
+                    this.QJsonAnswerListField = value;
+                    this.RaisePropertyChanged("QJsonAnswerList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> QJsonId {
+            get {
+                return this.QJsonIdField;
+            }
+            set {
+                if ((this.QJsonIdField.Equals(value) != true)) {
+                    this.QJsonIdField = value;
+                    this.RaisePropertyChanged("QJsonId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] QJsonOptionList {
+            get {
+                return this.QJsonOptionListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QJsonOptionListField, value) != true)) {
+                    this.QJsonOptionListField = value;
+                    this.RaisePropertyChanged("QJsonOptionList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string QJsonProperties {
             get {
                 return this.QJsonPropertiesField;
@@ -2029,6 +2163,32 @@ namespace AIM.Application.Web.ApplicationServiceReference {
                 if ((object.ReferenceEquals(this.QJsonPropertiesField, value) != true)) {
                     this.QJsonPropertiesField = value;
                     this.RaisePropertyChanged("QJsonProperties");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string QJsonText {
+            get {
+                return this.QJsonTextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QJsonTextField, value) != true)) {
+                    this.QJsonTextField = value;
+                    this.RaisePropertyChanged("QJsonText");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<AIM.Application.Web.ApplicationServiceReference.QuestionType> QJsonType {
+            get {
+                return this.QJsonTypeField;
+            }
+            set {
+                if ((this.QJsonTypeField.Equals(value) != true)) {
+                    this.QJsonTypeField = value;
+                    this.RaisePropertyChanged("QJsonType");
                 }
             }
         }
@@ -2082,9 +2242,24 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="QuestionType", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    public enum QuestionType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MultipleChoice = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AllThatApply = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FreeForm = 2,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="InterviewQuestion", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InterviewQuestion", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class InterviewQuestion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2193,7 +2368,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Questionnaire", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Questionnaire", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Questionnaire : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2302,7 +2477,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Job", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Job", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Job : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2555,7 +2730,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Employee", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Employee", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Employee : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2572,7 +2747,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         private System.Nullable<int> JobIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> PermissionsField;
+        private System.Nullable<AIM.Application.Web.ApplicationServiceReference.EmployeePermissions> PermissionsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private AIM.Application.Web.ApplicationServiceReference.User[] UsersField;
@@ -2627,7 +2802,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Permissions {
+        public System.Nullable<AIM.Application.Web.ApplicationServiceReference.EmployeePermissions> Permissions {
             get {
                 return this.PermissionsField;
             }
@@ -2664,7 +2839,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OpenJob", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OpenJob", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class OpenJob : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2819,9 +2994,60 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    public enum Status : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InitalApplicationNonSubmitted = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PhoneInterviewQueue = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InPersonInterviewQueue = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CheckReferenceQueue = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Rejected = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PendingReviewQueue = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HiredStatus = 6,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EmployeePermissions", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    public enum EmployeePermissions : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Employee = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HiringManager = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HiringSpecialist = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        StaffingExpert = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        StoreManager = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SystemAdmin = 5,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AspNetUser", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AspNetUser", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class AspNetUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3106,7 +3332,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PersonalInfo", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonalInfo", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class PersonalInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3295,7 +3521,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AspNetRole", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AspNetRole", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class AspNetRole : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3372,7 +3598,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AspNetUserClaim", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AspNetUserClaim", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class AspNetUserClaim : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3481,7 +3707,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AspNetUserLogin", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AspNetUserLogin", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class AspNetUserLogin : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3574,7 +3800,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Region", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Region", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Region : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3667,7 +3893,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Store", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Store", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Store : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -3690,7 +3916,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         private System.Nullable<int> RegionIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> StateField;
+        private System.Nullable<AIM.Application.Web.ApplicationServiceReference.StateAbbreviation> StateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StoreIdField;
@@ -3780,7 +4006,7 @@ namespace AIM.Application.Web.ApplicationServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> State {
+        public System.Nullable<AIM.Application.Web.ApplicationServiceReference.StateAbbreviation> State {
             get {
                 return this.StateField;
             }
@@ -3852,6 +4078,162 @@ namespace AIM.Application.Web.ApplicationServiceReference {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StateAbbreviation", Namespace="http://schemas.datacontract.org/2004/07/AIM.Application.Entities")]
+    public enum StateAbbreviation : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AL = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AK = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AZ = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AR = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CA = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CO = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CT = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DE = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FL = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        GA = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        HI = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ID = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        IL = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        IN = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        IA = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        KS = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        KY = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LA = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ME = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MD = 19,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MA = 20,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MI = 21,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MN = 22,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MS = 23,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MO = 24,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MT = 25,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NE = 26,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NV = 27,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NH = 28,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NJ = 29,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NM = 30,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NY = 31,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        NC = 32,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ND = 33,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OH = 34,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OK = 35,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        OR = 36,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        PA = 37,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RI = 38,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SC = 39,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SD = 40,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TN = 41,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TX = 42,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UT = 43,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        VT = 44,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        VA = 45,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WA = 46,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WV = 47,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WI = 48,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WY = 49,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

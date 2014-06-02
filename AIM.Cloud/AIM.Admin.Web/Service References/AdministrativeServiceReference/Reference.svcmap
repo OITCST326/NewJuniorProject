@@ -23,10 +23,11 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="AdministrativeService.wsdl" MetadataType="Wsdl" ID="ca627566-faa4-44eb-8067-65e52700474e" SourceId="1" SourceUrl="http://localhost:21405/AdministrativeService.svc?wsdl" />
+    <MetadataFile FileName="AdministrativeService3.xsd" MetadataType="Schema" ID="b9449b25-c095-480d-92db-a81d058ec353" SourceId="1" SourceUrl="http://localhost:21405/AdministrativeService.svc?xsd=xsd3" />
+    <MetadataFile FileName="AdministrativeService2.xsd" MetadataType="Schema" ID="33a967b3-fde7-42e5-a9bd-1dc82c2e8269" SourceId="1" SourceUrl="http://localhost:21405/AdministrativeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AdministrativeService1.xsd" MetadataType="Schema" ID="744027c4-0876-482b-8b82-a851c7130bda" SourceId="1" SourceUrl="http://localhost:21405/AdministrativeService.svc?xsd=xsd1" />
     <MetadataFile FileName="AdministrativeService.xsd" MetadataType="Schema" ID="d7f7f36e-8423-4ed4-b00a-d06f8f8d5e42" SourceId="1" SourceUrl="http://localhost:21405/AdministrativeService.svc?xsd=xsd0" />
     <MetadataFile FileName="AdministrativeService.disco" MetadataType="Disco" ID="65722b3f-bb3f-4c2f-8a2e-0939be15b33e" SourceId="1" SourceUrl="http://localhost:21405/AdministrativeService.svc?disco" />
-    <MetadataFile FileName="AdministrativeService1.xsd" MetadataType="Schema" ID="744027c4-0876-482b-8b82-a851c7130bda" SourceId="1" SourceUrl="http://localhost:21405/AdministrativeService.svc?xsd=xsd1" />
-    <MetadataFile FileName="AdministrativeService2.xsd" MetadataType="Schema" ID="33a967b3-fde7-42e5-a9bd-1dc82c2e8269" SourceId="1" SourceUrl="http://localhost:21405/AdministrativeService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
