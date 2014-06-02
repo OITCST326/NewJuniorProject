@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>2.3</ProductVersion>
+    <ProjectGuid>e3fa137e-b20e-4835-bc88-471abfd2fde0</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AIM.Cloud</RootNamespace>
+    <AssemblyName>AIM.Cloud</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>AIM.Cloud</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AIM.Admin.Web\AIM.Admin.Web.csproj">
+      <Name>AIM.Admin.Web</Name>
+      <Project>{f1d750de-5a95-4c11-9432-c1015f048b62}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>AIM.Admin.Web</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\AIM.Administration.Entities\AIM.Administration.Entities.csproj">
+      <Name>AIM.Administration.Entities</Name>
+      <Project>{0aa1795a-d2ba-4f3a-ab74-dd666104a6f6}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>AIM.Administration.Entities</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\AIM.Administrative.Service\AIM.Administrative.Service.csproj">
+      <Name>AIM.Administrative.Service</Name>
+      <Project>{d5111baa-acc8-4bbb-b7a3-50281f266c22}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>AIM.Administrative.Service</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\AIM.Application.Entities\AIM.Application.Entities.csproj">
+      <Name>AIM.Application.Entities</Name>
+      <Project>{abf7b754-d5c0-4eaf-a75c-287826aa72ad}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>AIM.Application.Entities</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\AIM.Application.Service\AIM.Application.Service.csproj">
+      <Name>AIM.Application.Service</Name>
+      <Project>{582493fa-624e-4286-8b87-1a714877c011}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>AIM.Application.Service</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\AIM.Application.Web\AIM.Application.Web.csproj">
+      <Name>AIM.Application.Web</Name>
+      <Project>{077da8ff-655b-410d-ba8a-21bdaeaa409c}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>AIM.Application.Web</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AIM.Admin.WebContent\" />
+    <Folder Include="AIM.Administration.EntitiesContent\" />
+    <Folder Include="AIM.Administrative.ServiceContent\" />
+    <Folder Include="AIM.Application.EntitiesContent\" />
+    <Folder Include="AIM.Application.ServiceContent\" />
+    <Folder Include="AIM.Application.WebContent\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AIM.Admin.WebContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="AIM.Administration.EntitiesContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="AIM.Administrative.ServiceContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="AIM.Application.EntitiesContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="AIM.Application.ServiceContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="AIM.Application.WebContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.3\</CloudExtensionsDir>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+</Project>
