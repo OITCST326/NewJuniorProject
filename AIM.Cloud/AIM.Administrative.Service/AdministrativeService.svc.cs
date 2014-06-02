@@ -275,10 +275,7 @@ namespace AIM.Administrative.Service
         /// </summary>
         /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
         /// <seealso cref="..GetOpenJobsList"/>
-        /// <seealso cref="..GetOpenJob"/>
-        /// <seealso cref="..UpdateOpenJob"/>
-        /// <seealso cref="..CreateOpenJob"/>
-        /// <seealso cref="..DeleteOpenJob"/>
+        /// <seealso cref="..GetOpenJobsForStore"/>
         #region
 
         public async Task<IEnumerable<OpenJob>> GetOpenJobs()
@@ -600,6 +597,7 @@ namespace AIM.Administrative.Service
                 .SingleOrDefaultAsync(x => x.UserId == id);
             return entity;
         }
+
         public async Task<User> GetUserLogin(string userName, string passowrd)
         {
             User entity = await _dbContext.Users

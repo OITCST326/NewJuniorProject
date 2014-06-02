@@ -93,6 +93,7 @@
     <Folder Include="AIM.Application.EntitiesContent\" />
     <Folder Include="AIM.Application.ServiceContent\" />
     <Folder Include="AIM.Application.WebContent\" />
+    <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AIM.Admin.WebContent\diagnostics.wadcfg">
@@ -113,6 +114,9 @@
     <Content Include="AIM.Application.WebContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\aimadminserviceProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

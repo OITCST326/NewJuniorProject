@@ -15,7 +15,19 @@ namespace AIM.Administrative.Service
     public interface IAdministrativeService
     {
 
-        /* ==========  Applicant Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                               Applicant Model Implementation calls for Administrative Service                                */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// Applicant Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetApplicantsList"/>
+        /// <seealso cref="..GetApplicant"/>
+        /// <seealso cref="..UpdateApplicant"/>
+        /// <seealso cref="..CreateApplicant"/>
+        /// <seealso cref="..DeleteApplicant"/>
 
         #region
 
@@ -36,7 +48,19 @@ namespace AIM.Administrative.Service
 
         #endregion
 
-        /* ==========  Job Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                                   Job Model Implementation calls for Administrative Service                                  */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// Job Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetJobsList"/>
+        /// <seealso cref="..GetJob"/>
+        /// <seealso cref="..UpdateJob"/>
+        /// <seealso cref="..CreateJob"/>
+        /// <seealso cref="..DeleteJob"/>
 
         #region
 
@@ -57,7 +81,16 @@ namespace AIM.Administrative.Service
 
         #endregion
 
-        /* ==========  Open Job Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                                Open Job Model Implementation calls for Administrative Service                                */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// Open Job Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetOpenJobsList"/>
+        /// <seealso cref="..GetOpenJobsForStore"/>
 
         #region
 
@@ -69,7 +102,19 @@ namespace AIM.Administrative.Service
 
         #endregion
 
-        /* ==========  Personal Info Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                             Personal Info Model Implementation calls for Administrative Service                              */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// Personal Info Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetPersonalInfoList"/>
+        /// <seealso cref="..GetPersonalInfoJob"/>
+        /// <seealso cref="..UpdatePersonalInfo"/>
+        /// <seealso cref="..CreatePersonalInfo"/>
+        /// <seealso cref="..DeletePersonalInfo"/>
 
         #region
 
@@ -90,7 +135,19 @@ namespace AIM.Administrative.Service
 
         #endregion
 
-        /* ==========  Question Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                                Question Model Implementation calls for Administrative Service                                */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// Question Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetQuestionsList"/>
+        /// <seealso cref="..GetQuestion"/>
+        /// <seealso cref="..UpdateQuestion"/>
+        /// <seealso cref="..CreateQuestion"/>
+        /// <seealso cref="..DeleteQuestion"/>
 
         #region
 
@@ -111,7 +168,19 @@ namespace AIM.Administrative.Service
 
         #endregion
 
-        /* ==========  Questionnaire Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                             Questionnaire Model Implementation calls for Administrative Service                              */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// Questionnaire Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetQuestionnairesList"/>
+        /// <seealso cref="..GetQuestionnaire"/>
+        /// <seealso cref="..UpdateQuestionnaire"/>
+        /// <seealso cref="..CreateQuestionnaire"/>
+        /// <seealso cref="..DeleteQuestionnaire"/>
 
         #region
 
@@ -132,7 +201,15 @@ namespace AIM.Administrative.Service
 
         #endregion
 
-        /* ==========  Region Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                                 Region Model Implementation calls for Administrative Service                                 */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// Region Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetRegionList"/>
 
         #region
 
@@ -141,7 +218,15 @@ namespace AIM.Administrative.Service
 
         #endregion
 
-        /* ==========  Store Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                                  Store Model Implementation calls for Administrative Service                                 */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// Store Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetStoreList"/>
 
         #region
 
@@ -150,7 +235,20 @@ namespace AIM.Administrative.Service
 
         #endregion
 
-        /* ==========  User Model Interface calls for Administrative Service  ========== */
+        /********************************************************************************************************************************/
+        /*                                  User Model Implementation calls for Administrative Service                                  */
+        /********************************************************************************************************************************/
+
+        /// <summary>
+        /// User Model Implementation calls for Administrative Service
+        /// </summary>
+        /// <seealso cref="AIM.Administrative.Service.AdministrativeService"/>
+        /// <seealso cref="..GetUsersList"/>
+        /// <seealso cref="..GetUser"/>
+        /// <seealso cref="..GetUserLogin"/>
+        /// <seealso cref="..UpdateUser"/>
+        /// <seealso cref="..CreateUser"/>
+        /// <seealso cref="..DeleteUser"/>
 
         #region
 
@@ -159,6 +257,9 @@ namespace AIM.Administrative.Service
 
         [OperationContract(Name = "GetUser")]
         Task<User> GetUser(int? id);
+
+        [OperationContract(Name = "GetUserLogin")]
+        Task<User> GetUserLogin(string userName, string password);
 
         [OperationContract(Name = "UpdateUser")]
         Task<User> UpdateUser(User entity);

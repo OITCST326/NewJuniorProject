@@ -90,11 +90,9 @@ namespace AIM.Application.Service
         /// Open Job Model Interface calls for Application Service
         /// </summary>
         /// <seealso cref="AIM.Application.Service.ApplicationService"/>
-        /// <seealso cref="..GetOpenJobsList"/>
-        /// <seealso cref="..GetOpenJob"/>
-        /// <seealso cref="..UpdateOpenJob"/>
-        /// <seealso cref="..CreateOpenJob"/>
-        /// <seealso cref="..DeleteOpenJob"/>
+        /// <seealso cref="..GetOpenJobs"/>
+        /// <seealso cref="..GetOpenJobsForStore"/>
+
 
         #region
 
