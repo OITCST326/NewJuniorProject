@@ -1,7 +1,16 @@
+/****************************** Module Header ******************************\
+* Module Name:  InterviewQuestion.cs
+* Project:	    A.I.M. - Automated Interview Manager
+* Copyright (c) 5 Programers Of Tomorrow.
+*
+* Interview Question Model.
+\***************************************************************************/
+
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using TrackableEntities;
 
 namespace AIM.Service.Entities.Models
@@ -16,21 +25,36 @@ namespace AIM.Service.Entities.Models
             this.Questions = new List<Question>();
         }
 
+        // Interview Question Primary Key
         [DataMember]
+        [Display(Name = "Interview Question Id")]
+        [Key]
         public int InterviewQuestionsId { get; set; }
+
+        // Interview Question Table & Column Mappings
         [DataMember]
-        public Nullable<int> QuestionId { get; set; }
-        [DataMember]
-        public Nullable<int> JobId { get; set; }
-        [DataMember]
-        public List<Job> Jobs { get; set; }
-        [DataMember]
-        public List<Question> Questions { get; set; }
+        [Display(Name = "Question Id")]
+        public int? QuestionId { get; set; }
 
         [DataMember]
+        [Display(Name = "Job Id")]
+        public int? JobId { get; set; }
+
+        [DataMember]
+        [Display(Name = "Job")]
+        public List<Job> Jobs { get; set; }
+
+        [DataMember]
+        [Display(Name = "Question")]
+        public List<Question> Questions { get; set; }
+
+        // Tracking Properties
+        [DataMember]
         public TrackingState TrackingState { get; set; }
+
         [DataMember]
         public ICollection<string> ModifiedProperties { get; set; }
+
         [JsonProperty, DataMember]
         private Guid EntityIdentifier { get; set; }
     }

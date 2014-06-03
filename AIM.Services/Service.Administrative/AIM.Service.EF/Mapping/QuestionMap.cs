@@ -1,5 +1,4 @@
 using System.Data.Entity.ModelConfiguration;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AIM.Service.Entities.Models.Mapping
 {
@@ -18,9 +17,16 @@ namespace AIM.Service.Entities.Models.Mapping
             this.Property(t => t.QuestionnaireId).HasColumnName("QuestionnaireId");
             this.Property(t => t.InterviewQuestionsId).HasColumnName("InterviewQuestionsId");
 
+            // JSON working properites
+            this.Ignore(t => t.QJsonId);
+            this.Ignore(t => t.QJsonType);
+            this.Ignore(t => t.QJsonText);
+            this.Ignore(t => t.QJsonOptionList);
+            this.Ignore(t => t.QJsonAnswerList);
+
             // Tracking Properties
-			this.Ignore(t => t.TrackingState);
-			this.Ignore(t => t.ModifiedProperties);
+            this.Ignore(t => t.TrackingState);
+            this.Ignore(t => t.ModifiedProperties);
 
             // Relationships
             this.HasMany(t => t.Questionnaires)
@@ -31,8 +37,6 @@ namespace AIM.Service.Entities.Models.Mapping
                         m.MapLeftKey("QuestionId");
                         m.MapRightKey("QuestionnaireId");
                     });
-
-
         }
     }
 }

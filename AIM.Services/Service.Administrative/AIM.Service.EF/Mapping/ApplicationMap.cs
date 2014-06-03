@@ -1,5 +1,4 @@
 using System.Data.Entity.ModelConfiguration;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AIM.Service.Entities.Models.Mapping
 {
@@ -32,8 +31,8 @@ namespace AIM.Service.Entities.Models.Mapping
             this.Property(t => t.IsWeekends).HasColumnName("IsWeekends");
 
             // Tracking Properties
-			this.Ignore(t => t.TrackingState);
-			this.Ignore(t => t.ModifiedProperties);
+            this.Ignore(t => t.TrackingState);
+            this.Ignore(t => t.ModifiedProperties);
 
             // Relationships
             this.HasOptional(t => t.Applicant)
@@ -42,7 +41,6 @@ namespace AIM.Service.Entities.Models.Mapping
             this.HasOptional(t => t.Job)
                 .WithMany(t => t.Applications)
                 .HasForeignKey(d => d.JobId);
-
         }
     }
 }

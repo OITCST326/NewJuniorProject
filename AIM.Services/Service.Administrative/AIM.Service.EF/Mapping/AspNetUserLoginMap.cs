@@ -1,5 +1,4 @@
 using System.Data.Entity.ModelConfiguration;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AIM.Service.Entities.Models.Mapping
 {
@@ -30,14 +29,13 @@ namespace AIM.Service.Entities.Models.Mapping
             this.Property(t => t.UserId).HasColumnName("UserId");
 
             // Tracking Properties
-			this.Ignore(t => t.TrackingState);
-			this.Ignore(t => t.ModifiedProperties);
+            this.Ignore(t => t.TrackingState);
+            this.Ignore(t => t.ModifiedProperties);
 
             // Relationships
             this.HasRequired(t => t.AspNetUser)
                 .WithMany(t => t.AspNetUserLogins)
                 .HasForeignKey(d => d.UserId);
-
         }
     }
 }
