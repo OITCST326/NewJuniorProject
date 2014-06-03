@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Mvc;
 using AIM.Service.Entities.Models;
 using AIM.Web.Admin.UserServiceReference;
@@ -12,18 +14,26 @@ namespace AIM.Web.Admin.Controllers
 {
     public class UserController : Controller
     {
-        private readonly UserServiceClient _client = new UserServiceClient();
+        //private readonly UserServiceClient _client = new UserServiceClient();
+        const string ServiceBaseAddress = "http://localhost:" + "58528" + "/";
+        readonly HttpClient _client = new HttpClient { BaseAddress = new Uri(ServiceBaseAddress) };
 
         public UserController()
         {
-            _client = new UserServiceClient();
+            //_client = new UserServiceClient();
+            
         }
 
         // GET: /User/
         public ActionResult Index()
         {
-            var users = _client.GetUsersList();
-            return View(users.ToList());
+            //var users = _client.GetUsersList();
+            //return View(users.ToList());
+            const string request = "api/User";
+            var response = _client.GetAsync(request).Result;
+            response.EnsureSuccessStatusCode();
+            var result = response.Content.ReadAsAsync<IEnumerable<User>>().Result;
+            return View(result);
         }
 
         // GET: /User/Details/5
@@ -33,12 +43,17 @@ namespace AIM.Web.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _client.GetUser(id);
-            if (user == null)
+
+            string request = "api/User/" + id;
+            var response = _client.GetAsync(request).Result;
+            response.EnsureSuccessStatusCode();
+            var result = response.Content.ReadAsAsync<User>().Result;
+
+            if (result == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(result);
         }
 
         // GET: /User/Create
@@ -52,11 +67,14 @@ namespace AIM.Web.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="userId,firstName,middleName,lastName,email,socialSecurityNumber,socialSecurityNumberCoder,PersonalInfoId,applicantId,applicationId,employeeId")] User user)
+        public ActionResult Create([Bind(Include="UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber,SocialSecurityNumberCoder,PersonalInfoId,ApplicantId,ApplicationId,EmployeeId")] User user)
         {
             if (ModelState.IsValid)
             {
-                _client.CreateUser(user);
+                string request = "api/User";
+                var response = _client.PostAsJsonAsync(request, user).Result;
+                response.EnsureSuccessStatusCode();
+                var result = response.Content.ReadAsAsync<User>().Result;
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -69,12 +87,17 @@ namespace AIM.Web.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _client.GetUser(id);
-            if (user == null)
+
+            string request = "api/User/" + id;
+            var response = _client.GetAsync(request).Result;
+            response.EnsureSuccessStatusCode();
+            var result = response.Content.ReadAsAsync<User>().Result;
+
+            if (result == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(result);
         }
 
         // POST: /User/Edit/5
@@ -82,12 +105,14 @@ namespace AIM.Web.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="userId,firstName,middleName,lastName,email,socialSecurityNumber,socialSecurityNumberCoder,PersonalInfoId,applicantId,applicationId,employeeId")] User user)
+        public ActionResult Edit([Bind(Include = "UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber,SocialSecurityNumberCoder,PersonalInfoId,ApplicantId,ApplicationId,EmployeeId")] User user)
         {
             if (ModelState.IsValid)
             {
-                _client.DeleteUser(user.userId);
-                _client.CreateUser(user);
+                string request = "api/User";
+                var response = _client.PutAsJsonAsync(request, user).Result;
+                response.EnsureSuccessStatusCode();
+                var result = response.Content.ReadAsAsync<User>().Result;
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -100,12 +125,17 @@ namespace AIM.Web.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _client.GetUser(id);
-            if (user == null)
+
+            string request = "api/User/" + id;
+            var response = _client.GetAsync(request).Result;
+            response.EnsureSuccessStatusCode();
+            var result = response.Content.ReadAsAsync<User>().Result;
+
+            if (result == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(result);
         }
 
         // POST: /User/Delete/5
@@ -113,8 +143,9 @@ namespace AIM.Web.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = _client.GetUser(id);
-            _client.DeleteUser(id);
+            string request = "api/Order/" + id;
+            var response = _client.DeleteAsync(request);
+            response.Result.EnsureSuccessStatusCode();
             return RedirectToAction("Index");
         }
 
