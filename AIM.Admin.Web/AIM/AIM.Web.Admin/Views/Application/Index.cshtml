@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AIM.Service.Entities.Models.Applicant>
+
+@{
+    ViewBag.Title = "Index";
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.educationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jobHistoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referenceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.applicationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.answerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoursId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.educationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobHistoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referenceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.applicationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.answerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hoursId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.applicantId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.applicantId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.applicantId })
+        </td>
+    </tr>
+}
+
+</table>
