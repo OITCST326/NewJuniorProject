@@ -1,11 +1,11 @@
-﻿using AIM.Web.Application.JobServiceReference;
+﻿using AIM.Web.ClientApp.JobServiceReference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AIM.Web.Application.Controllers
+namespace AIM.Web.ClientApp.Controllers
 {
     public class HomeController : Controller
     {

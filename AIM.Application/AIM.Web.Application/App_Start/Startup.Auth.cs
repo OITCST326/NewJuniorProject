@@ -3,7 +3,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace AIM.Web.Application
+namespace AIM.Web.ClientApp
 {
     public partial class Startup
     {

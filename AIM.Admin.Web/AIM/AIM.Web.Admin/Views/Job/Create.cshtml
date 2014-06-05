@@ -108,6 +108,7 @@
 <script type="text/javascript">
     function AddJob() {
         jQuery.support.cors = true;
+
         var job = {
             Position: $('#Position').val(),
             Description: $('#Description').val(),
@@ -121,7 +122,7 @@
             data: JSON.stringify(job),
             contentType: "application/json;charset=utf-8",
             success: function (data) {
-                WriteResponse(data);
+                alert(data);
             },
             error: function (x, y, z) {
                 alert(x + '\n' + y + '\n' + z);

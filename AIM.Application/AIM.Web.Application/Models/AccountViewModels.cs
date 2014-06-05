@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AIM.Web.Application.Models
+namespace AIM.Web.ClientApp.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

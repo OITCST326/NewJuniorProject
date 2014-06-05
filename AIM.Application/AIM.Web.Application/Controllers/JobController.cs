@@ -1,35 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using AIM.Application.Service.Entities.Models;
-using AIM.Web.Application.JobServiceReference;
+using AIM.Web.ClientApp.Client;
+using AIM.Web.ClientApp.Models.EntityModels;
 
-namespace AIM.Web.Application.Controllers
+
+namespace AIM.Web.ClientApp.Controllers
 {
     public class JobController : Controller
     {
-        private readonly JobServiceClient _client = new JobServiceClient();
 
         // GET: /Job/
-        public ActionResult Index()
+        public async Task<ViewResult> Index()
         {
-            var jobs = _client.GetJobsList();
-            return View(jobs.ToList());
+            IEnumerable<Job> jobs = null;
+
+            using (var client = new JobServiceClient())
+            {
+                jobs = await client.GetJobs();
+            }
+
+            return View(jobs);
         }
 
         // GET: /Job/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
+            Job job = null;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = _client.GetJob(id);
+
+            using (var client = new JobServiceClient())
+            {
+                job = await client.GetJobById(id);
+            }
+
             if (job == null)
             {
                 return HttpNotFound();
             }
+
             return View(job);
         }
 
@@ -44,29 +60,43 @@ namespace AIM.Web.Application.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "jobId,position,description,fullPartTime,salaryRange,questionnaireId,hoursId,InterviewquestionId")] Job job)
+        public async Task<ActionResult> Create([Bind(Include = "Position,Description,FullPartTime,SalaryRange")] Job job)
         {
+
             if (ModelState.IsValid)
             {
-                _client.CreateJob(job);
-                return RedirectToAction("Index");
+                using (var client = new JobServiceClient())
+                {
+                    await client.CreateJob(job);               
+                }
+
+                return RedirectToAction("Details", job.JobId);
             }
 
             return View(job);
         }
 
         // GET: /Job/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
+
+            Job job = null;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = _client.GetJob(id);
+
+            using (var client = new JobServiceClient())
+            {
+                job = await client.GetJobById(id);
+            }
+
             if (job == null)
             {
                 return HttpNotFound();
             }
+
             return View(job);
         }
 
@@ -75,12 +105,15 @@ namespace AIM.Web.Application.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "jobId,position,description,fullPartTime,salaryRange,questionnaireId,hoursId,InterviewquestionId")] Job job)
+        public async Task<ActionResult> Edit([Bind(Include = "Position,Description,FullPartTime,SalaryRange")] Job job)
         {
             if (ModelState.IsValid)
             {
-                _client.DeleteJob(job.jobId);
-                _client.CreateJob(job);
+                using (var client = new JobServiceClient())
+                {
+                    await client.EditJob(job);
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -88,13 +121,20 @@ namespace AIM.Web.Application.Controllers
         }
 
         // GET: /Job/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
+            Job job = null;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = _client.GetJob(id);
+
+            using (var client = new JobServiceClient())
+            {
+                job = await client.GetJobById(id);
+            }
+
             if (job == null)
             {
                 return HttpNotFound();
@@ -105,20 +145,14 @@ namespace AIM.Web.Application.Controllers
         // POST: /Job/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Job job = _client.GetJob(id);
-            _client.DeleteJob(id);
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            var dispose = _client as IDisposable;
-            if (dispose != null)
+            using (var client = new JobServiceClient())
             {
-                dispose.Dispose();
+                await client.DeleteJob(id);
             }
+
+            return RedirectToAction("Index");
         }
     }
 }

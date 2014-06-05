@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using AIM.Application.Service.Entities.Models;
-using AIM.Web.Application.UserServiceReference;
+using AIM.Web.ClientApp.Client;
+using AIM.Web.ClientApp.Models.EntityModels;
+using TrackableEntities.Client;
 
-namespace AIM.Web.Application.Controllers
+namespace AIM.Web.ClientApp.Controllers
 {
     public class UserController : Controller
     {
         private readonly UserServiceClient _client = new UserServiceClient();
+        private ChangeTrackingCollection<User> _changeTracker = new ChangeTrackingCollection<User>();
 
         public UserController()
         {
@@ -17,20 +21,23 @@ namespace AIM.Web.Application.Controllers
         }
 
         // GET: /User/
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var users = _client.GetUsersList();
-            return View(users.ToList());
+            IEnumerable<User> users = await _client.GetUsers();
+
+            return View(users);
         }
 
         // GET: /User/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _client.GetUser(id);
+
+            User user = await _client.GetUserById(id);
+
             if (user == null)
             {
                 return HttpNotFound();
@@ -49,24 +56,31 @@ namespace AIM.Web.Application.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "userId,firstName,middleName,lastName,email,socialSecurityNumber,socialSecurityNumberCoder,PersonalInfoId,applicantId,applicationId,employeeId")] User user)
+        public async Task<ActionResult> Create([Bind(Include = "UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber," +
+                                                   "PersonalInfoId,ApplicantId,ApplicationId,EmployeeId,UserName," +
+                                                   "Password,AspNetUsersId")] User user)
         {
             if (ModelState.IsValid)
             {
-                _client.CreateUser(user);
+                await _client.CreateUser(user);
                 return RedirectToAction("Index");
             }
             return View(user);
         }
 
         // GET: /User/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _client.GetUser(id);
+
+            User user = await _client.GetUserById(id);
+
+            // Start change-tracking the model
+            _changeTracker = new ChangeTrackingCollection<User>(user);
+
             if (user == null)
             {
                 return HttpNotFound();
@@ -79,25 +93,37 @@ namespace AIM.Web.Application.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "userId,firstName,middleName,lastName,email,socialSecurityNumber,socialSecurityNumberCoder,PersonalInfoId,applicantId,applicationId,employeeId")] User user)
+        public async Task<ActionResult> Edit([Bind(Include = "UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber," +
+                                                   "PersonalInfoId,ApplicantId,ApplicationId,EmployeeId,UserName," +
+                                                   "Password,AspNetUsersId")] User modifiedUser)
         {
             if (ModelState.IsValid)
             {
-                _client.DeleteUser(user.userId);
-                _client.CreateUser(user);
+                //// Modify user details for tracker
+                //initialUser = modifiedUser;
+
+                //// Submit changes
+                //var changedUser = _changeTracker.GetChanges().SingleOrDefault();
+                var updatedUser = await _client.EditUser(modifiedUser);
+
+                // Merge changes
+                _changeTracker.MergeChanges(updatedUser);
+
                 return RedirectToAction("Index");
             }
-            return View(user);
+            return View(modifiedUser);
         }
 
         // GET: /User/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _client.GetUser(id);
+
+            User user = await _client.GetUserById(id);
+
             if (user == null)
             {
                 return HttpNotFound();
@@ -108,20 +134,20 @@ namespace AIM.Web.Application.Controllers
         // POST: /User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            User user = _client.GetUser(id);
-            _client.DeleteUser(id);
-            return RedirectToAction("Index");
-        }
+            // Delete the user
+            await _client.DeleteUser(id);
 
-        protected override void Dispose(bool disposing)
-        {
-            var dispose = _client as IDisposable;
-            if (dispose != null)
-            {
-                dispose.Dispose();
-            }
+            // Verify order was deleted
+            //var deleted = VerifyUserDeleted(id);
+            //response = _client.GetAsync(request).Result;
+            //response.Result.EnsureSuccessStatusCode();
+            //ViewBag.DeletedMessage(deleted ?
+            //    "User was successfully deleted" :
+            //    "User was not deleted");
+
+            return RedirectToAction("Index");
         }
     }
 }

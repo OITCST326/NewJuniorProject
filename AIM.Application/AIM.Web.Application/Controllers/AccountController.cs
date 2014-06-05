@@ -5,12 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AIM.Web.ClientApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using AIM.Web.Application.Models;
 
-namespace AIM.Web.Application.Controllers
+namespace AIM.Web.ClientApp.Controllers
 {
     [Authorize]
     public class AccountController : Controller

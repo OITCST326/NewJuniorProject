@@ -72,12 +72,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AIM.Application.Client.Entities\AIM.Application.Client.Entities.csproj">
-      <Project>{d8e5c866-6c5a-4acf-aee4-289e7412471f}</Project>
-      <Name>AIM.Application.Client.Entities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="TrackableConsoleClient.ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

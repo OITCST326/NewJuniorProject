@@ -1,35 +1,40 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using AIM.Application.Service.Entities.Models;
-using AIM.Web.Application.PersonalInfoServiceReference;
 
-namespace AIM.Web.Application.Controllers
+using AIM.Web.ClientApp.Client;
+using AIM.Web.ClientApp.Models.EntityModels;
+
+
+namespace AIM.Web.ClientApp.Controllers
 {
     public class PersonalInfoController : Controller
     {
         private readonly PersonalInfoServiceClient _client = new PersonalInfoServiceClient();
 
         // GET: /PersonalInfo/
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var personalInfo = _client.GetPersonalInfoList();
-            return View(personalInfo.ToList());
+            var personalInfo = await _client.GetPersonalInfos();
+
+            return View(personalInfo);
         }
 
         // GET: /PersonalInfo/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PersonalInfo personalinfo = _client.GetPersonalInfo(id);
+            PersonalInfo personalinfo = await _client.GetPersonalInfoById(id);
             if (personalinfo == null)
             {
                 return HttpNotFound();
             }
+
             return View(personalinfo);
         }
 
@@ -44,25 +49,59 @@ namespace AIM.Web.Application.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PersonalInfoId,alias,street,street2,city,state,zip,phone,userId")] PersonalInfo personalinfo)
+        public async Task<ActionResult> Create([Bind(Include = "PersonalInfoId,alias,street,street2,city,state,zip,phone,userId")] PersonalInfo personalinfo)
         {
+            setDefaultValues(ref personalinfo);
+
             if (ModelState.IsValid)
             {
-                _client.CreatePersonalInfo(personalinfo);
+                await _client.CreatePersonalInfo(personalinfo);
                 return RedirectToAction("Index");
             }
 
             return View(personalinfo);
         }
 
+        private void setDefaultValues(ref PersonalInfo personalinfo)
+        {
+            // Dash was used because space gets treated as
+            // an empty field by the either the view or the controller
+            // which messes up the details display
+
+            if (personalinfo.Alias == null)
+                personalinfo.Alias = "-";
+
+            if (personalinfo.Street == null)
+                personalinfo.Street = "-";
+
+            if (personalinfo.Street2 == null)
+                personalinfo.Street2 = "-";
+
+            if (personalinfo.City == null)
+                personalinfo.City = "-";
+
+            // State is required when creating PersonalInfo
+
+            if (personalinfo.Zip == null)
+                personalinfo.Zip = "-";
+
+            if (personalinfo.Phone == null)
+                personalinfo.Phone = "-";
+
+            if (personalinfo.UserId == null)
+                personalinfo.UserId = -1;
+        }
+
         // GET: /PersonalInfo/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PersonalInfo personalinfo = _client.GetPersonalInfo(id);
+
+            PersonalInfo personalinfo = await _client.GetPersonalInfoById(id);
+
             if (personalinfo == null)
             {
                 return HttpNotFound();
@@ -75,25 +114,28 @@ namespace AIM.Web.Application.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PersonalInfoId,alias,street,street2,city,state,zip,phone,userId")] PersonalInfo personalinfo)
+        public async Task<ActionResult> Edit([Bind(Include = "PersonalInfoId,alias,street,street2,city,state,zip,phone,userId")] PersonalInfo personalinfo)
         {
             if (ModelState.IsValid)
             {
-                _client.DeletePersonalInfo(personalinfo.PersonalInfoId);
-                _client.CreatePersonalInfo(personalinfo);
+                await _client.DeletePersonalInfo(personalinfo.PersonalInfoId);
+                await _client.CreatePersonalInfo(personalinfo);
+
                 return RedirectToAction("Index");
             }
             return View(personalinfo);
         }
 
         // GET: /PersonalInfo/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PersonalInfo personalinfo = _client.GetPersonalInfo(id);
+
+            PersonalInfo personalinfo = await _client.GetPersonalInfoById(id);
+
             if (personalinfo == null)
             {
                 return HttpNotFound();
@@ -104,10 +146,9 @@ namespace AIM.Web.Application.Controllers
         // POST: /PersonalInfo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            PersonalInfo personalinfo = _client.GetPersonalInfo(id);
-            _client.DeletePersonalInfo(personalinfo.PersonalInfoId);
+            await _client.DeletePersonalInfo(id);
             return RedirectToAction("Index");
         }
 

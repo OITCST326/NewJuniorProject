@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace AIM.Web.Application
+namespace AIM.Web.ClientApp
 {
     public class BundleConfig
     {

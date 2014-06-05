@@ -1,36 +1,39 @@
-﻿using System;
-using System.Linq;
+﻿using AIM.Web.ClientApp.Client;
+using AIM.Web.ClientApp.Models.EntityModels;
+using System;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using AIM.Application.Service.Entities.Models;
-using AIM.Web.Application.ApplicationServiceReference;
 
-namespace AIM.Web.Application.Controllers
+namespace AIM.Web.ClientApp.Controllers
 {
     public class ApplicationController : Controller
     {
         private readonly ApplicationServiceClient _client = new ApplicationServiceClient();
 
         // GET: /Application/
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var applications = _client.GetApplicantsList();
-            return View(applications.ToList());
+            var applications = await _client.GetApplications();
+
+            return View(applications);
         }
 
         // GET: /Application/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Applicant applicant = _client.GetApplicant(id);
-            if (applicant == null)
+
+            Application application = await _client.GetApplicationById(id);
+
+            if (application == null)
             {
                 return HttpNotFound();
             }
-            return View(applicant);
+            return View(application);
         }
 
         // GET: /Application/Create
@@ -40,73 +43,72 @@ namespace AIM.Web.Application.Controllers
         }
 
         // POST: /Application/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Applicant applicant)
+        public async Task<ActionResult> Create([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Application application)
         {
             if (ModelState.IsValid)
             {
-                _client.CreateApplicant(applicant);
+                await _client.CreateApplication(application);
                 return RedirectToAction("Index");
             }
 
-            return View(applicant);
+            return View(application);
         }
 
         // GET: /Application/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Applicant applicant = _client.GetApplicant(id);
-            if (applicant == null)
+            Application application = await _client.GetApplicationById(id);
+            if (application == null)
             {
                 return HttpNotFound();
             }
-            return View(applicant);
+            return View(application);
         }
 
         // POST: /Application/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Applicant applicant)
+        public async Task<ActionResult> Edit([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Application application)
         {
             if (ModelState.IsValid)
             {
-                _client.UpdateApplicant(applicant);
+                await _client.EditApplication(application);
                 return RedirectToAction("Index");
             }
-            return View(applicant);
+            return View(application);
         }
 
         // GET: /Application/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Applicant applicant = _client.GetApplicant(id);
-            if (applicant == null)
+            Application application = await _client.GetApplicationById(id);
+            if (application == null)
             {
                 return HttpNotFound();
             }
-            return View(applicant);
+            return View(application);
         }
 
         // POST: /Application/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Applicant applicant = _client.GetApplicant(id);
-            _client.DeleteApplicant(id);
+            await _client.DeleteApplication(id);
             return RedirectToAction("Index");
         }
 

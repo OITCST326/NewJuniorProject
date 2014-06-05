@@ -7,9 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AIM.Application.Service.Entities.Models;
-using AIM.Web.Application.JobServiceReference;
+using AIM.Web.ClientApp.JobServiceReference;
 
-namespace AIM.Web.Application.Controllers
+namespace AIM.Web.ClientApp.Controllers
 {
     public class OpenJobController : Controller
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace AIM.Web.Application
+namespace AIM.Web.ClientApp
 {
     public class FilterConfig
     {
