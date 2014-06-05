@@ -1,4 +1,4 @@
-﻿@model AIM.Service.Entities.Models.PersonalInfo
+﻿@model AIM.Web.Admin.Models.EntityModels.PersonalInfo
 
 @{
     ViewBag.Title = "Create";
@@ -20,66 +20,66 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.alias, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Alias, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.alias)
-                @Html.ValidationMessageFor(model => model.alias)
+                @Html.EditorFor(model => model.Alias)
+                @Html.ValidationMessageFor(model => model.Alias)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.street, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Street, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.street)
-                @Html.ValidationMessageFor(model => model.street)
+                @Html.EditorFor(model => model.Street)
+                @Html.ValidationMessageFor(model => model.Street)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.street2, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Street2, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.street2)
-                @Html.ValidationMessageFor(model => model.street2)
+                @Html.EditorFor(model => model.Street2)
+                @Html.ValidationMessageFor(model => model.Street2)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.city, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.city)
-                @Html.ValidationMessageFor(model => model.city)
+                @Html.EditorFor(model => model.City)
+                @Html.ValidationMessageFor(model => model.City)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.state, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.state)
-                @Html.ValidationMessageFor(model => model.state)
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.zip, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Zip, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.zip)
-                @Html.ValidationMessageFor(model => model.zip)
+                @Html.EditorFor(model => model.Zip)
+                @Html.ValidationMessageFor(model => model.Zip)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.phone, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.phone)
-                @Html.ValidationMessageFor(model => model.phone)
+                @Html.EditorFor(model => model.Phone)
+                @Html.ValidationMessageFor(model => model.Phone)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.userId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UserId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.userId)
-                @Html.ValidationMessageFor(model => model.userId)
+                @Html.EditorFor(model => model.UserId)
+                @Html.ValidationMessageFor(model => model.UserId)
             </div>
         </div>
 

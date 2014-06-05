@@ -1,78 +1,102 @@
-﻿@model AIM.Service.Entities.Models.Applicant
+﻿@model AIM.Web.Admin.Models.EntityModels.Application
 
 @{
-    ViewBag.Title = "Details";
-    var userName = TempData["userName"];
-    TempData["userName"] = userName;
-    var permissions = TempData["Permissions"];
-    TempData["Permissions"] = permissions;
+	ViewBag.Title = "Details";
+	var userName = TempData["userName"];
+	TempData["userName"] = userName;
+	var permissions = TempData["Permissions"];
+	TempData["Permissions"] = permissions;
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Applicant</h4>
+	<h4>Applicant</h4>
 	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.educationId)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.ApplicationId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.educationId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.ApplicationId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.jobHistoryId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.ApplicantId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.jobHistoryId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.ApplicantId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.referenceId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.JobId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.referenceId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.JobId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.userId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.DateCreated)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.userId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.DateCreated)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.applicationId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.IsDays)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.applicationId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.IsDays)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.answerId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.IsEvenings)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.answerId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.IsEvenings)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hoursId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.IsFullTime)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hoursId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.IsWeekends)
+		</dd>
 
-    </dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.IsWeekends)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.SalaryExpectation)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.SalaryExpectation)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.PreEmploymentStatement)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.PreEmploymentStatement)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Status)
+		</dd>
+
+	</dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.applicantId }) |
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationId }) |
+	@Html.ActionLink("Back to List", "Index")
 </p>

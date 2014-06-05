@@ -44,6 +44,11 @@
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.UserId)
+                    @Html.HiddenFor(model => model.PersonalInfoId)
+                    @Html.HiddenFor(model => model.ApplicantId)
+                    @Html.HiddenFor(model => model.ApplicationId)
+                    @Html.HiddenFor(model => model.EmployeeId)
+                    @Html.HiddenFor(model => model.AspNetUsersId)
 
 
                     <div class="form-group">
@@ -54,7 +59,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.MiddleName, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -62,7 +66,6 @@
                             @Html.ValidationMessageFor(model => model.ModifiedProperties)
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
@@ -85,56 +88,26 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.SocialSecurityNumber, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.SocialSecurityNumber)
+                            @Html.PasswordFor(model => model.SocialSecurityNumber)
                             @Html.ValidationMessageFor(model => model.SocialSecurityNumber)
                         </div>
                     </div>
 
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.socialSecurityNumberCoder, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.socialSecurityNumberCoder)
-                                @Html.ValidationMessageFor(model => model.socialSecurityNumberCoder)
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UserName)
+                            @Html.ValidationMessageFor(model => model.UserName)
                         </div>
+                    </div>
 
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.PersonalInfoId, "PersonalInfoId", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("PersonalInfoId", String.Empty)
-                                @Html.ValidationMessageFor(model => model.PersonalInfoId)
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.Password)
+                            @Html.ValidationMessageFor(model => model.Password)
                         </div>
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.applicantId, "applicantId", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("applicantId", String.Empty)
-                                @Html.ValidationMessageFor(model => model.applicantId)
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.applicationId, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.applicationId)
-                                @Html.ValidationMessageFor(model => model.applicationId)
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.employeeId, "employeeId", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("employeeId", String.Empty)
-                                @Html.ValidationMessageFor(model => model.employeeId)
-                            </div>
-                        </div>*@
-
+                    </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
@@ -143,12 +116,9 @@
                     </div>
                 </div>
             }
-
-
             <div>
                 @Html.ActionLink("Back to List", "Index")
             </div>
-
             <div class="clearfix"></div>
         </div>
     </div>

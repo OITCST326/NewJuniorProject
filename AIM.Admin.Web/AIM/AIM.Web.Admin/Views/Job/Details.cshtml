@@ -1,4 +1,4 @@
-﻿@model AIM.Service.Entities.Models.Job
+﻿@model AIM.Web.Admin.Models.EntityModels.Job
 
 @{
     ViewBag.Title = "Details";
@@ -39,42 +39,42 @@
             <div>
                 <dl class="dl-horizontal">
                     <dt>
-                        @Html.DisplayNameFor(model => model.position)
+                        @Html.DisplayNameFor(model => model.Position)
                     </dt>
 
 
                     <dd>
-                        @Html.DisplayFor(model => model.position)
+                        @Html.DisplayFor(model => model.Position)
                     </dd>
 
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.description)
+                        @Html.DisplayNameFor(model => model.Description)
                     </dt>
 
 
                     <dd>
-                        @Html.DisplayFor(model => model.description)
+                        @Html.DisplayFor(model => model.Description)
                     </dd>
 
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.fullPartTime)
+                        @Html.DisplayNameFor(model => model.FullPartTime)
                     </dt>
 
 
                     <dd>
-                        @Html.DisplayFor(model => model.fullPartTime)
+                        @Html.DisplayFor(model => model.FullPartTime)
                     </dd>
 
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.salaryRange)
+                        @Html.DisplayNameFor(model => model.SalaryRange)
                     </dt>
 
 
                     <dd>
-                        @Html.DisplayFor(model => model.salaryRange)
+                        @Html.DisplayFor(model => model.SalaryRange)
                     </dd>
 
 
@@ -82,7 +82,7 @@
             </div>
 
             <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.jobId }) |
+                @Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) |
                 @Html.ActionLink("Back to List", "Index")
             </p>
             <div class="clearfix"></div>

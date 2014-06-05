@@ -1,47 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Cache;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using AIM.Web.Admin.Client;
 using AIM.Web.Admin.Models.EntityModels;
 using TrackableEntities.Client;
-using TrackableEntities.Common;
+using WebApiRestService;
 
 namespace AIM.Web.Admin.Controllers
 {
     public class UserController : Controller
     {
-        // Address for Web API service
-        const string ServiceBaseAddress = "http://aimadminstrativeservice.cloudapp.net/" + "/";
+        private readonly UserServiceClient _client = new UserServiceClient();
+        private ChangeTrackingCollection<User> _changeTracker = new ChangeTrackingCollection<User>();
 
-        // Address for Web API service if running service locally
-        //const string ServiceBaseAddress = "http://localhost:" + "58528" + "/";
-
-
+        public UserController()
+        {
+            _client = new UserServiceClient();
+        }
 
         // GET: /User/
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var customers = GetUsers();
-            
-            return View(customers);
+            IEnumerable<User> users = await _client.GetUsers();
+
+            return View(users);
         }
 
         // GET: /User/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User user = GetUser(id);
+            User user = await _client.GetUserById(id);
 
             if (user == null)
             {
@@ -61,25 +56,30 @@ namespace AIM.Web.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber,SocialSecurityNumberCoder,PersonalInfoId,ApplicantId,ApplicationId,EmployeeId")] User newUser)
+        public async Task<ActionResult> Create([Bind(Include = "UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber," +
+                                                   "PersonalInfoId,ApplicantId,ApplicationId,EmployeeId,UserName," +
+                                                   "Password,AspNetUsersId")] User user)
         {
             if (ModelState.IsValid)
             {
-                CreateUser(newUser);
+                await _client.CreateUser(user);
                 return RedirectToAction("Index");
             }
-            return View(newUser);
+            return View(user);
         }
 
         // GET: /User/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User user = GetUser(id);
+            User user = await _client.GetUserById(id);
+
+            // Start change-tracking the model
+            _changeTracker = new ChangeTrackingCollection<User>(user);
 
             if (user == null)
             {
@@ -93,23 +93,21 @@ namespace AIM.Web.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber,SocialSecurityNumberCoder,PersonalInfoId,ApplicantId,ApplicationId,EmployeeId")] User modifiedUser)
+        public async Task<ActionResult> Edit([Bind(Include = "UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber," +
+                                                   "PersonalInfoId,ApplicantId,ApplicationId,EmployeeId,UserName," +
+                                                   "Password,AspNetUsersId")] User modifiedUser)
         {
             if (ModelState.IsValid)
             {
-                // Start change-tracking the model
-                User initialUser = GetUser(modifiedUser.UserId);
-                var changeTracker = new ChangeTrackingCollection<User>(initialUser);
+                //// Modify user details for tracker
+                //initialUser = modifiedUser;
 
-                // Modify user details
-                initialUser = modifiedUser;
-
-                // Submit changes
-                var changedUser = changeTracker.GetChanges().SingleOrDefault();
-                var updatedUser = UpdateUser(changedUser);
+                //// Submit changes
+                //var changedUser = _changeTracker.GetChanges().SingleOrDefault();
+                var updatedUser = await _client.EditUser(modifiedUser);
 
                 // Merge changes
-                changeTracker.MergeChanges(updatedUser);
+                _changeTracker.MergeChanges(updatedUser);
 
                 return RedirectToAction("Index");
             }
@@ -117,14 +115,14 @@ namespace AIM.Web.Admin.Controllers
         }
 
         // GET: /User/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User user = GetUser(id);
+            User user = await _client.GetUserById(id);
 
             if (user == null)
             {
@@ -136,155 +134,20 @@ namespace AIM.Web.Admin.Controllers
         // POST: /User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             // Delete the user
-            DeleteUser(id);
+            await _client.DeleteUser(id);
 
             // Verify order was deleted
-            var deleted = VerifyUserDeleted(id);
-            ViewBag.DeletedMessage(deleted ?
-                "User was successfully deleted" :
-                "User was not deleted");
+            //var deleted = VerifyUserDeleted(id);
+            //response = _client.GetAsync(request).Result;
+            //response.Result.EnsureSuccessStatusCode();
+            //ViewBag.DeletedMessage(deleted ?
+            //    "User was successfully deleted" :
+            //    "User was not deleted");
 
             return RedirectToAction("Index");
-        }
-
-        /************************************************************************************/
-        /*                              Web API calls for User                              */
-        /************************************************************************************/
-
-
-        /// <summary>
-        /// Calls the Administrative Web Service to request a list of all users from the
-        /// AIM Database
-        /// </summary>
-        /// <returns>A list of all Users</returns>
-        private static IEnumerable<User> GetUsers()
-        {
-            try
-            {
-                var client = new HttpClient { BaseAddress = new Uri(ServiceBaseAddress) };
-                const string request = "api/User";
-                var response = client.GetAsync(request).Result;
-                response.EnsureSuccessStatusCode();
-                var result = response.Content.ReadAsAsync<IEnumerable<User>>().Result;
-                return result;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Calls the Administrative Web Service to request an induviual users by UserID
-        /// from the AIM Database 
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>A User with the userId</returns>
-        private static User GetUser(int? userId)
-        {
-            User result;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ServiceBaseAddress);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var request = "api/User/" + userId;
-                var response = client.GetAsync(request).Result;
-                response.EnsureSuccessStatusCode();
-                result = response.Content.ReadAsAsync<User>().Result;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Calls the Administrative Web Service to request to create new User in the 
-        /// AIM Database
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns>User</returns>
-        private static User CreateUser(User user)
-        {
-            User result;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ServiceBaseAddress);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                const string request = "api/User";
-                var response = client.PostAsJsonAsync(request, user).Result;
-                response.EnsureSuccessStatusCode();
-                result = response.Content.ReadAsAsync<User>().Result;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Calls the Administrative Web Service to request User to be updated in 
-        /// the AIM Database
-        /// </summary>
-        /// <param name="client"></param>
-        /// <param name="user"></param>
-        /// <returns>User</returns>
-        private static User UpdateUser(User user)
-        {
-            User result;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ServiceBaseAddress);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                const string request = "api/User";
-                var response = client.PutAsJsonAsync(request, user).Result;
-                response.EnsureSuccessStatusCode();
-                result = response.Content.ReadAsAsync<User>().Result;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Calls the Administrative Web Service to request User to be deleted from 
-        /// the AIM Database
-        /// </summary>
-        /// <param name="userId"></param>
-        private static void DeleteUser(int? userId)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ServiceBaseAddress);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var request = "api/User/" + userId;
-                var response = client.DeleteAsync(request);
-                response.Result.EnsureSuccessStatusCode();
-            }
-        }
-
-        /// <summary>
-        /// Calls the Administrative Web Service to verify that the User has been 
-        /// deleted from the AIM Database
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>bool</returns>
-        private static bool VerifyUserDeleted(int userId)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ServiceBaseAddress);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                string request = "api/User/" + userId;
-                var response = client.GetAsync(request).Result;
-                if (response.IsSuccessStatusCode) return false;
-            }
-            return true;
         }
     }
 }

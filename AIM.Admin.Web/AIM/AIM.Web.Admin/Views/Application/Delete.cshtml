@@ -1,4 +1,4 @@
-﻿@model AIM.Service.Entities.Models.Applicant
+﻿@model AIM.Web.Admin.Models.EntityModels.Application
 
 @{
     ViewBag.Title = "Delete";
@@ -16,59 +16,83 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.educationId)
+            @Html.DisplayNameFor(model => model.ApplicationId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.educationId)
+            @Html.DisplayFor(model => model.ApplicationId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.jobHistoryId)
+            @Html.DisplayNameFor(model => model.ApplicantId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.jobHistoryId)
+            @Html.DisplayFor(model => model.ApplicantId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.referenceId)
+            @Html.DisplayNameFor(model => model.JobId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.referenceId)
+            @Html.DisplayFor(model => model.JobId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.userId)
+            @Html.DisplayNameFor(model => model.DateCreated)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.userId)
+            @Html.DisplayFor(model => model.DateCreated)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.applicationId)
+            @Html.DisplayNameFor(model => model.IsDays)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.applicationId)
+            @Html.DisplayFor(model => model.IsDays)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.answerId)
+            @Html.DisplayNameFor(model => model.IsEvenings)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.answerId)
+            @Html.DisplayFor(model => model.IsEvenings)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.hoursId)
+            @Html.DisplayNameFor(model => model.IsFullTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.hoursId)
+            @Html.DisplayFor(model => model.IsWeekends)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.IsWeekends)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryExpectation)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryExpectation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreEmploymentStatement)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.PreEmploymentStatement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
         </dd>
 
     </dl>

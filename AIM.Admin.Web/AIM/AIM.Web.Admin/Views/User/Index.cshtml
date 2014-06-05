@@ -64,6 +64,12 @@
                         <th>
                             @Html.DisplayNameFor(model => model.SocialSecurityNumber)
                         </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -72,6 +78,12 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
+                        @Html.HiddenFor(modelItem => item.UserId)
+                        @Html.HiddenFor(modelItem => item.PersonalInfoId)
+                        @Html.HiddenFor(modelItem => item.ApplicantId)
+                        @Html.HiddenFor(modelItem => item.ApplicationId)
+                        @Html.HiddenFor(modelItem => item.EmployeeId)
+                        @Html.HiddenFor(modelItem => item.AspNetUsersId)
                         <tr>
                             <td class="center">
                                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -87,6 +99,12 @@
                             </td>
                             <td class="center">
                                 @Html.DisplayFor(modelItem => item.SocialSecurityNumber)
+                            </td>
+                            <td class="center">
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td class="center">
+                                @Html.DisplayFor(modelItem => item.Password)
                             </td>
                             <td class="center">
                                 <div>
