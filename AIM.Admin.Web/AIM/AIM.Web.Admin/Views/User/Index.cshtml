@@ -9,6 +9,12 @@
     TempData["Permissions"] = permissions;
 }
 
+@if (!string.IsNullOrEmpty(ViewBag.DeletedMessage)) {
+<script type="text/javascript">
+    alert('ViewBag.DeletedMessage');
+</script>
+}
+
 <!-- This view's content starts HERE-->
 <div>
     <ul class="breadcrumb">
