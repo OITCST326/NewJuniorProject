@@ -15,7 +15,7 @@ namespace AIM.Web.Admin.Client
         {
             BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
             ContentType = ContentType.Json,
-            Timeout = 30000,
+            Timeout = 80000,
             Controller = "api/Job"
         };
 
@@ -43,10 +43,6 @@ namespace AIM.Web.Admin.Client
 
         public async Task<Job> GetJobById(int? id)
         {
-            if (id == null)
-            {
-                return null;
-            }
             try
             {
                 return await GetOneAsync(id);

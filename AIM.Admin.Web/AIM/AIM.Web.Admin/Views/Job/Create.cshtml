@@ -80,35 +80,6 @@
                             @Html.ValidationMessageFor(model => model.SalaryRange)
                         </div>
                     </div>
-
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.questionnaireId, "questionnaireId", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("questionnaireId", String.Empty)
-                                @Html.ValidationMessageFor(model => model.questionnaireId)
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.hoursId, "hoursId", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("hoursId", String.Empty)
-                                @Html.ValidationMessageFor(model => model.hoursId)
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.InterviewquestionId, "InterviewquestionId", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("InterviewquestionId", String.Empty)
-                                @Html.ValidationMessageFor(model => model.InterviewquestionId)
-                            </div>
-                        </div>*@
-
-
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Create" class="btn btn-default" />
@@ -116,6 +87,9 @@
                     </div>
                 </div>
             }
+            
+            <button onclick="AddJob();return false;">Add Job</button>
+            <div id="divResult"></div>
 
             <div>
                 @Html.ActionLink("Back to List", "Index")
@@ -130,3 +104,39 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+    function AddJob() {
+        jQuery.support.cors = true;
+        var job = {
+            Position: $('#Position').val(),
+            Description: $('#Description').val(),
+            FullPartTime: $('#FullPartTime').val(),
+            SalaryRange: $('#SalaryRange').val()
+        };
+
+        $.ajax({
+            url: 'http://aimadminstrativeservice.cloudapp.net/api/Job',
+            type: 'POST',
+            data: JSON.stringify(job),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                WriteResponse(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+
+    function WriteResponse(jobs) {
+        var strResult = "<table><th>Position</th><th>Description</th><th>FullPartTime</th><th>SalaryRange</th>";
+        $.each(jobs, function (index, job) {
+            strResult += "<tr><td>" + job.Position + "</td><td> " + job.Description + "</td><td>" + job.FullPartTime + "</td><td>" + job.SalaryRange + "</td></tr>";
+        });
+        strResult += "</table>";
+        $("#divResult").html(strResult);
+    }
+
+</script>
+
