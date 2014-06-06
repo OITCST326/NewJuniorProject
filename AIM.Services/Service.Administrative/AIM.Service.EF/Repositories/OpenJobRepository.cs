@@ -30,6 +30,17 @@ namespace AIM.Service.EF.Repositories
             return entities;
         }
 
+        public async Task<IEnumerable<OpenJob>> GetOpenJobsByStoreId(int storeId)
+        {
+            IEnumerable<OpenJob> entities = await _context.OpenJobs
+                .Where(t => t.StoreId == storeId)
+                .Include(t => t.Job)
+                .Include(t => t.Store)
+                .Include(t => t.Region)
+                .ToListAsync();
+            return entities;
+        }
+
         public async Task<OpenJob> GetOpenJob(int id)
         {
             OpenJob entity = await _context.OpenJobs

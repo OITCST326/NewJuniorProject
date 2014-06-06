@@ -39,6 +39,18 @@ namespace AIM.Service.Administrative.Controllers
             return Ok(entity);
         }
 
+        // GET api/Questionnaire/5
+        [ResponseType(typeof(Questionnaire))]
+        public async Task<IHttpActionResult> GetQuestionnaireByJobId(int jobId)
+        {
+            Questionnaire entity = await _unitOfWork.QuestionnaireRepository.GetQuestionnaireByJobId(jobId);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            return Ok(entity);
+        }
+
         // POST api/Questionnaire
         [ResponseType(typeof(Questionnaire))]
         public async Task<IHttpActionResult> PostQuestionnaire(Questionnaire entity)

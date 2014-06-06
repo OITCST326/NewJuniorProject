@@ -9,6 +9,7 @@ namespace AIM.Service.Persistence.Repositories
     public interface IOpenJobRepository : IRepository<OpenJob>, IRepositoryAsync<OpenJob>
     {
         Task<IEnumerable<OpenJob>> GetOpenJobs();
+        Task<IEnumerable<OpenJob>> GetOpenJobsByStoreId(int storeId);
         Task<OpenJob> GetOpenJob(int id);
         Task<bool> DeleteOpenJob(int id);
     }

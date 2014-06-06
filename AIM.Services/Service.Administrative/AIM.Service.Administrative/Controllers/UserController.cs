@@ -39,6 +39,18 @@ namespace AIM.Service.Administrative.Controllers
             return Ok(user);
         }
 
+        // GET api/User/5
+        [ResponseType(typeof(User))]
+        public async Task<IHttpActionResult> GetUserLogin(string userName, string password)
+        {
+            User user = await _unitOfWork.UserRepository.GetUserLogin(userName, password);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
         // POST api/User
         [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> PostUser(User user)

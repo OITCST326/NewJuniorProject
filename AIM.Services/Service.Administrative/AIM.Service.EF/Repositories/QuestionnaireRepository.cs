@@ -38,6 +38,16 @@ namespace AIM.Service.EF.Repositories
             return entity;
         }
 
+        public async Task<Questionnaire> GetQuestionnaireByJobId(int id)
+        {
+            Questionnaire entity = await _context.Questionnaires
+                .Where(t => t.JobId == id)
+                .Include(t => t.Jobs)
+                .Include(t => t.Questions)
+                .SingleOrDefaultAsync(t => t.QuestionnaireId == id);
+            return entity;
+        }
+
         public async Task<bool> DeleteQuestionnaire(int id)
         {
             Questionnaire entity = await _context.Questionnaires

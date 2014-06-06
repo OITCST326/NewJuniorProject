@@ -39,6 +39,14 @@ namespace AIM.Service.Administrative.Controllers
             return Ok(entity);
         }
 
+        // GET api/Store
+        [ResponseType(typeof(IEnumerable<Store>))]
+        public async Task<IHttpActionResult> GetStoresByRegionId(int regionId)
+        {
+            IEnumerable<Store> entities = await _unitOfWork.StoreRepository.GetStoresByRegionId(regionId);
+            return Ok(entities);
+        }
+
         // POST api/Store
         [ResponseType(typeof(Store))]
         public async Task<IHttpActionResult> PostStore(Store entity)

@@ -10,6 +10,7 @@ namespace AIM.Service.Persistence.Repositories
     {
         Task<IEnumerable<Questionnaire>> GetQuestionnaires();
         Task<Questionnaire> GetQuestionnaire(int id);
+        Task<Questionnaire> GetQuestionnaireByJobId(int id);
         Task<bool> DeleteQuestionnaire(int id);
     }
 }

@@ -22,52 +22,48 @@ namespace AIM.Service.EF.Repositories
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            IEnumerable<User> entities = await _context.Users.ToListAsync();
-                //.OrderBy(u => u.FirstName)
-                //.ThenBy(u => u.LastName)
-                //.Include(u => u.Applicant.Users)
-                //.Include(u => u.Employee)
-                //.Include(u => u.PersonalInfo)
+            IEnumerable<User> entities = await _context.Users
+                .OrderBy(u => u.FirstName)
+                .ThenBy(u => u.LastName)
+                .Include(u => u.Applicant.Users)
+                .Include(u => u.Employee)
+                .Include(u => u.PersonalInfo)
+                .ToListAsync();
                 
             return entities;
         }
 
         public async Task<User> GetUser(int id)
         {
-            User entity = await _context.Users.SingleOrDefaultAsync(t => t.UserId == id);
-                //.Include(u => u.Applicant)
-                //.Where(u => id == u.Applicant.UserId)
-                //.Include(u => u.Employee)
-                //.Where(u => u.EmployeeId == u.Employee.EmployeeId)
-                //.Include(u => u.PersonalInfo)
-                //.Where(u => id == u.PersonalInfo.UserId)
+            User entity = await _context.Users
+                .Include(u => u.Applicant)
+                .Include(u => u.Employee)
+                .Include(u => u.PersonalInfo)
+                .SingleOrDefaultAsync(t => t.UserId == id);
                 
             return entity;
         }
 
         public async Task<User> GetUserLogin(string userName, string password)
         {
-            User entity = await _context.Users.Where(u => u.UserName.Equals(userName)).Where(u => u.UserName.Equals(password)).SingleOrDefaultAsync();
-                
-                //.Include(u => u.Applicant)
-                //.Where(u => u.UserId == u.Applicant.UserId)
-                //.Include(u => u.Employee)
-                //.Where(u => u.EmployeeId == u.Employee.EmployeeId)
-                //.Include(u => u.PersonalInfo)
-                //.Where(u => u.UserId == u.PersonalInfo.UserId)
+            User entity = await _context.Users
+                        .Where(u => u.UserName.Equals(userName))
+                        .Where(u => u.UserName.Equals(password))
+                        .Include(u => u.Applicant)
+                        .Include(u => u.Employee)
+                        .Include(u => u.PersonalInfo)
+                        .SingleOrDefaultAsync();
                 
             return entity;
         }
 
         public async Task<bool> DeleteUser(int id)
         {
-            User entity = await _context.Users.SingleOrDefaultAsync(t => t.UserId == id);
-                //.Include(u => u.Applicant)
-                //.Where(u => id == u.Applicant.UserId)
-                //.Include(u => u.Employee)
-                //.Where(u => u.EmployeeId == u.Employee.EmployeeId)
-                //.Include(u => u.PersonalInfo)
-                //.Where(u => id == u.PersonalInfo.UserId)
+            User entity = await _context.Users
+                .Include(u => u.Applicant)
+                .Include(u => u.Employee)
+                .Include(u => u.PersonalInfo)
+                .SingleOrDefaultAsync(t => t.UserId == id);
                 
             if (entity == null) return false;
             ApplyDelete(entity);

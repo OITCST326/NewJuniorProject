@@ -39,6 +39,16 @@ namespace AIM.Service.EF.Repositories
             return entity;
         }
 
+        public async Task<IEnumerable<Store>> GetStoresByRegionId(int regionId)
+        {
+            IEnumerable<Store> entity = await _context.Stores
+                .Where(t => t.RegionId == regionId)
+                .Include(t => t.OpenJobs)
+                .Include(t => t.Region)
+                .ToListAsync();
+            return entity;
+        }
+
         public async Task<bool> DeleteStore(int id)
         {
             Store entity = await _context.Stores
