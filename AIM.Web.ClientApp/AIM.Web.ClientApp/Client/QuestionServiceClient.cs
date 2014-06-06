@@ -1,11 +1,7 @@
-﻿using System;
+﻿using AIM.Web.ClientApp.Models.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using AIM.Web.ClientApp.Models.EntityModels;
 using WebApiRestService;
 
 namespace AIM.Web.ClientApp.Client
@@ -35,7 +31,6 @@ namespace AIM.Web.ClientApp.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<Question>> GetQuestions()
         {

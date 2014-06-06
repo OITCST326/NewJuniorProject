@@ -1,15 +1,12 @@
-﻿using System;
+﻿using AIM.Web.ClientApp.Models.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using AIM.Web.ClientApp.Models.EntityModels;
 using WebApiRestService;
 
 namespace AIM.Web.ClientApp.Client
 {
-    public class JobServiceClient : WebApiClient<Job> 
+    public class JobServiceClient : WebApiClient<Job>
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
@@ -34,7 +31,6 @@ namespace AIM.Web.ClientApp.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<Job>> GetJobs()
         {

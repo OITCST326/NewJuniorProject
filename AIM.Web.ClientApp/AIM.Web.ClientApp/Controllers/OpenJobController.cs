@@ -25,7 +25,7 @@ namespace AIM.Web.ClientApp.Controllers
             int id = Convert.ToInt32(regionId);
 
             ViewBag.RegionName = await _regionClient.GetRegionById(id);
-            var openJobs = await _openJobClient.GetOpenJobs().;
+            var openJobs = await _openJobClient.GetOpenJobs();
             return View(openJobs);
         }
 

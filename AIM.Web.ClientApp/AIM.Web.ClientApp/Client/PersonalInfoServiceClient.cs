@@ -1,23 +1,20 @@
-﻿using System;
+﻿using AIM.Web.ClientApp.Models.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using AIM.Web.ClientApp.Models.EntityModels;
 using WebApiRestService;
 
 namespace AIM.Web.ClientApp.Client
 {
     public class PersonalInfoServiceClient : WebApiClient<PersonalInfo>
     {
-private static WebApiClientOptions options = new WebApiClientOptions()
-        {
-            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
-            ContentType = ContentType.Json,
-            Timeout = 80000,
-            Controller = "api/PersonalInfo"
-        };
+        private static WebApiClientOptions options = new WebApiClientOptions()
+                {
+                    BaseAddress = "http://aimapplicationservice.cloudapp.net/",
+                    ContentType = ContentType.Json,
+                    Timeout = 80000,
+                    Controller = "api/PersonalInfo"
+                };
 
         /// <summary>
         /// Creates an instance of PersonalInfoClient using default options
@@ -34,7 +31,6 @@ private static WebApiClientOptions options = new WebApiClientOptions()
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<PersonalInfo>> GetPersonalInfos()
         {

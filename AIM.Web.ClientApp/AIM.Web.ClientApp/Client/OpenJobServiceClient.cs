@@ -1,11 +1,7 @@
-﻿using System;
+﻿using AIM.Web.ClientApp.Models.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using AIM.Web.ClientApp.Models.EntityModels;
-using Antlr.Runtime;
 using WebApiRestService;
 
 namespace AIM.Web.ClientApp.Client
@@ -35,7 +31,6 @@ namespace AIM.Web.ClientApp.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<OpenJob>> GetOpenJobs()
         {
@@ -72,6 +67,27 @@ namespace AIM.Web.ClientApp.Client
             try
             {
                 return await GetManyAsync(new { StoreID = storeId }, "GetOpenJobsByStoreId");
+            }
+            catch (WebApiClientException e)
+            {
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+
+                throw e;
+            }
+        }
+
+        public async Task<IEnumerable<OpenJob>> GetOpenJobsByRegionId(int? regionId)
+        {
+            if (regionId == null)
+            {
+                return null;
+            }
+            try
+            {
+                return await GetManyAsync(new { RegionID = regionId }, "GetOpenJobsByRegionId");
             }
             catch (WebApiClientException e)
             {

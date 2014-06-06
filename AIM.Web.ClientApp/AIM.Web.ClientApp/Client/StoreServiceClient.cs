@@ -1,10 +1,7 @@
-﻿using System;
+﻿using AIM.Web.ClientApp.Models.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using AIM.Web.ClientApp.Models.EntityModels;
 using WebApiRestService;
 
 namespace AIM.Web.Application.Client
@@ -34,7 +31,6 @@ namespace AIM.Web.Application.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<Store>> GetStores()
         {
@@ -70,7 +66,7 @@ namespace AIM.Web.Application.Client
             }
             try
             {
-                return await GetManyAsync(regionId);
+                return await GetManyAsync(new { RegionId = regionId }, "GetStoresByRegionId");
             }
             catch (WebApiClientException e)
             {
