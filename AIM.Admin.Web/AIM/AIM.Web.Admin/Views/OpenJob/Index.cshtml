@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AIM.Web.Admin.Models.EntityModels.Region>
+
+@{
+    ViewBag.Title = "Index";
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
+}
+
+<h2>Region Select</h2>
+
+<center>
+    @using (Html.BeginForm("StoreSelect", "OpenJob", FormMethod.Get))
+    {
+        <fieldset>
+           Select region: <select name="RegionID">
+                @foreach (var item in Model)
+                {
+                    <option value=@item.RegionId>@item.RegionName</option>
+                }
+            </select>
+            <p>
+                <input type="submit" value="Submit" class="btn btn-success" />
+            </p>
+        </fieldset>
+    }
+</center>
+

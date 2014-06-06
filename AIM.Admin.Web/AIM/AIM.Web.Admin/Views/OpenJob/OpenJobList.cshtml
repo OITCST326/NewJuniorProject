@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AIM.Web.Admin.Models.EntityModels.OpenJob>
+
+@{
+    ViewBag.Title = "OpenJobList";
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
+}
+
+<h2>Job Opening Requests</h2>
+
+<table class="table">
+    <tr>
+        <th></th> <!-- Details button column -->
+        <th>
+        </th>
+        <th>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a class="btn btn-success" href="@Url.Action("Details", "OpenJob", new { id = item.OpenJobsId })">
+                    <i class="icon-zoom-in icon-white"></i>
+                    Details
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Job.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Store.Name)
+            </td>
+        </tr>
+    }
+
+</table>
