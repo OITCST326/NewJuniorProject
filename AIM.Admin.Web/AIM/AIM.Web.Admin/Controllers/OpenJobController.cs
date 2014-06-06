@@ -96,6 +96,7 @@ namespace AIM.Web.Admin.Controllers
                 array[i].OpenJobsId = i;
                 array[i].Store = store2;
                 array[i].StoreId = store2.StoreId;
+                array[i].IsApproved = false;
 
                 if (i % 2 == 1)
                     array[i].Job = job1;
@@ -103,6 +104,9 @@ namespace AIM.Web.Admin.Controllers
                 else
                     array[i].Job = job2;
             }
+
+            array[1].IsApproved = true;
+            array[4].IsApproved = true;
 
             return array;
         }
@@ -123,29 +127,47 @@ namespace AIM.Web.Admin.Controllers
 
 
 
-        ////
-        //// GET: /OpenJob/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        //
+        // GET: /OpenJob/Create
+        public async Task<ActionResult> Create()
+        {
+            IEnumerable<Job> jobs = null;
+            using(var client = new JobServiceClient())
+            {
+                jobs = await client.GetJobs();
+            }
 
-        ////
-        //// POST: /OpenJob/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+            var TitleList = new List<string>();
+            var TitlesQuery = from j in jobs select j.Position;
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            TitleList.AddRange(TitlesQuery);
+            var sl = new SelectList(TitleList);
+            ViewBag.JobTitles = sl;
+
+
+            var IDQuery = from i in jobs select i.JobId;
+           
+            
+
+            return View();
+        }
+
+        //
+        // POST: /OpenJob/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         ////
         //// GET: /OpenJob/Edit/5

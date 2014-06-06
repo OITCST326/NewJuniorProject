@@ -10,32 +10,89 @@
 
 <h2>Job Opening Requests</h2>
 
-<table class="table">
-    <tr>
-        <th></th> <!-- Details button column -->
-        <th>
-        </th>
-        <th>
-        </th>
-        <th></th>
-    </tr>
+<div>
+    <a class="btn btn-success" href="@Url.Action("Create", "OpenJob")">
+        <i class="icon-plus icon-white"></i><i class="icon-briefcase icon-white"></i>
+        Request New Openings
+    </a>
+</div>
+
+
+<center>
+    <h3>Approved Job Openings</h3>
+</center>
+<table class="table table-striped table-bordered bootstrap-datatable datatable">
+    <thead>
+        <tr>
+            <th></th> <!-- Details button column -->
+            <th>
+                Job Title
+            </th>
+            <th>
+                Store
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <a class="btn btn-success" href="@Url.Action("Details", "OpenJob", new { id = item.OpenJobsId })">
-                    <i class="icon-zoom-in icon-white"></i>
-                    Details
-                </a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Job.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Store.Name)
-            </td>
-        </tr>
+    {        
+        if (item.IsApproved == true)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-success" href="@Url.Action("Details", "OpenJob", new { id = item.OpenJobsId })">
+                        <i class="icon-zoom-in icon-white"></i>
+                        Details
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Job.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store.Name)
+                </td>
+            </tr>
+        }
     }
-
 </table>
+
+    <center>
+        <h3>Pending Approval</h3>
+    </center>
+
+    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+        <thead>
+            <tr>
+                <th></th> <!-- Details button column -->
+                <th>
+                    Job Title
+                </th>
+                <th>
+                    Store
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            if(item.IsApproved == false)
+            { 
+                <tr>
+                    <td>
+                        <a class="btn btn-success" href="@Url.Action("Details", "OpenJob", new { id = item.OpenJobsId })">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Details
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Job.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Store.Name)
+                    </td>
+                </tr>
+            }
+        }
+    </table>
