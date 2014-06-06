@@ -1,3 +1,4 @@
+using System.Collections;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace AIM.Web.ClientApp.Models.EntityModels
 {
     [JsonObject(IsReference = true)]
     [DataContract(IsReference = true, Namespace = "http://schemas.datacontract.org/2004/07/TrackableEntities.Models")]
-    public partial class OpenJob : ModelBase<OpenJob>, IEquatable<OpenJob>, ITrackable
+    public partial class OpenJob : ModelBase<OpenJob>, IEquatable<OpenJob>, ITrackable, IEnumerable
     {
         [DataMember]
         public int OpenJobsId
@@ -161,5 +162,10 @@ namespace AIM.Web.ClientApp.Models.EntityModels
         }
 
         #endregion Change Tracking
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

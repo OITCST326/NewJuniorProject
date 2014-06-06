@@ -20,12 +20,12 @@ namespace AIM.Web.ClientApp.Controllers
         private readonly RegionServiceClient _regionClient = new RegionServiceClient();
 
         // GET: /OpenJob/
-        public ActionResult Index(string regionId)
+        public async Task<ViewResult> Index(string regionId)
         {
             int id = Convert.ToInt32(regionId);
 
-            ViewBag.RegionName = _regionClient.GetRegionById(id);
-            var openJobs = _openJobClient.GetOpenJobById(id);
+            ViewBag.RegionName = await _regionClient.GetRegionById(id);
+            var openJobs = await _openJobClient.GetOpenJobById(id);
             return View(openJobs);
         }
 

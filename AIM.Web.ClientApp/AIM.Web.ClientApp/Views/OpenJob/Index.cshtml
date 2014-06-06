@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AIM.Application.Service.Entities.Models.OpenJob>
+﻿@model IEnumerable<AIM.Web.ClientApp.Models.EntityModels.OpenJob>
 
 @{
     ViewBag.Title = "Index";
@@ -10,10 +10,10 @@
     <tr>
         <th></th> <!-- Details button column -->
         <th>
-            @Html.DisplayNameFor(model => model.Job.position)
+            @Html.DisplayNameFor(model => model.Job.Position)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Store.name)
+            @Html.DisplayNameFor(model => model.Store.Name)
         </th>
         <th></th>
     </tr>
@@ -21,16 +21,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <a class="btn btn-success" href="@Url.Action("Details", "OpenJob", new { id = item.openJobsId })">
+            <a class="btn btn-success" href="@Url.Action("Details", "OpenJob", new { id = item.OpenJobsId })">
                 <i class="icon-zoom-in icon-white"></i>
                 Details
             </a>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Job.position)
+            @Html.DisplayFor(modelItem => item.Job.Position)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Store.name)
+            @Html.DisplayFor(modelItem => item.Store.Name)
         </td>
     </tr>
 }

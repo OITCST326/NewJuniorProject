@@ -1,55 +1,55 @@
-﻿@model AIM.Application.Service.Entities.Models.OpenJob
+﻿@model AIM.Web.ClientApp.Models.EntityModels.OpenJob
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Job Opening for @ViewBag.Position</h4>
+	<h4>Job Opening for @ViewBag.Position</h4>
 	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Region.regionName)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Region.RegionName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Region.regionName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Region.RegionName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Store.name)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Store.Name)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Store.name)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Store.Name)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Job.description)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Job.Description)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Job.description)
-        </dd>        
-    </dl>
+		<dd>
+			@Html.DisplayFor(model => model.Job.Description)
+		</dd>        
+	</dl>
 </div>
 
 <div>
-    <dl class="dl-horizontal">
-        <dd>
-            <a class="btn btn-success">
-                <i class="icon-zoom-in icon-white"></i>
-                Apply Now
-            </a>
-        </dd>        
-     </dl>
+	<dl class="dl-horizontal">
+		<dd>
+			<a class="btn btn-success">
+				<i class="icon-zoom-in icon-white"></i>
+				Apply Now
+			</a>
+		</dd>        
+	 </dl>
 </div>
 
 <div>   
-    <p>
-        @Html.ActionLink("Back to List", "Index", new { RegionId=Model.regionId})
-    </p>    
+	<p>
+		@Html.ActionLink("Back to List", "Index", new { RegionId=Model.regionId})
+	</p>    
 </div>
 
