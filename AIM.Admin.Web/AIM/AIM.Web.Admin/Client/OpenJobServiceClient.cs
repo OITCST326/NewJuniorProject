@@ -6,38 +6,39 @@ using WebApiRestService;
 
 namespace AIM.Web.Admin.Client
 {
-    public class UserServiceClient : WebApiClient<User>
+    public class OpenJobServiceClient : WebApiClient<OpenJob>
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
             BaseAddress = "http://aimapplicationservice.cloudapp.net/",
             ContentType = ContentType.Json,
             Timeout = 80000,
-            Controller = "api/User"
+            Controller = "api/OpenJob"
         };
 
         /// <summary>
-        /// Creates an instance of UserClient using default options
+        /// Creates an instance of OpenJobClient using default options
         /// </summary>
-        public UserServiceClient() : this(options)
+        public OpenJobServiceClient()
+            : this(options)
         {
         }
 
         /// <summary>
-        /// Creates an instance of UserClient using explicit options
+        /// Creates an instance of OpenJobClient using explicit options
         /// </summary>
-        private UserServiceClient(WebApiClientOptions options)
+        private OpenJobServiceClient(WebApiClientOptions options)
             : base(options)
         {
         }
 
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<IEnumerable<OpenJob>> GetOpenJobs()
         {
             return await GetManyAsync();
         }
 
-        public async Task<User> GetUserById(int? id)
+        public async Task<OpenJob> GetOpenJobById(int? id)
         {
             if (id == null)
             {
@@ -58,15 +59,15 @@ namespace AIM.Web.Admin.Client
             }
         }
 
-        public async Task<User> GetUserLogin(string userName, string password)
+        public async Task<IEnumerable<OpenJob>> GetOpenJobsByStoreId(int? storeId)
         {
-            if (userName == null || password == null)
+            if (storeId == null)
             {
                 return null;
             }
             try
             {
-                return await GetOneAsync(userName, password);
+                return await GetManyAsync(storeId);
             }
             catch (WebApiClientException e)
             {
@@ -79,17 +80,17 @@ namespace AIM.Web.Admin.Client
             }
         }
 
-        public async Task<User> CreateUser(User user)
+        public async Task<OpenJob> CreateOpenJob(OpenJob openJob)
         {
-            return await CreateAsync(user);
+            return await CreateAsync(openJob);
         }
 
-        public async Task<User> EditUser(User user)
+        public async Task<OpenJob> EditOpenJob(OpenJob openJob)
         {
-            return await EditAsync(user);
+            return await EditAsync(openJob);
         }
 
-        public async Task DeleteUser(int id)
+        public async Task DeleteOpenJob(int id)
         {
             await DeleteAsync(id);
         }

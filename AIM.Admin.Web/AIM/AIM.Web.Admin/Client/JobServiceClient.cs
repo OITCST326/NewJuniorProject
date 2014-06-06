@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using AIM.Web.Admin.Models.EntityModels;
 using WebApiRestService;
 
-namespace AIM.Web.Admin.Client
+namespace AIM.Web.ClientApp.Client
 {
     public class JobServiceClient : WebApiClient<Job> 
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
+            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
             ContentType = ContentType.Json,
             Timeout = 80000,
             Controller = "api/Job"

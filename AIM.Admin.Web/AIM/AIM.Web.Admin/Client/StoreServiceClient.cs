@@ -6,38 +6,39 @@ using WebApiRestService;
 
 namespace AIM.Web.Admin.Client
 {
-    public class UserServiceClient : WebApiClient<User>
+    public class StoreServiceClient : WebApiClient<Store>
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
             BaseAddress = "http://aimapplicationservice.cloudapp.net/",
             ContentType = ContentType.Json,
             Timeout = 80000,
-            Controller = "api/User"
+            Controller = "api/Store"
         };
 
         /// <summary>
-        /// Creates an instance of UserClient using default options
+        /// Creates an instance of StoreClient using default options
         /// </summary>
-        public UserServiceClient() : this(options)
+        public StoreServiceClient()
+            : this(options)
         {
         }
 
         /// <summary>
-        /// Creates an instance of UserClient using explicit options
+        /// Creates an instance of StoreClient using explicit options
         /// </summary>
-        private UserServiceClient(WebApiClientOptions options)
+        private StoreServiceClient(WebApiClientOptions options)
             : base(options)
         {
         }
 
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<IEnumerable<Store>> GetStores()
         {
             return await GetManyAsync();
         }
 
-        public async Task<User> GetUserById(int? id)
+        public async Task<Store> GetStoreById(int? id)
         {
             if (id == null)
             {
@@ -58,15 +59,15 @@ namespace AIM.Web.Admin.Client
             }
         }
 
-        public async Task<User> GetUserLogin(string userName, string password)
+        public async Task<IEnumerable<Store>> GetStoresByRegionId(int? regionId)
         {
-            if (userName == null || password == null)
+            if (regionId == null)
             {
                 return null;
             }
             try
             {
-                return await GetOneAsync(userName, password);
+                return await GetManyAsync(regionId);
             }
             catch (WebApiClientException e)
             {
@@ -79,17 +80,17 @@ namespace AIM.Web.Admin.Client
             }
         }
 
-        public async Task<User> CreateUser(User user)
+        public async Task<Store> CreateStore(Store store)
         {
-            return await CreateAsync(user);
+            return await CreateAsync(store);
         }
 
-        public async Task<User> EditUser(User user)
+        public async Task<Store> EditStore(Store store)
         {
-            return await EditAsync(user);
+            return await EditAsync(store);
         }
 
-        public async Task DeleteUser(int id)
+        public async Task DeleteStore(int id)
         {
             await DeleteAsync(id);
         }

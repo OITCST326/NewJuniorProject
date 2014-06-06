@@ -6,39 +6,38 @@ using WebApiRestService;
 
 namespace AIM.Web.Admin.Client
 {
-    public class ApplicationServiceClient : WebApiClient<Application>
+    public class RegionServiceClient : WebApiClient<Region>
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
             BaseAddress = "http://aimapplicationservice.cloudapp.net/",
-            ContentType = WebApiRestService.ContentType.Json,
+            ContentType = ContentType.Json,
             Timeout = 80000,
-            Controller = "api/Application"
+            Controller = "api/Region"
         };
 
         /// <summary>
-        /// Creates an instance of ApplicationClient using default options
+        /// Creates an instance of RegionClient using default options
         /// </summary>
-        public ApplicationServiceClient()
-            : this(options)
+        public RegionServiceClient() : this(options)
         {
         }
 
         /// <summary>
-        /// Creates an instance of ApplicationClient using explicit options
+        /// Creates an instance of RegionClient using explicit options
         /// </summary>
-        private ApplicationServiceClient(WebApiClientOptions options)
+        private RegionServiceClient(WebApiClientOptions options)
             : base(options)
         {
         }
 
 
-        public async Task<IEnumerable<Application>> GetApplications()
+        public async Task<IEnumerable<Region>> GetRegions()
         {
             return await GetManyAsync();
         }
 
-        public async Task<Application> GetApplicationById(int? id)
+        public async Task<Region> GetRegionById(int? id)
         {
             if (id == null)
             {
@@ -59,17 +58,17 @@ namespace AIM.Web.Admin.Client
             }
         }
 
-        public async Task<Application> CreateApplication(Application application)
+        public async Task<Region> CreateRegion(Region region)
         {
-            return await CreateAsync(application);
+            return await CreateAsync(region);
         }
 
-        public async Task<Application> EditApplication(Application application)
+        public async Task<Region> EditRegion(Region region)
         {
-            return await EditAsync(application);
+            return await EditAsync(region);
         }
 
-        public async Task DeleteApplication(int id)
+        public async Task DeleteRegion(int id)
         {
             await DeleteAsync(id);
         }

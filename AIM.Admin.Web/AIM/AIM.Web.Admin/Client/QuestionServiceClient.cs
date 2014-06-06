@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
 using AIM.Web.Admin.Models.EntityModels;
 using WebApiRestService;
 
@@ -14,9 +10,9 @@ namespace AIM.Web.Admin.Client
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
+            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
             ContentType = ContentType.Json,
-            Timeout = 30000,
+            Timeout = 80000,
             Controller = "api/Question"
         };
 

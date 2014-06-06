@@ -207,8 +207,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Client\ApplicationServiceClient.cs" />
     <Compile Include="Client\JobServiceClient.cs" />
+    <Compile Include="Client\OpenJobServiceClient.cs" />
     <Compile Include="Client\PersonalInfoServiceClient.cs" />
+    <Compile Include="Client\QuestionnaireServiceClient.cs" />
     <Compile Include="Client\QuestionServiceClient.cs" />
+    <Compile Include="Client\RegionServiceClient.cs" />
+    <Compile Include="Client\StoreServiceClient.cs" />
     <Compile Include="Client\UserServiceClient.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
