@@ -51,7 +51,7 @@ namespace AIM.Service.Administrative.Controllers
         [ResponseType(typeof(IEnumerable<OpenJob>))]
         public async Task<IHttpActionResult> GetOpenJobsByRegionId(int regionId)
         {
-            IEnumerable<OpenJob> entities = await _unitOfWork.OpenJobRepository.GetOpenJobsByStoreId(regionId);
+            IEnumerable<OpenJob> entities = await _unitOfWork.OpenJobRepository.GetOpenJobsByRegionId(regionId);
             return Ok(entities);
         }
 
