@@ -39,6 +39,14 @@ namespace AIM.Service.Administrative.Controllers
             return Ok(entity);
         }
 
+        // GET api/OpenJob/5
+        [ResponseType(typeof(IEnumerable<OpenJob>))]
+        public async Task<IHttpActionResult> GetOpenJobsByStoreId(int storeId)
+        {
+            IEnumerable<OpenJob> entities = await _unitOfWork.OpenJobRepository.GetOpenJobsByStoreId(storeId);
+            return Ok(entities);
+        }
+
         // POST api/OpenJob
         [ResponseType(typeof(OpenJob))]
         public async Task<IHttpActionResult> PostOpenJob(OpenJob entity)
