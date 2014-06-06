@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C97119B-7776-4D27-847E-AE74877A4841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Web.Application", "AIM.Web.Application\AIM.Web.Application.csproj", "{52AA87D6-4C0C-4F6F-BBB6-5F482515476C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIM.Web.ClientApp", "AIM.Web.ClientApp\AIM.Web.ClientApp.csproj", "{52AA87D6-4C0C-4F6F-BBB6-5F482515476C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{03CBFA61-586B-49A5-B158-EFC6AD85D728}"
 	ProjectSection(SolutionItems) = preProject

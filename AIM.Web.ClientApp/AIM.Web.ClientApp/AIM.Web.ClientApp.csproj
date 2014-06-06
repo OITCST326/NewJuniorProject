@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AIM.Web.Application</RootNamespace>
-    <AssemblyName>AIM.Web.Application</AssemblyName>
+    <RootNamespace>AIM.Web.ClientApp</RootNamespace>
+    <AssemblyName>AIM.Web.ClientApp</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -149,6 +149,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -197,8 +198,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Client\ApplicationServiceClient.cs" />
     <Compile Include="Client\JobServiceClient.cs" />
+    <Compile Include="Client\OpenJobServiceClient.cs" />
     <Compile Include="Client\PersonalInfoServiceClient.cs" />
+    <Compile Include="Client\QuestionnaireServiceClient.cs" />
     <Compile Include="Client\QuestionServiceClient.cs" />
+    <Compile Include="Client\RegionServiceClient.cs" />
+    <Compile Include="Client\StoreServiceClient.cs" />
     <Compile Include="Client\UserServiceClient.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
@@ -207,6 +212,7 @@
     <Compile Include="Controllers\OpenJobController.cs" />
     <Compile Include="Controllers\PersonalInfoController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -244,13 +250,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\jquery.steps.css" />
-    <Content Include="Properties\DataSources\AIM.Application.Service.Entities.Models.Job.datasource" />
-    <Content Include="Properties\DataSources\AIM.Application.Service.Entities.Models.PersonalInfo.datasource" />
-    <Content Include="Properties\DataSources\AIM.Application.Service.Entities.Models.Question.datasource" />
-    <Content Include="Properties\DataSources\AIM.Application.Service.Entities.Models.Questionnaire.datasource" />
-    <Content Include="Properties\DataSources\AIM.Application.Service.Entities.Models.User.datasource" />
-    <Content Include="Properties\DataSources\AIM.Application.Service.Entities.Models.OpenJob.datasource" />
-    <Content Include="Properties\DataSources\AIM.Application.Service.Entities.Models.Region.datasource" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -270,7 +269,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Properties\DataSources\AIM.Application.Service.Entities.Models.Applicant.datasource" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -338,6 +336,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Questionnaire\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

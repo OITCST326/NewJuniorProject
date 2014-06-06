@@ -9,13 +9,13 @@ using WebApiRestService;
 
 namespace AIM.Web.ClientApp.Client
 {
-    public class ApplicationServiceClient : WebApiClient<Application>
+    public class ApplicationServiceClient : WebApiClient<Models.EntityModels.Application>
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
+            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
             ContentType = WebApiRestService.ContentType.Json,
-            Timeout = 30000,
+            Timeout = 80000,
             Controller = "api/Application"
         };
 
@@ -36,12 +36,12 @@ namespace AIM.Web.ClientApp.Client
         }
 
 
-        public async Task<IEnumerable<Application>> GetApplications()
+        public async Task<IEnumerable<Models.EntityModels.Application>> GetApplications()
         {
             return await GetManyAsync();
         }
 
-        public async Task<Application> GetApplicationById(int? id)
+        public async Task<Models.EntityModels.Application> GetApplicationById(int? id)
         {
             if (id == null)
             {
@@ -62,12 +62,12 @@ namespace AIM.Web.ClientApp.Client
             }
         }
 
-        public async Task<Application> CreateApplication(Application application)
+        public async Task<Models.EntityModels.Application> CreateApplication(Models.EntityModels.Application application)
         {
             return await CreateAsync(application);
         }
 
-        public async Task<Application> EditApplication(Application application)
+        public async Task<Models.EntityModels.Application> EditApplication(Models.EntityModels.Application application)
         {
             return await EditAsync(application);
         }

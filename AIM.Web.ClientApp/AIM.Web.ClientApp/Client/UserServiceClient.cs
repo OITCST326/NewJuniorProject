@@ -14,9 +14,9 @@ namespace AIM.Web.ClientApp.Client
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
+            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
             ContentType = ContentType.Json,
-            Timeout = 30000,
+            Timeout = 80000,
             Controller = "api/User"
         };
 
@@ -50,6 +50,27 @@ namespace AIM.Web.ClientApp.Client
             try
             {
                 return await GetOneAsync(id);
+            }
+            catch (WebApiClientException e)
+            {
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+
+                throw e;
+            }
+        }
+
+        public async Task<User> GetUserLogin(string userName, string password)
+        {
+            if (userName == null || password == null)
+            {
+                return null;
+            }
+            try
+            {
+                return await GetOneAsync(userName, password);
             }
             catch (WebApiClientException e)
             {

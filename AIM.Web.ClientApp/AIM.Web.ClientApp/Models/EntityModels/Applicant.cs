@@ -138,16 +138,16 @@ namespace AIM.Web.ClientApp.Models.EntityModels
         [DataMember]
         public ChangeTrackingCollection<ApplicantQuestionAnswer> ApplicantQuestionAnswers
         {
-            get { return _ApplicantQuestionAnswers; }
+            get { return _applicantQuestionAnswers; }
             set
             {
-                if (Equals(value, _ApplicantQuestionAnswers)) return;
-                _ApplicantQuestionAnswers = value;
+                if (Equals(value, _applicantQuestionAnswers)) return;
+                _applicantQuestionAnswers = value;
                 NotifyPropertyChanged(m => m.ApplicantQuestionAnswers);
             }
         }
 
-        private ChangeTrackingCollection<ApplicantQuestionAnswer> _ApplicantQuestionAnswers;
+        private ChangeTrackingCollection<ApplicantQuestionAnswer> _applicantQuestionAnswers;
 
         [DataMember]
         public ChangeTrackingCollection<Application> Applications

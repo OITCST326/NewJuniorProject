@@ -27,7 +27,7 @@ namespace AIM.Web.ClientApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Application application = await _client.GetApplicationById(id);
+            Models.EntityModels.Application application = await _client.GetApplicationById(id);
 
             if (application == null)
             {
@@ -47,7 +47,7 @@ namespace AIM.Web.ClientApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Application application)
+        public async Task<ActionResult> Create([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Models.EntityModels.Application application)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,9 @@ namespace AIM.Web.ClientApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Application application = await _client.GetApplicationById(id);
+
+            Models.EntityModels.Application application = await _client.GetApplicationById(id);
+
             if (application == null)
             {
                 return HttpNotFound();
@@ -78,7 +80,7 @@ namespace AIM.Web.ClientApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Application application)
+        public async Task<ActionResult> Edit([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Models.EntityModels.Application application)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +97,9 @@ namespace AIM.Web.ClientApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Application application = await _client.GetApplicationById(id);
+
+            Models.EntityModels.Application application = await _client.GetApplicationById(id);
+
             if (application == null)
             {
                 return HttpNotFound();

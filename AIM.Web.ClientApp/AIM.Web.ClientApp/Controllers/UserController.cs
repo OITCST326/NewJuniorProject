@@ -13,7 +13,7 @@ namespace AIM.Web.ClientApp.Controllers
     public class UserController : Controller
     {
         private readonly UserServiceClient _client = new UserServiceClient();
-        private ChangeTrackingCollection<User> _changeTracker = new ChangeTrackingCollection<User>();
+        //private ChangeTrackingCollection<User> _changeTracker;
 
         public UserController()
         {
@@ -79,7 +79,7 @@ namespace AIM.Web.ClientApp.Controllers
             User user = await _client.GetUserById(id);
 
             // Start change-tracking the model
-            _changeTracker = new ChangeTrackingCollection<User>(user);
+            //_changeTracker = new ChangeTrackingCollection<User>(user);
 
             if (user == null)
             {
@@ -107,7 +107,7 @@ namespace AIM.Web.ClientApp.Controllers
                 var updatedUser = await _client.EditUser(modifiedUser);
 
                 // Merge changes
-                _changeTracker.MergeChanges(updatedUser);
+                //_changeTracker.MergeChanges(updatedUser);
 
                 return RedirectToAction("Index");
             }

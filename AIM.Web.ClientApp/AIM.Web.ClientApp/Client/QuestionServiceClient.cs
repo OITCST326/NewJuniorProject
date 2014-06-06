@@ -14,9 +14,9 @@ namespace AIM.Web.ClientApp.Client
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
+            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
             ContentType = ContentType.Json,
-            Timeout = 30000,
+            Timeout = 80000,
             Controller = "api/Question"
         };
 

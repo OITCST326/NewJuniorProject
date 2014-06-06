@@ -1,20 +1,16 @@
-﻿using AIM.Web.ClientApp.JobServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using AIM.Web.Application.Client;
 using System.Web.Mvc;
 
 namespace AIM.Web.ClientApp.Controllers
 {
     public class HomeController : Controller
     {
-        readonly JobServiceClient _client = new JobServiceClient();
+        readonly RegionServiceClient _regionClient = new RegionServiceClient();
 
         public ActionResult Index()
         {
-            var regions = _client.GetRegionList();
-            return View(regions.ToList());
+            var regions = _regionClient.GetRegions();
+            return View(regions);
         }
 
         public ActionResult About()
