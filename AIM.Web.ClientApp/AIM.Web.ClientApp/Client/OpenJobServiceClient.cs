@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using AIM.Web.ClientApp.Models.EntityModels;
+using Antlr.Runtime;
 using WebApiRestService;
 
 namespace AIM.Web.ClientApp.Client
@@ -70,7 +71,7 @@ namespace AIM.Web.ClientApp.Client
             }
             try
             {
-                return await GetManyAsync(storeId);
+                return await GetManyAsync(new { StoreID = storeId }, "GetOpenJobsByStoreId");
             }
             catch (WebApiClientException e)
             {
