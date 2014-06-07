@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+using System.Web.Http.Validation.Validators;
 using AIM.Web.Admin.Models.EntityModels;
 using Newtonsoft.Json;
 using System;
@@ -13,6 +15,7 @@ namespace AIM.Web.Admin.Models.EntityModels
     public partial class User : ModelBase<User>, IEquatable<User>, ITrackable
     {
         [DataMember]
+        [Display(Name = "User Id")]
         public int UserId
         {
             get { return _userId; }
@@ -27,6 +30,8 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _userId;
 
         [DataMember]
+        [Display(Name = "First Name")]
+        [StringLength(25, ErrorMessage = "{0} must be under {2} characters.")]
         public string FirstName
         {
             get { return _firstName; }
@@ -41,6 +46,8 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _firstName;
 
         [DataMember]
+        [Display(Name = "Middle Name")]
+        [StringLength(25, ErrorMessage = "{0} must be under {2} characters.")]
         public string MiddleName
         {
             get { return _middleName; }
@@ -55,6 +62,8 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _middleName;
 
         [DataMember]
+        [Display(Name = "Last Name")]
+        [StringLength(40, ErrorMessage = "{0} must be under {2} characters.")]
         public string LastName
         {
             get { return _lastName; }
@@ -69,6 +78,8 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _lastName;
 
         [DataMember]
+        [Display(Name = "Email")]
+        [StringLength(100, ErrorMessage = "{0} must be under {2} characters.")]
         public string Email
         {
             get { return _email; }
@@ -83,6 +94,8 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _email;
 
         [DataMember]
+        [Display(Name = "Social Security Number")]
+        [StringLength(11, ErrorMessage = "Incorrect input for a Social Security Number.")]
         public string SocialSecurityNumber
         {
             get { return _socialSecurityNumber; }
@@ -97,6 +110,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _socialSecurityNumber;
 
         [DataMember]
+        [Display(Name = "PersonalInfo Id")]
         public int? PersonalInfoId
         {
             get { return _personalInfoId; }
@@ -111,6 +125,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _personalInfoId;
 
         [DataMember]
+        [Display(Name = "Applicant Id")]
         public int? ApplicantId
         {
             get { return _applicantId; }
@@ -125,6 +140,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _applicantId;
 
         [DataMember]
+        [Display(Name = "Application Id")]
         public int? ApplicationId
         {
             get { return _applicationId; }
@@ -139,6 +155,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _applicationId;
 
         [DataMember]
+        [Display(Name = "Employee Id")]
         public int? EmployeeId
         {
             get { return _employeeId; }
@@ -152,7 +169,8 @@ namespace AIM.Web.Admin.Models.EntityModels
 
         private int? _employeeId;
 
-        [DataMember]
+        [Display(Name = "User Name")]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string UserName
         {
             get { return _userName; }
@@ -167,6 +185,8 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _userName;
 
         [DataMember]
+        [Display(Name = "Password")]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string Password
         {
             get { return _password; }
@@ -181,6 +201,8 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _password;
 
         [DataMember]
+        [Display(Name = "ASP.NET Users Id")]
+        [StringLength(128, ErrorMessage = "{0} must be under {2} characters.")]
         public string AspNetUsersId
         {
             get { return _aspNetUsersId; }
@@ -195,6 +217,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _aspNetUsersId;
 
         [DataMember]
+        [Display(Name = "Applicant")]
         public Applicant Applicant
         {
             get { return _applicant; }
@@ -213,6 +236,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "ASP.NET User")]
         public AspNetUser AspNetUser
         {
             get { return _aspNetUser; }
@@ -231,6 +255,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<AspNetUser> AspNetUserChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Employee")]
         public Employee Employee
         {
             get { return _employee; }
@@ -249,6 +274,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Employee> EmployeeChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Personal Info")]
         public PersonalInfo PersonalInfo
         {
             get { return _personalInfo; }

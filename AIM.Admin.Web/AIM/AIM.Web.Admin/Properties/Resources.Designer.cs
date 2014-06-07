@@ -78,5 +78,23 @@ namespace AIM.Web.Admin.Properties {
                 return ResourceManager.GetString("TypeEnum_MultipleChoice_Multiple_Choice", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be under {2} characters.
+        /// </summary>
+        internal static string User_FirstName__0__must_be_under__2__characters {
+            get {
+                return ResourceManager.GetString("User_FirstName__0__must_be_under__2__characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        internal static string User_FirstName_First_Name {
+            get {
+                return ResourceManager.GetString("User_FirstName_First_Name", resourceCulture);
+            }
+        }
     }
 }
