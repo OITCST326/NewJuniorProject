@@ -66,7 +66,7 @@ namespace AIM.Web.Application.Client
             }
             try
             {
-                return await GetOneAsync(new { JobId = jobId }, "GetQuestionnaireByJobId");
+                return await GetOneAsync(jobId, "GetQuestionnaireByJobId");
             }
             catch (WebApiClientException e)
             {

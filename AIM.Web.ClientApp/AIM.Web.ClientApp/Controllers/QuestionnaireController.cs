@@ -13,11 +13,12 @@ namespace AIM.Web.ClientApp.Controllers
         private readonly QuestionnaireServiceClient _client = new QuestionnaireServiceClient();
 
         // GET: Questionnaire
-        public async Task<ViewResult> Index()
+        public async Task<ViewResult> Index(int jobId = 1)
         {
+            var questionnaire = await _client.GetQuestionnaireByJobId(jobId);
 
-
-            return View();
+            return View(questionnaire);
         }
+
     }
 }

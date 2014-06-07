@@ -12,7 +12,6 @@ namespace AIM.Web.ClientApp.Controllers
 {
     public class JobController : Controller
     {
-
         // GET: /Job/
         public async Task<ViewResult> Index()
         {

@@ -1,106 +1,106 @@
 ﻿@model AIM.Web.ClientApp.Models.EntityModels.User
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>User</h4>
+	<h4>User</h4>
 	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Applicant.applicantId)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Applicant.ApplicantId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Applicant.applicantId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Applicant.ApplicantId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Employee.employeeId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Employee.EmployeeId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Employee.employeeId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Employee.EmployeeId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PersonalInfo.alias)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.PersonalInfo.Alias)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PersonalInfo.alias)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.PersonalInfo.Alias)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.FirstName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.middleName)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.MiddleName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.middleName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.MiddleName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.LastName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lastName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.LastName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.socialSecurityNumber)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.SocialSecurityNumber)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.socialSecurityNumber)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.SocialSecurityNumber)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.applicationId)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.ApplicationId)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.applicationId)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.ApplicationId)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.userName)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.UserName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.userName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.UserName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Password)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Password)
+		</dd>
 
-    </dl>
+	</dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.userId }) |
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+	@Html.ActionLink("Back to List", "Index")
 </p>

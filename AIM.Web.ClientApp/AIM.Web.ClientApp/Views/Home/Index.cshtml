@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<AIM.Web.ClientApp.Models.EntityModels.Region>
+
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -14,7 +17,7 @@
                 Select region: <select name="RegionId">
                     @foreach(var item in Model)
                     {
-                        <option value=@item.regionId>@item.regionName.ToString()</option>
+                        <option value=@item.RegionId>@item.RegionName</option>
                     }
                 </select>
                 <p></p>

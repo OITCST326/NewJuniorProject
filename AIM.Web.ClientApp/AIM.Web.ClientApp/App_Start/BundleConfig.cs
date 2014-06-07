@@ -29,6 +29,11 @@ namespace AIM.Web.ClientApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/steps").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/jquery.steps.css",
+                      "~/Content/site.css"));
         }
     }
 }
