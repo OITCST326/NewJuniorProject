@@ -299,7 +299,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
-    <Content Include="Scripts\Questionnaire.js" />
+    <Content Include="Scripts\questionnaire.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -357,7 +357,6 @@
     <Content Include="Views\OpenJob\Details.cshtml" />
     <Content Include="Views\OpenJob\Index.cshtml" />
     <Content Include="Views\Questionnaire\Index.cshtml" />
-    <Content Include="Views\Questionnaire\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

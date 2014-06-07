@@ -20,13 +20,5 @@ namespace AIM.Web.ClientApp.Controllers
             return View(questionnaire);
         }
 
-        // GET: Questionnaire
-        public async Task<ViewResult> View(int jobId = 1)
-        {
-            var questionnaire = await _client.GetQuestionnaireByJobId(jobId);
-
-            return View(questionnaire);
-        }
-
     }
 }
