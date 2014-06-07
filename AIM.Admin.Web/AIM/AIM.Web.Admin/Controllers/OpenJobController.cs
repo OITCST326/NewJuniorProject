@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using AIM.Web.Admin.Client;
 using AIM.Web.Admin.Models.EntityModels;
-using AIM.Web.ClientApp.Client;
+//using AIM.Web.ClientApp.Client;
 
 namespace AIM.Web.Admin.Controllers
 {
