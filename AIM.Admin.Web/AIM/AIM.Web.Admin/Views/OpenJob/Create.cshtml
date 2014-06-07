@@ -25,7 +25,6 @@
             @Html.LabelFor(model => model.JobId, "JobId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("JobTitles")
-                @Html.EditorFor(model => model.Job.Position)
                 @Html.ValidationMessageFor(model => model.Job.Position)
             </div>
         </div>
