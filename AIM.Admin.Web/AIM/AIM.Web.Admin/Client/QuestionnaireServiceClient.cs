@@ -10,7 +10,7 @@ namespace AIM.Web.Admin.Client
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
+            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
             ContentType = ContentType.Json,
             Timeout = 80000,
             Controller = "api/Questionnaire"
@@ -31,7 +31,6 @@ namespace AIM.Web.Admin.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<Questionnaire>> GetQuestionnaires()
         {
@@ -67,7 +66,7 @@ namespace AIM.Web.Admin.Client
             }
             try
             {
-                return await GetOneAsync(jobId);
+                return await GetOneAsync(new { JobId = jobId }, "GetQuestionnaireByJobId");
             }
             catch (WebApiClientException e)
             {

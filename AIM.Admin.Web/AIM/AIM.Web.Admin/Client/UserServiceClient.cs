@@ -10,6 +10,14 @@ namespace AIM.Web.Admin.Client
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
+            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
+            ContentType = ContentType.Json,
+            Timeout = 80000,
+            Controller = "api/User"
+        };
+
+        private static WebApiClientOptions options = new WebApiClientOptions()
+        {
             BaseAddress = "http://aimapplicationservice.cloudapp.net/",
             ContentType = ContentType.Json,
             Timeout = 80000,
@@ -19,7 +27,8 @@ namespace AIM.Web.Admin.Client
         /// <summary>
         /// Creates an instance of UserClient using default options
         /// </summary>
-        public UserServiceClient() : this(options)
+        public UserServiceClient()
+            : this(options)
         {
         }
 
@@ -30,7 +39,6 @@ namespace AIM.Web.Admin.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<User>> GetUsers()
         {
@@ -66,7 +74,7 @@ namespace AIM.Web.Admin.Client
             }
             try
             {
-                return await GetOneAsync(userName, password);
+                return await GetOneAsync(new { UserName = userName, Password = password }, "GetUserLogin");
             }
             catch (WebApiClientException e)
             {

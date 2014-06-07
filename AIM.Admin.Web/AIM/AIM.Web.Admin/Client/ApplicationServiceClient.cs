@@ -10,7 +10,7 @@ namespace AIM.Web.Admin.Client
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
+            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
             ContentType = WebApiRestService.ContentType.Json,
             Timeout = 80000,
             Controller = "api/Application"
@@ -32,13 +32,12 @@ namespace AIM.Web.Admin.Client
         {
         }
 
-
-        public async Task<IEnumerable<Application>> GetApplications()
+        public async Task<IEnumerable<Models.EntityModels.Application>> GetApplications()
         {
             return await GetManyAsync();
         }
 
-        public async Task<Application> GetApplicationById(int? id)
+        public async Task<Models.EntityModels.Application> GetApplicationById(int? id)
         {
             if (id == null)
             {
@@ -59,12 +58,12 @@ namespace AIM.Web.Admin.Client
             }
         }
 
-        public async Task<Application> CreateApplication(Application application)
+        public async Task<Models.EntityModels.Application> CreateApplication(Models.EntityModels.Application application)
         {
             return await CreateAsync(application);
         }
 
-        public async Task<Application> EditApplication(Application application)
+        public async Task<Models.EntityModels.Application> EditApplication(Models.EntityModels.Application application)
         {
             return await EditAsync(application);
         }
