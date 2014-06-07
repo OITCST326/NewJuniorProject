@@ -121,4 +121,7 @@
   <data name="AIMLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AIMLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TypeEnum_MultipleChoice_Multiple_Choice" xml:space="preserve">
+    <value>Multiple Choice</value>
+  </data>
 </root>
