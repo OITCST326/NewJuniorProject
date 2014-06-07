@@ -66,7 +66,7 @@ namespace AIM.Web.Admin.Client
             }
             try
             {
-                return await GetManyAsync(new { StoreID = storeId }, "GetOpenJobsByStoreId");
+                return await GetManyAsync(storeId, "GetOpenJobsByStoreId");
             }
             catch (WebApiClientException e)
             {

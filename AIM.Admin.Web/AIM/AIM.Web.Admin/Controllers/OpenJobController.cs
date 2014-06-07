@@ -44,18 +44,18 @@ namespace AIM.Web.Admin.Controllers
         }
         
 
-        public ViewResult OpenJobList(string StoreId)
-        //public async Task<ViewResult> OpenJobList(string StoreId)
+        //public ViewResult OpenJobList(string StoreId)
+        public async Task<ViewResult> OpenJobList(string StoreId)
         {
             int id = Convert.ToInt32(StoreId);
 
-            //IEnumerable<OpenJob> jobs = null;
-            IEnumerable<OpenJob> jobs = getDummyOpenJobData(id);
+            IEnumerable<OpenJob> jobs = null;
+            //IEnumerable<OpenJob> jobs = getDummyOpenJobData(id);
 
-            //using (var client = new OpenJobServiceClient())
-            //{
-            //    jobs = await client.GetOpenJobsByStoreId(id);
-            //}
+            using (var client = new OpenJobServiceClient())
+            {
+                jobs = await client.GetOpenJobsByStoreId(id);
+            }
 
             return View(jobs);
         }
@@ -66,9 +66,9 @@ namespace AIM.Web.Admin.Controllers
             Store[] storeArray = new Store[5];
             for (int i = 0; i < 5; ++i)
             {
-                storeArray[i] = new Store();
-                storeArray[i].Name = "Some Store " + i.ToString();
+                storeArray[i] = new Store();               
                 storeArray[i].StoreId = i + 1;
+                storeArray[i].Name = "Some Store " + storeArray[i].StoreId.ToString();
                 storeArray[i].RegionId = region;
             }
 
