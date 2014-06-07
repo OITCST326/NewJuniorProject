@@ -10,6 +10,7 @@ namespace AIM.Service.Persistence.Repositories
     {
         Task<IEnumerable<OpenJob>> GetOpenJobs();
         Task<IEnumerable<OpenJob>> GetOpenJobsByStoreId(int storeId);
+        Task<IEnumerable<OpenJob>> GetOpenJobsByRegionId(int regionId);
         Task<OpenJob> GetOpenJob(int id);
         Task<bool> DeleteOpenJob(int id);
     }

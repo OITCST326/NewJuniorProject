@@ -10,7 +10,7 @@ namespace AIM.Web.Admin.Client
     {
         private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
+            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
             ContentType = ContentType.Json,
             Timeout = 80000,
             Controller = "api/OpenJob"
@@ -31,7 +31,6 @@ namespace AIM.Web.Admin.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<OpenJob>> GetOpenJobs()
         {
@@ -67,7 +66,28 @@ namespace AIM.Web.Admin.Client
             }
             try
             {
-                return await GetManyAsync(storeId);
+                return await GetManyAsync(new { StoreID = storeId }, "GetOpenJobsByStoreId");
+            }
+            catch (WebApiClientException e)
+            {
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+
+                throw e;
+            }
+        }
+
+        public async Task<IEnumerable<OpenJob>> GetOpenJobsByRegionId(int? regionId)
+        {
+            if (regionId == null)
+            {
+                return null;
+            }
+            try
+            {
+                return await GetManyAsync(new { RegionID = regionId }, "GetOpenJobsByRegionId");
             }
             catch (WebApiClientException e)
             {

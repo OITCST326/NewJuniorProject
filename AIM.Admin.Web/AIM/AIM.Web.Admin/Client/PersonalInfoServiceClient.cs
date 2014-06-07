@@ -8,9 +8,9 @@ namespace AIM.Web.Admin.Client
 {
     public class PersonalInfoServiceClient : WebApiClient<PersonalInfo>
     {
-private static WebApiClientOptions options = new WebApiClientOptions()
+        private static WebApiClientOptions options = new WebApiClientOptions()
         {
-            BaseAddress = "http://aimapplicationservice.cloudapp.net/",
+            BaseAddress = "http://aimadminstrativeservice.cloudapp.net/",
             ContentType = ContentType.Json,
             Timeout = 80000,
             Controller = "api/PersonalInfo"
@@ -31,7 +31,6 @@ private static WebApiClientOptions options = new WebApiClientOptions()
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<PersonalInfo>> GetPersonalInfos()
         {

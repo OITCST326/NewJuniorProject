@@ -1,11 +1,7 @@
-﻿using System;
+﻿using AIM.Web.ClientApp.Models.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using AIM.Web.ClientApp.Models.EntityModels;
 using WebApiRestService;
 
 namespace AIM.Web.ClientApp.Client
@@ -23,7 +19,8 @@ namespace AIM.Web.ClientApp.Client
         /// <summary>
         /// Creates an instance of UserClient using default options
         /// </summary>
-        public UserServiceClient() : this(options)
+        public UserServiceClient()
+            : this(options)
         {
         }
 
@@ -34,7 +31,6 @@ namespace AIM.Web.ClientApp.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<User>> GetUsers()
         {
@@ -70,7 +66,7 @@ namespace AIM.Web.ClientApp.Client
             }
             try
             {
-                return await GetOneAsync(userName, password);
+                return await GetOneAsync(new { UserName = userName, Password = password }, "GetUserLogin");
             }
             catch (WebApiClientException e)
             {

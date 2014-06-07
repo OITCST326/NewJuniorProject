@@ -19,7 +19,8 @@ namespace AIM.Web.Admin.Client
         /// <summary>
         /// Creates an instance of UserClient using default options
         /// </summary>
-        public UserServiceClient() : this(options)
+        public UserServiceClient()
+            : this(options)
         {
         }
 
@@ -30,7 +31,6 @@ namespace AIM.Web.Admin.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<User>> GetUsers()
         {
@@ -66,7 +66,7 @@ namespace AIM.Web.Admin.Client
             }
             try
             {
-                return await GetOneAsync(userName, password);
+                return await GetOneAsync(new { UserName = userName, Password = password }, "GetUserLogin");
             }
             catch (WebApiClientException e)
             {

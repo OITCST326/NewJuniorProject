@@ -1,4 +1,5 @@
-﻿@model IEnumerable<AIM.Web.Admin.Models.EntityModels.Question>
+﻿@using AIM.Web.Admin.Models.EntityModels
+@model IEnumerable<AIM.Web.Admin.Models.EntityModels.Question>
 
 @{
     ViewBag.Title = "Index";
@@ -44,16 +45,16 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.qJsonText)
+                            @Html.DisplayNameFor(model => model.QJsonText)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.qJsonType)
+                            @Html.DisplayNameFor(model => model.QJsonType)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.qJsonOptionList)
+                            @Html.DisplayNameFor(model => model.QJsonOptionList)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.qJsonAnswerList)
+                            @Html.DisplayNameFor(model => model.QJsonAnswerList)
                         </th>
                         <th></th>
                         <th></th>
@@ -65,23 +66,23 @@
                     {
                         <tr>
                             <td class="center">
-                                @Html.DisplayFor(modelItem => item.qJsonText)
+                                @Html.DisplayFor(modelItem => item.QJsonText)
                             </td>
                             <td class="center">
                                 @{
-                                    switch (item.qJsonType)
+                                    switch (item.QJsonType)
                                     {
-                                        case AIM.Service.Entities.Models.TypeEnum.MultipleChoice:
+                                        case TypeEnum.MultipleChoice:
                                             <text>
                                                 Multiple Choice
                                             </text>
                                             break;
-                                        case AIM.Service.Entities.Models.TypeEnum.AllThatApply:
+                                        case TypeEnum.AllThatApply:
                                             <text>
                                                 Select All That Apply
                                             </text>
                                             break;
-                                        case AIM.Service.Entities.Models.TypeEnum.FreeForm:
+                                        case TypeEnum.FreeForm:
                                             <text>
                                                 Free Form Question
                                             </text>
@@ -95,34 +96,34 @@
                                 }
                             </td>
                             <td class="center">
-                                @for (var i = 0; i < item.qJsonOptionList.Count(); ++i)
+                                @for (var i = 0; i < item.QJsonOptionList.Count(); ++i)
                                 {
-                                    if (i != item.qJsonOptionList.Count - 1)
+                                    if (i != item.QJsonOptionList.Count - 1)
                                     {
-                                        <p>@item.qJsonOptionList[i], </p>
+                                        <p>@item.QJsonOptionList[i], </p>
                                     }
                                     else
                                     {
-                                        <p>@item.qJsonOptionList[i]</p>
+                                        <p>@item.QJsonOptionList[i]</p>
                                     }
                                 }
                             </td>
                             <td class="center">
-                                @for (var i = 0; i < item.qJsonAnswerList.Count(); ++i)
+                                @for (var i = 0; i < item.QJsonAnswerList.Count(); ++i)
                                 {
-                                    if (i != item.qJsonAnswerList.Count - 1)
+                                    if (i != item.QJsonAnswerList.Count - 1)
                                     {
-                                        <p>@item.qJsonAnswerList[i], </p>
+                                        <p>@item.QJsonAnswerList[i], </p>
                                     }
                                     else
                                     {
-                                        <p>@item.qJsonAnswerList[i]</p>
+                                        <p>@item.QJsonAnswerList[i]</p>
                                     }
                                 }
                             </td>
                             <td class="center">
                                 <div>
-                                    <a class="btn btn-success" href="@Url.Action("Edit", "Question", new { id = item.questionId})">
+                                    <a class="btn btn-success" href="@Url.Action("Edit", "Question", new { id = item.QuestionId})">
                                         <i class="icon-zoom-in icon-white"></i>
                                         Edit
                                     </a>
@@ -130,7 +131,7 @@
                             </td>
                             <td class="center">
                                 <div>
-                                    <a class="btn btn-info" href="@Url.Action("Details", "Question", new { id = item.questionId})">
+                                    <a class="btn btn-info" href="@Url.Action("Details", "Question", new { id = item.QuestionId})">
                                         <i class="icon-edit icon-white"></i>
                                         Details
                                     </a>
@@ -138,7 +139,7 @@
                             </td>
                             <td class="center">
                                 <div>
-                                    <a class="btn btn-danger" href="@Url.Action("Delete", "Question", new { id = item.questionId})">
+                                    <a class="btn btn-danger" href="@Url.Action("Delete", "Question", new { id = item.QuestionId})">
                                         <i class="icon-trash icon-white"></i>
                                         Delete
                                     </a>

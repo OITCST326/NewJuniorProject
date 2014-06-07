@@ -1,5 +1,6 @@
 ﻿@using System.Diagnostics
 @using AIM.Service.Entities.Models
+@using AIM.Web.Admin.Models.EntityModels
 @using Microsoft.Ajax.Utilities
 @model AIM.Web.Admin.Models.EntityModels.Question
 
@@ -42,24 +43,24 @@
             <div>
                 <dl class="dl-horizontal">
                     <dt>
-                        @Html.DisplayNameFor(model => model.qJsonType):
+                        @Html.DisplayNameFor(model => model.QJsonType):
                     </dt>
 
                     <dd>
                         @{
-                            switch (Model.qJsonType)
+                            switch (Model.QJsonType)
                             {
-                                case AIM.Service.Entities.Models.TypeEnum.MultipleChoice:
+                                case TypeEnum.MultipleChoice:
                                     <text>
                                         Multiple Choice
                                     </text>
                                     break;
-                                case AIM.Service.Entities.Models.TypeEnum.AllThatApply:
+                                case TypeEnum.AllThatApply:
                                     <text>
                                         Select All That Apply
                                     </text>
                                     break;
-                                case AIM.Service.Entities.Models.TypeEnum.FreeForm:
+                                case TypeEnum.FreeForm:
                                     <text>
                                         Free Form Question
                                     </text>
@@ -74,38 +75,38 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.qJsonText):
+                        @Html.DisplayNameFor(model => model.QJsonText):
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.qJsonText)
+                        @Html.DisplayFor(model => model.QJsonText)
                     </dd>
 
-                    @for (var i = 0; i < Model.qJsonOptionList.Count(); ++i)
+                    @for (var i = 0; i < Model.QJsonOptionList.Count(); ++i)
                     {
                         <dt>
-                            @Html.DisplayNameFor(model => model.qJsonOptionList) @(i + 1):
+                            @Html.DisplayNameFor(model => model.QJsonOptionList) @(i + 1):
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.qJsonOptionList[i])
+                            @Html.DisplayFor(model => model.QJsonOptionList[i])
                         </dd>
                     }
 
-                    @for (var i = 0; i < Model.qJsonAnswerList.Count(); ++i)
+                    @for (var i = 0; i < Model.QJsonAnswerList.Count(); ++i)
                     {
                         <dt>
-                            @Html.DisplayNameFor(model => model.qJsonAnswerList) @(i + 1):
+                            @Html.DisplayNameFor(model => model.QJsonAnswerList) @(i + 1):
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.qJsonAnswerList[i])
+                            @Html.DisplayFor(model => model.QJsonAnswerList[i])
                         </dd>
                     }
                 </dl>
             </div>
             <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.questionId }) |
+                @Html.ActionLink("Edit", "Edit", new { id = Model.QuestionId }) |
                 @Html.ActionLink("Back to List", "Index")
             </p>
 

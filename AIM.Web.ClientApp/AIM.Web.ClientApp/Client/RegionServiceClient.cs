@@ -1,10 +1,7 @@
-﻿using System;
+﻿using AIM.Web.ClientApp.Models.EntityModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
-using AIM.Web.ClientApp.Models.EntityModels;
 using WebApiRestService;
 
 namespace AIM.Web.Application.Client
@@ -22,7 +19,8 @@ namespace AIM.Web.Application.Client
         /// <summary>
         /// Creates an instance of RegionClient using default options
         /// </summary>
-        public RegionServiceClient() : this(options)
+        public RegionServiceClient()
+            : this(options)
         {
         }
 
@@ -33,7 +31,6 @@ namespace AIM.Web.Application.Client
             : base(options)
         {
         }
-
 
         public async Task<IEnumerable<Region>> GetRegions()
         {
