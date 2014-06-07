@@ -189,7 +189,7 @@
       <HintPath>..\..\packages\TrackableEntities.Common.2.0.0.0\lib\portable-net40+sl5+win8+windowsphone8\TrackableEntities.Common.dll</HintPath>
     </Reference>
     <Reference Include="WebApiRestService.WebApiClient">
-      <HintPath>..\packages\WebApiRestService.WebApiClient.1.0\lib\portable-net45+win+wp80\WebApiRestService.WebApiClient.dll</HintPath>
+      <HintPath>..\..\packages\WebApiRestService.WebApiClient.1.0\lib\portable-net45+win+wp80\WebApiRestService.WebApiClient.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
