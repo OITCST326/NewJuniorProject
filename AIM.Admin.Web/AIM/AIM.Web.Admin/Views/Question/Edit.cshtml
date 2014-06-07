@@ -43,54 +43,54 @@
 
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true)
-                    @Html.HiddenFor(model => model.questionId)
-                    @Html.HiddenFor(model => model.qJsonId)
-                    @Html.HiddenFor(model => model.qJsonProperties)
-                    @Html.HiddenFor(model => model.questionnaireId)
-                    @Html.HiddenFor(model => model.interviewQuestionsId)
+                    @Html.HiddenFor(model => model.QuestionId)
+                    @Html.HiddenFor(model => model.QJsonId)
+                    @Html.HiddenFor(model => model.QJsonProperties)
+                    @Html.HiddenFor(model => model.QuestionnaireId)
+                    @Html.HiddenFor(model => model.InterviewQuestionsId)
                     
                     <div class="form-group">
                         <label class="control-label">
-                            @Html.DisplayNameFor(model => model.qJsonType):
+                            @Html.DisplayNameFor(model => model.QJsonType):
                         </label>
                         <div class="form-control">
-                            @Html.EnumDropDownListFor(model => model.qJsonType)
-                            @Html.ValidationMessageFor(model => model.qJsonType)
+                            @Html.EnumDropDownListFor(model => model.QJsonType)
+                            @Html.ValidationMessageFor(model => model.QJsonType)
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label">
-                            @Html.DisplayNameFor(model => model.qJsonText):
+                            @Html.DisplayNameFor(model => model.QJsonText):
                         </label>
                         <div class="form-control">
-                            <textarea rows="4">@Model.qJsonText</textarea>
-                            @Html.ValidationMessageFor(model => model.qJsonText)
+                            <textarea rows="4">@Model.QJsonText</textarea>
+                            @Html.ValidationMessageFor(model => model.QJsonText)
                         </div>
                     </div>
 
-                    @for (var i = 0; i < Model.qJsonOptionList.Count(); ++i)
+                    @for (var i = 0; i < Model.QJsonOptionList.Count(); ++i)
                     {
                         <div class="form-group">
                             <label class="control-label">
-                                @Html.DisplayNameFor(model => model.qJsonOptionList) @(i + 1):
+                                @Html.DisplayNameFor(model => model.QJsonOptionList) @(i + 1):
                             </label>
                             <div class="form-control">
-                                @Html.EditorFor(model => model.qJsonOptionList[i])
-                                @Html.ValidationMessageFor(model => model.qJsonOptionList[i])
+                                @Html.EditorFor(model => model.QJsonOptionList[i])
+                                @Html.ValidationMessageFor(model => model.QJsonOptionList[i])
                             </div>
                         </div>
                     }
                     
-                    @for (var i = 0; i < Model.qJsonAnswerList.Count(); ++i)
+                    @for (var i = 0; i < Model.QJsonAnswerList.Count(); ++i)
                     {
                         <div class="form-group">
                             <label class="control-label">
-                                @Html.DisplayNameFor(model => model.qJsonAnswerList) @(i + 1):
+                                @Html.DisplayNameFor(model => model.QJsonAnswerList) @(i + 1):
                             </label>
                             <div class="form-control">
-                                @Html.EditorFor(model => model.qJsonAnswerList[i])
-                                @Html.ValidationMessageFor(model => model.qJsonAnswerList[i])
+                                @Html.EditorFor(model => model.QJsonAnswerList[i])
+                                @Html.ValidationMessageFor(model => model.QJsonAnswerList[i])
                             </div>
                         </div>
                     }

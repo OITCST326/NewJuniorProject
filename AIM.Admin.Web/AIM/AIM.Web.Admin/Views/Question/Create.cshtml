@@ -1,4 +1,5 @@
-﻿@model AIM.Web.Admin.Models.EntityModels.Question
+﻿@using AIM.Web.Admin.Models.EntityModels
+@model AIM.Web.Admin.Models.EntityModels.Question
 
 
 @{
@@ -45,14 +46,14 @@
 
                 <div class="form-horizontal">
 
-                    @Html.HiddenFor(model => model.questionId)
-                    @Html.HiddenFor(model => model.qJsonId)
+                    @Html.HiddenFor(model => model.QuestionId)
+                    @Html.HiddenFor(model => model.QJsonId)
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.qJsonType, new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.QJsonType, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EnumDropDownListFor(model => model.qJsonType, "Select Question Type")
-                            @Html.ValidationMessageFor(model => model.qJsonType)
+                            @Html.EnumDropDownListFor(Question.QJsonType, "Select Question Type")
+                            @Html.ValidationMessageFor(model => model.QJsonType)
                         </div>
                     </div>
 

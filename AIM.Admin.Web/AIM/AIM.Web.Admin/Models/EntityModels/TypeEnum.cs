@@ -13,7 +13,6 @@ using System.Runtime.Serialization;
 namespace AIM.Web.Admin.Models.EntityModels
 {
     [DataContract(Name = "QuestionType")]
-    [Flags]
     public enum TypeEnum : int
     {
         [EnumMember]

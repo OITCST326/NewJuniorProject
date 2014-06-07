@@ -12,7 +12,6 @@ using System.Runtime.Serialization;
 namespace AIM.Web.Admin.Models.EntityModels
 {
     [DataContract(Name = "StateAbbreviation")]
-    [Flags]
     public enum StateEnum : int
     {
         [EnumMember]
