@@ -24,8 +24,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.JobId, "JobId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("JobTitles")
-                @Html.ValidationMessageFor(model => model.Job.Position)
+                @Html.DropDownListFor(model => model.JobId, new SelectList(ViewBag.Jobs, "JobId", "Position"))
+                @Html.ValidationMessageFor(model => model.JobId)
             </div>
         </div>
 
@@ -42,14 +42,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RegionId)
                 @Html.ValidationMessageFor(model => model.RegionId)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsApproved, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IsApproved)
-                @Html.ValidationMessageFor(model => model.IsApproved)
             </div>
         </div>
 

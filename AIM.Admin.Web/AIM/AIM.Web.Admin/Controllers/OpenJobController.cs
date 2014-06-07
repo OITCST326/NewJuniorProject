@@ -27,12 +27,13 @@ namespace AIM.Web.Admin.Controllers
         }
 
 
-        // public async Task<ViewResult> StoreSelect(string RegionID)
+        //public async Task<ViewResult> StoreSelect(string RegionID)
         public ViewResult StoreSelect(string RegionID)
         {
             int id = Convert.ToInt32(RegionID);
 
             IEnumerable<Store> stores = getDummyStoreData(id);
+            //IEnumerable<Store> stores = null;
 
             //using (var client = new StoreServiceClient())
             //{
@@ -48,8 +49,8 @@ namespace AIM.Web.Admin.Controllers
         {
             int id = Convert.ToInt32(StoreId);
 
-            IEnumerable<OpenJob> jobs = null;
-            jobs = getDummyOpenJobData(id);
+            //IEnumerable<OpenJob> jobs = null;
+            IEnumerable<OpenJob> jobs = getDummyOpenJobData(id);
 
             //using (var client = new OpenJobServiceClient())
             //{
@@ -114,12 +115,12 @@ namespace AIM.Web.Admin.Controllers
 
         //
         // GET: /OpenJob/Details/5
-        public async Task<ViewResult> Details(int id)
+        public async Task<ViewResult> Details(int jobid)
         {
             OpenJob job = null;
             using(var client = new OpenJobServiceClient())
             {
-                job = await client.GetOpenJobById(id);
+                job = await client.GetOpenJobById(jobid);
             }
 
             return View(job);
@@ -142,12 +143,9 @@ namespace AIM.Web.Admin.Controllers
 
             TitleList.AddRange(TitlesQuery);
             var sl = new SelectList(TitleList);
-            ViewBag.JobTitles = sl;
-
-
-            var IDQuery = from i in jobs select i.JobId;
-           
             
+            ViewBag.JobTitles = sl;
+            ViewBag.Jobs = jobs;
 
             return View();
         }
@@ -155,17 +153,22 @@ namespace AIM.Web.Admin.Controllers
         //
         // POST: /OpenJob/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create([Bind(Include = "JobId,StoreId,RegionId")] OpenJob openjob)
         {
+            openjob.OpenJobsId = 32;
+            openjob.IsApproved = false;
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                using(var client = new OpenJobServiceClient())
+                {
+                   await client.CreateOpenJob(openjob);
+                }
+                return RedirectToAction("Details", openjob.OpenJobsId);
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ViewBag.Message = e.ToString();
+                return View("Error");
             }
         }
 
