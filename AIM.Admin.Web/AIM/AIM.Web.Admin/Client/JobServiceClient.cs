@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using AIM.Web.Admin.Models.EntityModels;
 using WebApiRestService;
 
-namespace AIM.Web.ClientApp.Client
+namespace AIM.Web.Admin.Client
 {
     public class JobServiceClient : WebApiClient<Job> 
     {

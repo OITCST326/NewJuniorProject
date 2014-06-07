@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - A.I.M. Application</title>
-    @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/css")
+        <link href="~/Content/jquery.steps.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -42,7 +43,8 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="~/Scripts/jquery.steps.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

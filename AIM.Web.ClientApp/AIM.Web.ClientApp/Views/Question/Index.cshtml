@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.qJsonProperties)
+            @Html.DisplayNameFor(model => model.QJsonProperties)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.questionnaireId)
+            @Html.DisplayNameFor(model => model.QuestionnaireId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.interviewQuestionsId)
+            @Html.DisplayNameFor(model => model.InterviewQuestionsId)
         </th>
         <th></th>
     </tr>
@@ -26,18 +26,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.qJsonProperties)
+            @Html.DisplayFor(modelItem => item.QJsonProperties)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.questionnaireId)
+            @Html.DisplayFor(modelItem => item.QuestionnaireId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.interviewQuestionsId)
+            @Html.DisplayFor(modelItem => item.InterviewQuestionsId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.questionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.questionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.questionId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.QuestionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.QuestionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.QuestionId })
         </td>
     </tr>
 }

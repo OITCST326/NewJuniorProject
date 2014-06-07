@@ -1,15 +1,25 @@
-﻿using AIM.Web.Application.Client;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Threading.Tasks;
+using AIM.Web.Application.Client;
 using System.Web.Mvc;
+using AIM.Web.ClientApp.Models.EntityModels;
 
 namespace AIM.Web.ClientApp.Controllers
 {
     public class HomeController : Controller
     {
-        readonly RegionServiceClient _regionClient = new RegionServiceClient();
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var regions = _regionClient.GetRegions();
+            IEnumerable<Region> regions = null;
+
+            using (var regionClient = new RegionServiceClient())
+            {
+                regions = await regionClient.GetRegions();
+            }
+
             return View(regions);
         }
 

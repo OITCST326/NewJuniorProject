@@ -66,7 +66,7 @@ namespace AIM.Web.ClientApp.Client
             }
             try
             {
-                return await GetManyAsync(new { StoreID = storeId }, "GetOpenJobsByStoreId");
+                return await GetManyAsync(storeId, "GetOpenJobsByStoreId");
             }
             catch (WebApiClientException e)
             {
@@ -87,7 +87,7 @@ namespace AIM.Web.ClientApp.Client
             }
             try
             {
-                return await GetManyAsync(new { RegionID = regionId }, "GetOpenJobsByRegionId");
+                return await GetManyAsync(regionId, "GetOpenJobsByRegionId");
             }
             catch (WebApiClientException e)
             {

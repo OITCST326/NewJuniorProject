@@ -12,25 +12,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Hour.hoursId)
+            @Html.DisplayNameFor(model => model.Hour.HoursId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InterviewQuestion.interviewQuestionsId)
+            @Html.DisplayNameFor(model => model.InterviewQuestion.InterviewQuestionsId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Questionnaire.questionnaireId)
+            @Html.DisplayNameFor(model => model.Questionnaire.QuestionnaireId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.position)
+            @Html.DisplayNameFor(model => model.Position)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.description)
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fullPartTime)
+            @Html.DisplayNameFor(model => model.FullPartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.salaryRange)
+            @Html.DisplayNameFor(model => model.SalaryRange)
         </th>
         <th></th>
     </tr>
@@ -38,30 +38,30 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Hour.hoursId)
+            @Html.DisplayFor(modelItem => item.Hour.HoursId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InterviewQuestion.interviewQuestionsId)
+            @Html.DisplayFor(modelItem => item.InterviewQuestion.InterviewQuestionsId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Questionnaire.questionnaireId)
+            @Html.DisplayFor(modelItem => item.Questionnaire.QuestionnaireId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.position)
+            @Html.DisplayFor(modelItem => item.Position)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.description)
+            @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.fullPartTime)
+            @Html.DisplayFor(modelItem => item.FullPartTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.salaryRange)
+            @Html.DisplayFor(modelItem => item.SalaryRange)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.jobId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.jobId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.jobId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.JobId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JobId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JobId })
         </td>
     </tr>
 }
