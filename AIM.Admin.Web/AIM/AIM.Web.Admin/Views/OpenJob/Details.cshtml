@@ -45,6 +45,7 @@
         <dd>
             @Html.DisplayFor(model => model.IsApproved)
         </dd>
+        
 
     </dl>
 
@@ -52,6 +53,14 @@
         <i class="icon-zoom-in icon-white"></i>
         Delete Opening
     </a>
+
+    @if(ViewBag.Approved == false)
+    { 
+        <a class="btn btn-success" href="@Url.Action("ApproveOpening", "OpenJob", new { id = Model.OpenJobsId })">
+            <i class="icon-zoom-in icon-white"></i>
+            Approve Opening
+        </a>
+    }
     
     @Html.ActionLink("Back to List", "OpenJobList", new { id = Model.StoreId })
 </div>

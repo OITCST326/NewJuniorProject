@@ -30,14 +30,14 @@ namespace AIM.Web.Admin.Controllers
         //public async Task<ViewResult> StoreSelect(string RegionID)
         public ViewResult StoreSelect(string RegionID)
         {
-            int id = Convert.ToInt32(RegionID);
+            int regionId = Convert.ToInt32(RegionID);
 
-            IEnumerable<Store> stores = getDummyStoreData(id);
+            IEnumerable<Store> stores = getDummyStoreData(regionId);
             //IEnumerable<Store> stores = null;
 
             //using (var client = new StoreServiceClient())
             //{
-            //    stores = await client.GetStoresByRegionId(id);
+            //    stores = await client.GetStoresByRegionId(regionId);
             //}
 
             return View(stores.ToList());
@@ -68,7 +68,7 @@ namespace AIM.Web.Admin.Controllers
             {
                 storeArray[i] = new Store();
                 storeArray[i].Name = "Some Store " + i.ToString();
-                storeArray[i].StoreId = i;
+                storeArray[i].StoreId = i + 1;
                 storeArray[i].RegionId = region;
             }
 
@@ -94,7 +94,7 @@ namespace AIM.Web.Admin.Controllers
             for(int i = 0; i < 5; ++i)
             {
                 array[i] = new OpenJob();
-                array[i].OpenJobsId = i;
+                array[i].OpenJobsId = i + 1;
                 array[i].Store = store2;
                 array[i].StoreId = store2.StoreId;
                 array[i].IsApproved = false;
@@ -122,6 +122,9 @@ namespace AIM.Web.Admin.Controllers
             {
                 job = await client.GetOpenJobById(jobid);
             }
+
+            ViewBag.Approved = job.IsApproved;
+            ViewBag.OpenJobId = job.OpenJobsId;
 
             return View(job);
         }
@@ -170,6 +173,30 @@ namespace AIM.Web.Admin.Controllers
                 ViewBag.Message = e.ToString();
                 return View("Error");
             }
+        }
+
+
+        public async Task<ActionResult> ApproveOpening(int OpenJobsId)
+        {
+            //if (jobid == null)
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            await Approve(OpenJobsId);
+            return RedirectToAction("Details", OpenJobsId);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Approve(int openjobid)
+        {
+            OpenJob job = null;
+            using(var client = new OpenJobServiceClient() )
+            {
+                job = await client.GetOpenJobById(openjobid);
+                job.IsApproved = true;
+                await client.EditOpenJob(job);
+            }
+            return View("Details", job.OpenJobsId);
         }
 
         ////
