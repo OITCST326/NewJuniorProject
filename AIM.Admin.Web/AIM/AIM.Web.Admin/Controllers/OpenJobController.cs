@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AIM.Web.Admin.Client;
 using AIM.Web.Admin.Models.EntityModels;
-//using AIM.Web.ClientApp.Client;
 
 namespace AIM.Web.Admin.Controllers
 {
@@ -27,38 +28,56 @@ namespace AIM.Web.Admin.Controllers
         }
 
 
-        //public async Task<ViewResult> StoreSelect(string RegionID)
-        public ViewResult StoreSelect(string RegionID)
+        public async Task<ViewResult> StoreSelect(string RegionID)
         {
             int regionId = Convert.ToInt32(RegionID);
 
-            IEnumerable<Store> stores = getDummyStoreData(regionId);
-            //IEnumerable<Store> stores = null;
+            IEnumerable<Store> stores = null;
 
-            //using (var client = new StoreServiceClient())
-            //{
-            //    stores = await client.GetStoresByRegionId(regionId);
-            //}
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            return View(stores.ToList());
+                // HTTP GET
+                string request = "api/Store?regionId=" + regionId;
+                HttpResponseMessage response = await client.GetAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    stores = await response.Content.ReadAsAsync<IEnumerable<Store>>();
+                }
+            }
+
+            return View(stores);
         }
-        
 
-        //public ViewResult OpenJobList(string StoreId)
+
         public async Task<ViewResult> OpenJobList(string StoreId)
         {
-            int id = Convert.ToInt32(StoreId);
+            int storeId = Convert.ToInt32(StoreId);
 
             IEnumerable<OpenJob> jobs = null;
-            //IEnumerable<OpenJob> jobs = getDummyOpenJobData(id);
 
-            using (var client = new OpenJobServiceClient())
+
+            using (var client = new HttpClient())
             {
-                jobs = await client.GetOpenJobsByStoreId(id);
+                client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // HTTP GET
+                string request = "api/OpenJob?storeId=" + storeId;
+                HttpResponseMessage response = await client.GetAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    jobs = await response.Content.ReadAsAsync<IEnumerable<OpenJob>>();
+                }
             }
 
             return View(jobs);
         }
+     
 
 
         private Store[] getDummyStoreData(int region)
@@ -176,13 +195,10 @@ namespace AIM.Web.Admin.Controllers
         }
 
 
-        public async Task<ActionResult> ApproveOpening(int OpenJobsId)
+        public async Task<ActionResult> ApproveOpening(int id)
         {
-            //if (jobid == null)
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            await Approve(OpenJobsId);
-            return RedirectToAction("Details", OpenJobsId);
+            await Approve(id);
+            return RedirectToAction("Details", id);
         }
 
         [HttpPost]
@@ -257,12 +273,18 @@ namespace AIM.Web.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
+            OpenJob temp = null;
+            int store = 0;
+
             using (var client = new OpenJobServiceClient())
             {
+                temp = await client.GetOpenJobById(id);
+                store = temp.StoreId;
+
                 await client.DeleteOpenJob(id);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("OpenJobList", store);
         }
     }
 }
