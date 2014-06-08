@@ -1,6 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Web.Http.Validation.Validators;
-using AIM.Web.Admin.Models.EntityModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

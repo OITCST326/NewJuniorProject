@@ -7,13 +7,26 @@
     TempData["ActiveUserName"] = ActiveUserName;
     var ActivePermissions = TempData["ActivePermissions"];
     TempData["ActivePermissions"] = ActivePermissions;
-}
 
-@if (!string.IsNullOrEmpty(ViewBag.DeletedMessage)) {
-<script type="text/javascript">
-    alert('ViewBag.DeletedMessage');
-</script>
-}
+    if (TempData.ContainsKey("creadedMessage"))
+    {
+        var creadedMessage = TempData["creadedMessage"].ToString();
+
+
+        @*if (!string.IsNullOrEmpty(ViewBag.DeletedMessage)) {
+            <script type="text/javascript">
+                alert('ViewBag.DeletedMessage');
+            </script>
+        }*@
+
+        if (!string.IsNullOrEmpty(creadedMessage))
+        {
+            <script type="text/javascript">
+                alert(TempData["creadedMessage"].ToString());
+            </script>
+        }
+    }
+} 
 
 <!-- This view's content starts HERE-->
 <div>

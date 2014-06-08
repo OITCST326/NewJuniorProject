@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AIM.Web.Admin.Client;
@@ -62,9 +65,30 @@ namespace AIM.Web.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _client.CreateUser(user);
+                User postedUser = null;
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // HTTP GET
+                    string request = "api/User";
+                    HttpResponseMessage response = await client.PostAsJsonAsync(request, user);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        postedUser = await response.Content.ReadAsAsync<User>();
+                        TempData["createdMessage"] = "User " + postedUser.FirstName + " " + postedUser.LastName +
+                                              " has been created";
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
+
+            var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
+
             return View(user);
         }
 
