@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
-//using AIM.Service.Administrative;
-using AIM.Web.Admin.Models;
+using AIM.Web.Admin.Models.EntityModels;
 using AIM.Web.Admin.Client;
 
 namespace AIM.Web.Admin.Controllers
@@ -45,16 +39,28 @@ namespace AIM.Web.Admin.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(AIM.Web.Admin.Models.EntityModels.User model, string returnUrl)
+        public async Task<ActionResult> Login(User model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
 
-                //UserServiceClient _client = new UserServiceClient();
+                User user = null;
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // HTTP GET
+                    string request = "api/User?userName=" + model.UserName + "&password=" + model.Password;
+                    HttpResponseMessage response = await client.GetAsync(request);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        user = await response.Content.ReadAsAsync<User>();
+                    }
+                }
                 
-                var user = await _client.GetUserLogin(model.UserName, model.Password);
-                
-                    //var user = await UserManager.FindAsync(model.userName, model.password);
                 if (user != null)
                 {
                     //await SignInAsync(user, true);//model.RememberMe);
