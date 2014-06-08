@@ -27,6 +27,13 @@ namespace AIM.Service.Administrative.Controllers
             return Ok(entities);
         }
 
+        [ResponseType(typeof(IEnumerable<Question>))]
+        public async Task<IHttpActionResult> GetQuestionsByQuestionnaireId(int questionnaireId)
+        {
+            IEnumerable<Question> entities = await _unitOfWork.QuestionRepository.GetQuestionsByQuestionnaireId(questionnaireId);
+            return Ok(entities);
+        }
+
         // GET api/Question/5
         [ResponseType(typeof(Question))]
         public async Task<IHttpActionResult> GetQuestion(int id)
