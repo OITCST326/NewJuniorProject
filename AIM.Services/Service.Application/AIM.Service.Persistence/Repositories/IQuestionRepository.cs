@@ -9,6 +9,7 @@ namespace AIM.Service.Persistence.Repositories
     public interface IQuestionRepository : IRepository<Question>, IRepositoryAsync<Question>
     {
         Task<IEnumerable<Question>> GetQuestions();
+        Task<IEnumerable<Question>> GetQuestionsByQuestionnaireId(int questionnaireId);
         Task<Question> GetQuestion(int id);
         Task<bool> DeleteQuestion(int id);
     }

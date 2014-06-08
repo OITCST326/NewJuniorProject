@@ -47,13 +47,13 @@ namespace AIM.Service.EF.Repositories
         public async Task<User> GetUserLogin(string userName, string password)
         {
             User entity = await _context.Users
-                        .Where(u => u.UserName.Equals(userName))
-                        .Where(u => u.UserName.Equals(password))
+                        .Where(u => u.UserName.Equals(userName) &&
+                            u.UserName.Equals(password))
                         .Include(u => u.Applicant)
                         .Include(u => u.Employee)
                         .Include(u => u.PersonalInfo)
                         .SingleOrDefaultAsync();
-                
+
             return entity;
         }
 
