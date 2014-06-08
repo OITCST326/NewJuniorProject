@@ -1,12 +1,12 @@
 ﻿
-@model AIM.Web.Admin.Models.LoginViewModel
+@model AIM.Web.Admin.Models.EntityModels.User
 
 @{
     ViewBag.Title = "Log in";
-    var userName = TempData["userName"];
-    TempData["userName"] = userName;
-    var permissions = TempData["Permissions"];
-    TempData["Permissions"] = permissions;
+    var ActiveUserName = TempData["ActiveUserName"];
+    TempData["ActiveUserName"] = ActiveUserName;
+    var ActivePermissions = TempData["ActivePermissions"];
+    TempData["ActivePermissions"] = ActivePermissions;
     Layout = "~/Views/Shared/_Layout_Account.cshtml";
 }
 

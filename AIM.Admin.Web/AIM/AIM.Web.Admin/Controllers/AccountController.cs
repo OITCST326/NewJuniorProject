@@ -1,75 +1,81 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Security.Claims;
-//using System.Threading.Tasks;
-//using System.Web;
-//using System.Web.Mvc;
-//using Microsoft.AspNet.Identity;
-//using Microsoft.AspNet.Identity.EntityFramework;
-//using Microsoft.Owin.Security;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 //using AIM.Service.Administrative;
-//using AIM.Web.Admin.Models;
+using AIM.Web.Admin.Models;
+using AIM.Web.Admin.Client;
 
-//namespace AIM.Web.Admin.Controllers
-//{
-//    // My git test change
-//    [Authorize]
-//    public class AccountController : Controller
-//    {
-//        public AccountController()
-//            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
-//        {
-//        }
+namespace AIM.Web.Admin.Controllers
+{
+    // My git test change
+    [Authorize]
+    public class AccountController : Controller
+    {
+        private readonly UserServiceClient _client = new UserServiceClient();
+  //      public AccountController()
+  //          : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+  //      {
+  //      }
 
-//        public AccountController(UserManager<ApplicationUser> userManager)
-//        {
-//            UserManager = userManager;
-//        }
+  //      public AccountController(UserManager<ApplicationUser> userManager)
+  //      {
+  //          UserManager = userManager;
+  //      }
 
-//        public UserManager<ApplicationUser> UserManager { get; private set; }
+  //      public UserManager<ApplicationUser> UserManager { get; private set; }
 
-//        //
-//        // GET: /Account/Login
-//        [AllowAnonymous]
-//        public ActionResult Login(string returnUrl)
-//        {
-//            ViewBag.ReturnUrl = returnUrl;
-//            return View();
-//        }
+        //
+        // GET: /Account/Login
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
 
-//        //
-//        // POST: /Account/Login
-//        [HttpPost]
-//        [AllowAnonymous]
-//        [ValidateAntiForgeryToken]
-//        public async Task<ActionResult> Login(AIM.Service.Entities.Models.User model, string returnUrl)
-//        {
-//            if (ModelState.IsValid)
-//            {
-//                UserService quickService = new UserService();
-//                var user = await quickService.GetUser(model.userName, model.password);
-//                //var user = await UserManager.FindAsync(model.userName, model.password);
-//                if (user != null)
-//                {
-//                    //await SignInAsync(user, true);//model.RememberMe);
-//                    ViewBag.ReturnUrl = returnUrl;
-//                    //ViewBag.UserID = model.userName;
-//                    //ViewBag.myStuff = "myStuff";
-//                    TempData["userName"] = user.userName;
-//                    TempData["Permissions"] = user.Employee.permissions;
-//                    //return View();
-//                    return RedirectToLocal(returnUrl);
-//                }
-//                else
-//                {
-//                    ModelState.AddModelError("", "Invalid username or password.");
-//                }
-//            }
+        //
+        // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(AIM.Web.Admin.Models.EntityModels.User model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
 
-//            // If we got this far, something failed, redisplay form
-//            return View(model);
-//        }
+                //UserServiceClient _client = new UserServiceClient();
+                
+                var user = await _client.GetUserLogin(model.UserName, model.Password);
+                
+                    //var user = await UserManager.FindAsync(model.userName, model.password);
+                if (user != null)
+                {
+                    //await SignInAsync(user, true);//model.RememberMe);
+                    ViewBag.ReturnUrl = returnUrl;
+                    //ViewBag.UserID = model.userName;
+                    //ViewBag.myStuff = "myStuff";
+                    TempData["ActiveUserName"] = user.UserName;
+                    TempData["ActivePermissions"] = user.Employee.Permissions;
+                    //return View();
+                    return RedirectToLocal(returnUrl);
+                }
+                else
+                {
+                    //this returns an error
+                    ModelState.AddModelError("", "Invalid username or password.");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
 
 //        //
 //        // GET: /Account/Register
@@ -374,17 +380,17 @@
 //            Error
 //        }
 
-//        private ActionResult RedirectToLocal(string returnUrl)
-//        {
-//            if (Url.IsLocalUrl(returnUrl))
-//            {
-//                return Redirect(returnUrl);
-//            }
-//            else
-//            {
-//                return RedirectToAction("Index", "Home");
-//            }
-//        }
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
 
 //        private class ChallengeResult : HttpUnauthorizedResult
 //        {
@@ -415,5 +421,5 @@
 //            }
 //        }
 //        #endregion
-//    }
-//}
+    }
+}
