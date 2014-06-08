@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -13,6 +14,7 @@ namespace AIM.Web.Admin.Models.EntityModels
     public partial class Education : ModelBase<Education>, IEquatable<Education>, ITrackable
     {
         [DataMember]
+        [Display(Name = "Education ID")]
         public int EducationId
         {
             get { return _EducationId; }
@@ -27,6 +29,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _EducationId;
 
         [DataMember]
+        [Display(Name = "School Name")]
         public string SchoolName
         {
             get { return _SchoolName; }
@@ -41,6 +44,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _SchoolName;
 
         [DataMember]
+        [Display(Name = "Degree")]
         public string Degree
         {
             get { return _Degree; }
@@ -55,6 +59,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Degree;
 
         [DataMember]
+        [Display(Name = "Graduated")]
         public Nullable<System.DateTime> Graduated
         {
             get { return _Graduated; }
@@ -69,6 +74,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.DateTime> _Graduated;
 
         [DataMember]
+        [Display(Name = "Years Attended")]
         public string YearsAttended
         {
             get { return _YearsAttended; }
@@ -83,6 +89,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _YearsAttended;
 
         [DataMember]
+        [Display(Name = "Street")]
         public string Street
         {
             get { return _Street; }
@@ -97,6 +104,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Street;
 
         [DataMember]
+        [Display(Name = "Street 2")]
         public string Street2
         {
             get { return _Street2; }
@@ -111,6 +119,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Street2;
 
         [DataMember]
+        [Display(Name = "City")]
         public string City
         {
             get { return _City; }
@@ -125,6 +134,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _City;
 
         [DataMember]
+        [Display(Name = "State")]
         public StateEnum? State
         {
             get { return _state; }
@@ -139,6 +149,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private StateEnum? _state;
 
         [DataMember]
+        [Display(Name = "Zip Code")]
         public string Zip
         {
             get { return _Zip; }
@@ -153,6 +164,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Zip;
 
         [DataMember]
+        [Display(Name = "Applicant ID")]
         public int? ApplicantId
         {
             get { return _ApplicantId; }
@@ -167,6 +179,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _ApplicantId;
 
         [DataMember]
+        [Display(Name = "Applicant")]
         public Applicant Applicant
         {
             get { return _Applicant; }

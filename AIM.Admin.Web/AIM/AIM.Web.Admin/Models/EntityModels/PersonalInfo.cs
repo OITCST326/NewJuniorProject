@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -17,6 +18,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
+        [Display(Name = "Personal Info ID")]
         public int PersonalInfoId
         {
             get { return _PersonalInfoId; }
@@ -31,6 +33,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _PersonalInfoId;
 
         [DataMember]
+        [Display(Name = "Alias")]
         public string Alias
         {
             get { return _Alias; }
@@ -45,6 +48,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Alias;
 
         [DataMember]
+        [Display(Name = "Street")]
         public string Street
         {
             get { return _Street; }
@@ -59,6 +63,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Street;
 
         [DataMember]
+        [Display(Name = "Street 2")]
         public string Street2
         {
             get { return _Street2; }
@@ -73,6 +78,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Street2;
 
         [DataMember]
+        [Display(Name = "City")]
         public string City
         {
             get { return _City; }
@@ -87,6 +93,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _City;
 
         [DataMember]
+        [Display(Name = "State")]
         public StateEnum? State
         {
             get { return _state; }
@@ -101,6 +108,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private StateEnum? _state;
 
         [DataMember]
+        [Display(Name = "Zip Code")]
         public string Zip
         {
             get { return _Zip; }
@@ -115,6 +123,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Zip;
 
         [DataMember]
+        [Display(Name = "Phone Number")]
         public string Phone
         {
             get { return _Phone; }
@@ -129,6 +138,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Phone;
 
         [DataMember]
+        [Display(Name = "User ID")]
         public int? UserId
         {
             get { return _UserId; }
@@ -143,6 +153,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _UserId;
 
         [DataMember]
+        [Display(Name = "Users")]
         public ChangeTrackingCollection<User> Users
         {
             get { return _Users; }

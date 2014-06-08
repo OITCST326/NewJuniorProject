@@ -20,6 +20,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
+        [Display(Name = "Question ID")]
         public int QuestionId
         {
             get { return _QuestionId; }
@@ -34,6 +35,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _QuestionId;
 
         [DataMember]
+        [Display(Name = "Question Json Properties")]
         public string QJsonProperties
         {
             get { return _QJsonProperties; }
@@ -48,6 +50,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _QJsonProperties;
 
         [DataMember]
+        [Display(Name = "Questionnaire ID")]
         public int? QuestionnaireId
         {
             get { return _QuestionnaireId; }
@@ -62,6 +65,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _QuestionnaireId;
 
         [DataMember]
+        [Display(Name = "Interview Questions ID")]
         public int? InterviewQuestionsId
         {
             get { return _InterviewQuestionsId; }
@@ -76,6 +80,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _InterviewQuestionsId;
 
         [DataMember]
+        [Display(Name = "Applicant Question Answers")]
         public ChangeTrackingCollection<ApplicantQuestionAnswer> ApplicantQuestionAnswers
         {
             get { return _ApplicantQuestionAnswers; }
@@ -90,6 +95,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<ApplicantQuestionAnswer> _ApplicantQuestionAnswers;
 
         [DataMember]
+        [Display(Name = "Interview Questions")]
         public ChangeTrackingCollection<InterviewQuestion> InterviewQuestions
         {
             get { return _InterviewQuestions; }
@@ -105,6 +111,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<InterviewQuestion> _InterviewQuestions;
 
         [DataMember]
+        [Display(Name = "Questionnaires")]
         public ChangeTrackingCollection<Questionnaire> Questionnaires
         {
             get { return _Questionnaires; }

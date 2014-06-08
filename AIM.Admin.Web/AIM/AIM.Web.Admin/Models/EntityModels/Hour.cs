@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -18,6 +19,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
+        [Display(Name = "Hours ID")]
         public int HoursId
         {
             get { return _HoursId; }
@@ -32,6 +34,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _HoursId;
 
         [DataMember]
+        [Display(Name = "Applicant ID")]
         public int? ApplicantId
         {
             get { return _ApplicantId; }
@@ -46,6 +49,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _ApplicantId;
 
         [DataMember]
+        [Display(Name = "Mon Open")]
         public Nullable<System.TimeSpan> MonOpen
         {
             get { return _MonOpen; }
@@ -60,6 +64,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _MonOpen;
 
         [DataMember]
+        [Display(Name = "Mon Close")]
         public Nullable<System.TimeSpan> MonClose
         {
             get { return _MonClose; }
@@ -74,6 +79,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _MonClose;
 
         [DataMember]
+        [Display(Name = "Tue Open")]
         public Nullable<System.TimeSpan> TueOpen
         {
             get { return _TueOpen; }
@@ -88,6 +94,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _TueOpen;
 
         [DataMember]
+        [Display(Name = "Tue Close")]
         public Nullable<System.TimeSpan> TueClose
         {
             get { return _TueClose; }
@@ -102,6 +109,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _TueClose;
 
         [DataMember]
+        [Display(Name = "Wed Open")]
         public Nullable<System.TimeSpan> WedOpen
         {
             get { return _WedOpen; }
@@ -116,6 +124,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _WedOpen;
 
         [DataMember]
+        [Display(Name = "Wed Close")]
         public Nullable<System.TimeSpan> WedClose
         {
             get { return _WedClose; }
@@ -130,6 +139,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _WedClose;
 
         [DataMember]
+        [Display(Name = "Thurs Open")]
         public Nullable<System.TimeSpan> ThursOpen
         {
             get { return _ThursOpen; }
@@ -144,6 +154,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _ThursOpen;
 
         [DataMember]
+        [Display(Name = "Thurs Close")]
         public Nullable<System.TimeSpan> ThursClose
         {
             get { return _ThursClose; }
@@ -158,6 +169,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _ThursClose;
 
         [DataMember]
+        [Display(Name = "Fri Open")]
         public Nullable<System.TimeSpan> FriOpen
         {
             get { return _FriOpen; }
@@ -172,6 +184,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _FriOpen;
 
         [DataMember]
+        [Display(Name = "Fri Close")]
         public Nullable<System.TimeSpan> FriClose
         {
             get { return _FriClose; }
@@ -186,6 +199,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _FriClose;
 
         [DataMember]
+        [Display(Name = "Sat Open")]
         public Nullable<System.TimeSpan> SatOpen
         {
             get { return _SatOpen; }
@@ -200,6 +214,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _SatOpen;
 
         [DataMember]
+        [Display(Name = "Sat Close")]
         public Nullable<System.TimeSpan> SatClose
         {
             get { return _SatClose; }
@@ -214,6 +229,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _SatClose;
 
         [DataMember]
+        [Display(Name = "Sun Open")]
         public Nullable<System.TimeSpan> SunOpen
         {
             get { return _SunOpen; }
@@ -228,6 +244,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _SunOpen;
 
         [DataMember]
+        [Display(Name = "Sun Close")]
         public Nullable<System.TimeSpan> SunClose
         {
             get { return _SunClose; }
@@ -242,6 +259,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.TimeSpan> _SunClose;
 
         [DataMember]
+        [Display(Name = "Applicant")]
         public Applicant Applicant
         {
             get { return _Applicant; }
@@ -260,6 +278,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Jobs")]
         public ChangeTrackingCollection<Job> Jobs
         {
             get { return _Jobs; }

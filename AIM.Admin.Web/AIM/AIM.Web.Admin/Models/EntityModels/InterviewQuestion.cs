@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -18,6 +19,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
+        [Display(Name = "Interview Questions ID")]
         public int InterviewQuestionsId
         {
             get { return _InterviewQuestionsId; }
@@ -32,6 +34,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _InterviewQuestionsId;
 
         [DataMember]
+        [Display(Name = "Question ID")]
         public int? QuestionId
         {
             get { return _QuestionId; }
@@ -46,6 +49,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _QuestionId;
 
         [DataMember]
+        [Display(Name = "Job ID")]
         public int? JobId
         {
             get { return _JobId; }
@@ -60,6 +64,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _JobId;
 
         [DataMember]
+        [Display(Name = "Jobs")]
         public ChangeTrackingCollection<Job> Jobs
         {
             get { return _Jobs; }
@@ -74,6 +79,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Job> _Jobs;
 
         [DataMember]
+        [Display(Name = "Questions")]
         public ChangeTrackingCollection<Question> Questions
         {
             get { return _Questions; }

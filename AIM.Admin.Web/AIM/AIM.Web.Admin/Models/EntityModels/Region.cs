@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -18,6 +19,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
+        [Display(Name = "Region ID")]
         public int RegionId
         {
             get { return _RegionId; }
@@ -32,6 +34,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _RegionId;
 
         [DataMember]
+        [Display(Name = "Region Name")]
         public string RegionName
         {
             get { return _RegionName; }
@@ -46,6 +49,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _RegionName;
 
         [DataMember]
+        [Display(Name = "Open Jobs")]
         public ChangeTrackingCollection<OpenJob> OpenJobs
         {
             get { return _OpenJobs; }
@@ -60,6 +64,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<OpenJob> _OpenJobs;
 
         [DataMember]
+        [Display(Name = "Stores")]
         public ChangeTrackingCollection<Store> Stores
         {
             get { return _Stores; }
