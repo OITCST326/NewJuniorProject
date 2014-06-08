@@ -66,7 +66,7 @@ namespace AIM.Web.Admin.Client
             }
             try
             {
-                return await GetManyAsync(new { RegionId = regionId }, "GetStoresByRegionId");
+                return await GetManyAsync(regionId, "GetStoresByRegionId");
             }
             catch (WebApiClientException e)
             {

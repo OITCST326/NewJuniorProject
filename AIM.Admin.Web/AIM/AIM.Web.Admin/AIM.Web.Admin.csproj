@@ -92,7 +92,7 @@
     <Reference Include="Microsoft.Owin.Security.Twitter">
       <HintPath>..\..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -189,7 +189,7 @@
       <HintPath>..\..\packages\TrackableEntities.Common.2.0.0.0\lib\portable-net40+sl5+win8+windowsphone8\TrackableEntities.Common.dll</HintPath>
     </Reference>
     <Reference Include="WebApiRestService.WebApiClient">
-      <HintPath>..\packages\WebApiRestService.WebApiClient.1.0\lib\portable-net45+win+wp80\WebApiRestService.WebApiClient.dll</HintPath>
+      <HintPath>..\..\packages\WebApiRestService.WebApiClient.1.0\lib\portable-net45+win+wp80\WebApiRestService.WebApiClient.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -218,6 +218,7 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\OpenJobController.cs" />
     <Compile Include="Controllers\PersonalInfoController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -674,8 +675,13 @@
     <Content Include="Views\Application\Edit.cshtml" />
     <Content Include="Views\Application\Index.cshtml" />
     <Content Include="Scripts\noty\noty.jquery.json" />
-    <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Enum.cshtml" />
+    <Content Include="Views\OpenJob\Create.cshtml" />
+    <Content Include="Views\OpenJob\Delete.cshtml" />
+    <Content Include="Views\OpenJob\Details.cshtml" />
+    <Content Include="Views\OpenJob\Edit.cshtml" />
+    <Content Include="Views\OpenJob\Index.cshtml" />
+    <Content Include="Views\OpenJob\OpenJobList.cshtml" />
+    <Content Include="Views\OpenJob\StoreSelect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AIM.Web.Admin.Models.EntityModels.Store>
+
+@{
+    ViewBag.Title = "Store Select";
+    var userName = TempData["userName"];
+    TempData["userName"] = userName;
+    var permissions = TempData["Permissions"];
+    TempData["Permissions"] = permissions;
+}
+<center>
+    <h1>Browse Job Openings</h1>
+</center>
+
+<h3>Select the store within the region</h3>
+
+<center>
+    @using (Html.BeginForm("OpenJobList", "OpenJob", FormMethod.Get))
+    {
+        <fieldset>
+            Select store: <select name="StoreId">
+                @foreach (var item in Model)
+                {
+                    <option value=@item.StoreId>@item.Name</option>
+                }
+            </select>
+    
+            <p>
+                <input type="submit" value="Submit" class="btn btn-success" />
+            </p>
+        </fieldset>
+    }
+</center>
+
