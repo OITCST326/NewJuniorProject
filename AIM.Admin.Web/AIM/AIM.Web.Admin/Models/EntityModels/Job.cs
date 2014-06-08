@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -19,6 +20,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
+        [Display(Name = "Job ID")]
         public int JobId
         {
             get { return _JobId; }
@@ -33,6 +35,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _JobId;
 
         [DataMember]
+        [Display(Name = "Position")]
         public string Position
         {
             get { return _Position; }
@@ -47,6 +50,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Position;
 
         [DataMember]
+        [Display(Name = "Description")]
         public string Description
         {
             get { return _Description; }
@@ -61,6 +65,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Description;
 
         [DataMember]
+        [Display(Name = "Full Part Time")]
         public string FullPartTime
         {
             get { return _FullPartTime; }
@@ -75,6 +80,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _FullPartTime;
 
         [DataMember]
+        [Display(Name = "Salary Range")]
         public string SalaryRange
         {
             get { return _SalaryRange; }
@@ -89,6 +95,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _SalaryRange;
 
         [DataMember]
+        [Display(Name = "Questionnaire ID")]
         public int? QuestionnaireId
         {
             get { return _QuestionnaireId; }
@@ -103,6 +110,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _QuestionnaireId;
 
         [DataMember]
+        [Display(Name = "Hours ID")]
         public int? HoursId
         {
             get { return _HoursId; }
@@ -117,6 +125,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _HoursId;
 
         [DataMember]
+        [Display(Name = "Interview Question ID")]
         public int? InterviewQuestionId
         {
             get { return _InterviewQuestionId; }
@@ -131,6 +140,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _InterviewQuestionId;
 
         [DataMember]
+        [Display(Name = "Applications")]
         public ChangeTrackingCollection<Application> Applications
         {
             get { return _Applications; }
@@ -145,6 +155,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Application> _Applications;
 
         [DataMember]
+        [Display(Name = "Employees")]
         public ChangeTrackingCollection<Employee> Employees
         {
             get { return _Employees; }
@@ -159,6 +170,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Employee> _Employees;
 
         [DataMember]
+        [Display(Name = "Hour")]
         public Hour Hour
         {
             get { return _Hour; }
@@ -177,6 +189,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Hour> HourChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Interview Question")]
         public InterviewQuestion InterviewQuestion
         {
             get { return _InterviewQuestion; }
@@ -195,6 +208,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<InterviewQuestion> InterviewQuestionChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Questionnaire")]
         public Questionnaire Questionnaire
         {
             get { return _Questionnaire; }
@@ -213,6 +227,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Questionnaire> QuestionnaireChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Open Jobs")]
         public ChangeTrackingCollection<OpenJob> OpenJobs
         {
             get { return _OpenJobs; }

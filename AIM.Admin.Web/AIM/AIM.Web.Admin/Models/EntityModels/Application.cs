@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -13,6 +14,7 @@ namespace AIM.Web.Admin.Models.EntityModels
     public partial class Application : ModelBase<Application>, IEquatable<Application>, ITrackable
     {
         [DataMember]
+        [Display(Name = "Application ID")]
         public int ApplicationId
         {
             get { return _ApplicationId; }
@@ -27,6 +29,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _ApplicationId;
 
         [DataMember]
+        [Display(Name = "Applicant ID")]
         public int? ApplicantId
         {
             get { return _ApplicantId; }
@@ -41,6 +44,8 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _ApplicantId;
 
         [DataMember]
+        [Display(Name = "Date Created")]
+
         public Nullable<System.DateTime> DateCreated
         {
             get { return _DateCreated; }
@@ -55,6 +60,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.DateTime> _DateCreated;
 
         [DataMember]
+        [Display(Name = "Pre-Employment Statement")]
         public string PreEmploymentStatement
         {
             get { return _PreEmploymentStatement; }
@@ -69,6 +75,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _PreEmploymentStatement;
 
         [DataMember]
+        [Display(Name = "Job ID")]
         public int? JobId
         {
             get { return _JobId; }
@@ -83,6 +90,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _JobId;
 
         [DataMember]
+        [Display(Name = "Status")]
         public StatusEnum? Status
         {
             get { return _status; }
@@ -97,6 +105,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private StatusEnum? _status;
 
         [DataMember]
+        [Display(Name = "Salary Expectation")]
         public string SalaryExpectation
         {
             get { return _SalaryExpectation; }
@@ -111,6 +120,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _SalaryExpectation;
 
         [DataMember]
+        [Display(Name = "Is Full Time")]
         public Nullable<bool> IsFullTime
         {
             get { return _IsFullTime; }
@@ -125,6 +135,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<bool> _IsFullTime;
 
         [DataMember]
+        [Display(Name = "Is Days")]
         public Nullable<bool> IsDays
         {
             get { return _IsDays; }
@@ -139,6 +150,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<bool> _IsDays;
 
         [DataMember]
+        [Display(Name = "Is Evenings")]
         public Nullable<bool> IsEvenings
         {
             get { return _IsEvenings; }
@@ -153,6 +165,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<bool> _IsEvenings;
 
         [DataMember]
+        [Display(Name = "Is Weekends")]
         public Nullable<bool> IsWeekends
         {
             get { return _IsWeekends; }
@@ -167,6 +180,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<bool> _IsWeekends;
 
         [DataMember]
+        [Display(Name = "Applicant")]
         public Applicant Applicant
         {
             get { return _Applicant; }
@@ -185,6 +199,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Job")]
         public Job Job
         {
             get { return _Job; }

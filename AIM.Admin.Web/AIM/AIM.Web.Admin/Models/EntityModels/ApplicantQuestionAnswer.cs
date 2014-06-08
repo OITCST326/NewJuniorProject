@@ -14,6 +14,7 @@ namespace AIM.Web.Admin.Models.EntityModels
     public partial class ApplicantQuestionAnswer : ModelBase<ApplicantQuestionAnswer>, IEquatable<ApplicantQuestionAnswer>, ITrackable
     {
         [DataMember]
+        [Display(Name = "Answer ID")]
         public int AnswerId
         {
             get { return _answerId; }
@@ -28,6 +29,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _answerId;
 
         [DataMember]
+        [Display(Name = "Applicant ID")]
         public int? ApplicantId
         {
             get { return _applicantId; }
@@ -42,6 +44,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _applicantId;
 
         [DataMember]
+        [Display(Name = "Question ID")]
         public int? QuesitonId
         {
             get { return _quesitonId; }
@@ -56,6 +59,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _quesitonId;
 
         [DataMember]
+        [Display(Name = "Answer Json String")]
         public string AnswerJsonString
         {
             get { return _answerJsonString; }
@@ -70,6 +74,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _answerJsonString;
 
         [DataMember]
+        [Display(Name = "Applicant")]
         public Applicant Applicant
         {
             get { return _applicant; }
@@ -88,6 +93,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Applicant> ApplicantChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Question")]
         public Question Question
         {
             get { return _question; }

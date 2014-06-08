@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -17,6 +18,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
+        [Display(Name = "Store ID")]
         public int StoreId
         {
             get { return _StoreId; }
@@ -31,6 +33,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _StoreId;
 
         [DataMember]
+        [Display(Name = "Store Name")]
         public string Name
         {
             get { return _Name; }
@@ -45,6 +48,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Name;
 
         [DataMember]
+        [Display(Name = "Region ID")]
         public int? RegionId
         {
             get { return _RegionId; }
@@ -59,6 +63,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _RegionId;
 
         [DataMember]
+        [Display(Name = "Street")]
         public string Street
         {
             get { return _Street; }
@@ -73,6 +78,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Street;
 
         [DataMember]
+        [Display(Name = "Street 2")]
         public string Street2
         {
             get { return _Street2; }
@@ -87,6 +93,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Street2;
 
         [DataMember]
+        [Display(Name = "City")]
         public string City
         {
             get { return _City; }
@@ -101,6 +108,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _City;
 
         [DataMember]
+        [Display(Name = "State")]
         public StateEnum? State
         {
             get { return _state; }
@@ -115,6 +123,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private StateEnum? _state;
 
         [DataMember]
+        [Display(Name = "Zip Code")]
         public string Zip
         {
             get { return _Zip; }
@@ -129,6 +138,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Zip;
 
         [DataMember]
+        [Display(Name = "Open Jobs")]
         public ChangeTrackingCollection<OpenJob> OpenJobs
         {
             get { return _OpenJobs; }
@@ -143,6 +153,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<OpenJob> _OpenJobs;
 
         [DataMember]
+        [Display(Name = "Region")]
         public Region Region
         {
             get { return _Region; }

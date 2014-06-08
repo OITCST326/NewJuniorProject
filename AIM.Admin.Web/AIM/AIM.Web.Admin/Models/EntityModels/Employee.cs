@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -17,6 +18,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
+        [Display(Name = "Employee ID")]
         public int EmployeeId
         {
             get { return _EmployeeId; }
@@ -31,6 +33,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _EmployeeId;
 
         [DataMember]
+        [Display(Name = "Permissions")]
         public PermissionsEnum? Permissions
         {
             get { return _permissions; }
@@ -45,6 +48,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private PermissionsEnum? _permissions;
 
         [DataMember]
+        [Display(Name = "Job ID")]
         public int? JobId
         {
             get { return _JobId; }
@@ -59,6 +63,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _JobId;
 
         [DataMember]
+        [Display(Name = "Job")]
         public Job Job
         {
             get { return _Job; }
@@ -77,6 +82,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Job> JobChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Users")]
         public ChangeTrackingCollection<User> Users
         {
             get { return _Users; }

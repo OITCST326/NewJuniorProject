@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -12,6 +13,7 @@ namespace AIM.Web.Admin.Models.EntityModels
     public partial class OpenJob : ModelBase<OpenJob>, IEquatable<OpenJob>, ITrackable
     {
         [DataMember]
+        [Display(Name = "Open Jobs ID")]
         public int OpenJobsId
         {
             get { return _OpenJobsId; }
@@ -26,6 +28,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _OpenJobsId;
 
         [DataMember]
+        [Display(Name = "Job ID")]
         public int JobId
         {
             get { return _JobId; }
@@ -40,6 +43,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _JobId;
 
         [DataMember]
+        [Display(Name = "Store ID")]
         public int StoreId
         {
             get { return _StoreId; }
@@ -54,6 +58,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _StoreId;
 
         [DataMember]
+        [Display(Name = "Region ID")]
         public int RegionId
         {
             get { return _RegionId; }
@@ -68,6 +73,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _RegionId;
 
         [DataMember]
+        [Display(Name = "Is Approved")]
         public Nullable<bool> IsApproved
         {
             get { return _IsApproved; }
@@ -82,6 +88,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<bool> _IsApproved;
 
         [DataMember]
+        [Display(Name = "Job")]
         public Job Job
         {
             get { return _Job; }
@@ -100,6 +107,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Job> JobChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Store")]
         public Store Store
         {
             get { return _Store; }
@@ -118,6 +126,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Store> StoreChangeTracker { get; set; }
 
         [DataMember]
+        [Display(Name = "Region")]
         public Region Region
         {
             get { return _Region; }

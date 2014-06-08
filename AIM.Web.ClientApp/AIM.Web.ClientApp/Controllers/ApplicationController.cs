@@ -1,5 +1,4 @@
 ﻿using AIM.Web.ClientApp.Client;
-using AIM.Web.ClientApp.Models.EntityModels;
 using System;
 using System.Net;
 using System.Threading.Tasks;

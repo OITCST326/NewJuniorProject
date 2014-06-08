@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -13,6 +14,7 @@ namespace AIM.Web.Admin.Models.EntityModels
     public partial class JobHistory : ModelBase<JobHistory>, IEquatable<JobHistory>, ITrackable
     {
         [DataMember]
+        [Display(Name = "Job History ID")]
         public int JobHistoryId
         {
             get { return _JobHistoryId; }
@@ -27,6 +29,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _JobHistoryId;
 
         [DataMember]
+        [Display(Name = "Employer Name")]
         public string EmployerName
         {
             get { return _EmployerName; }
@@ -41,6 +44,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _EmployerName;
 
         [DataMember]
+        [Display(Name = "Position")]
         public string Position
         {
             get { return _Position; }
@@ -55,6 +59,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Position;
 
         [DataMember]
+        [Display(Name = "Responsibilities")]
         public string Responsibilities
         {
             get { return _Responsibilities; }
@@ -69,6 +74,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Responsibilities;
 
         [DataMember]
+        [Display(Name = "Supervisor")]
         public string Supervisor
         {
             get { return _Supervisor; }
@@ -83,6 +89,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Supervisor;
 
         [DataMember]
+        [Display(Name = "Starting Salary")]
         public Nullable<decimal> StartingSalary
         {
             get { return _StartingSalary; }
@@ -97,6 +104,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<decimal> _StartingSalary;
 
         [DataMember]
+        [Display(Name = "Ending Salary")]
         public Nullable<decimal> EndingSalary
         {
             get { return _EndingSalary; }
@@ -111,6 +119,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<decimal> _EndingSalary;
 
         [DataMember]
+        [Display(Name = "Reason For Leaving")]
         public string ReasonForLeaving
         {
             get { return _ReasonForLeaving; }
@@ -125,6 +134,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _ReasonForLeaving;
 
         [DataMember]
+        [Display(Name = "Date From")]
         public Nullable<System.DateTime> DateFrom
         {
             get { return _DateFrom; }
@@ -139,6 +149,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.DateTime> _DateFrom;
 
         [DataMember]
+        [Display(Name = "Date To")]
         public Nullable<System.DateTime> DateTo
         {
             get { return _DateTo; }
@@ -153,6 +164,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private Nullable<System.DateTime> _DateTo;
 
         [DataMember]
+        [Display(Name = "Street")]
         public string Street
         {
             get { return _Street; }
@@ -167,6 +179,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Street;
 
         [DataMember]
+        [Display(Name = "Street 2")]
         public string Street2
         {
             get { return _Street2; }
@@ -181,6 +194,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Street2;
 
         [DataMember]
+        [Display(Name = "City")]
         public string City
         {
             get { return _City; }
@@ -195,6 +209,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _City;
 
         [DataMember]
+        [Display(Name = "State")]
         public StateEnum? State
         {
             get { return _state; }
@@ -209,6 +224,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private StateEnum? _state;
 
         [DataMember]
+        [Display(Name = "Zip Code")]
         public string Zip
         {
             get { return _Zip; }
@@ -223,6 +239,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Zip;
 
         [DataMember]
+        [Display(Name = "Phone Number")]
         public string Phone
         {
             get { return _Phone; }
@@ -237,6 +254,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _Phone;
 
         [DataMember]
+        [Display(Name = "Applicant ID")]
         public int? ApplicantId
         {
             get { return _ApplicantId; }
@@ -251,6 +269,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _ApplicantId;
 
         [DataMember]
+        [Display(Name = "Applicant")]
         public Applicant Applicant
         {
             get { return _Applicant; }

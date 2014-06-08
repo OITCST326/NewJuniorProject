@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TrackableEntities;
 using TrackableEntities.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace AIM.Web.Admin.Models.EntityModels
 {
@@ -13,6 +14,7 @@ namespace AIM.Web.Admin.Models.EntityModels
     public partial class Reference : ModelBase<Reference>, IEquatable<Reference>, ITrackable
     {
         [DataMember]
+        [Display(Name = "Reference ID")]
         public int ReferenceId
         {
             get { return _ReferenceId; }
@@ -27,6 +29,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _ReferenceId;
 
         [DataMember]
+        [Display(Name = "Reference Full Name")]
         public string RefFullName
         {
             get { return _RefFullName; }
@@ -41,6 +44,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _RefFullName;
 
         [DataMember]
+        [Display(Name = "Reference Company")]
         public string RefCompany
         {
             get { return _RefCompany; }
@@ -55,6 +59,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _RefCompany;
 
         [DataMember]
+        [Display(Name = "Reference Title")]
         public string RefTitle
         {
             get { return _RefTitle; }
@@ -69,6 +74,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _RefTitle;
 
         [DataMember]
+        [Display(Name = "Reference Phone Number")]
         public string RefPhone
         {
             get { return _RefPhone; }
@@ -83,6 +89,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private string _RefPhone;
 
         [DataMember]
+        [Display(Name = "Applicant ID")]
         public int? ApplicantId
         {
             get { return _ApplicantId; }
@@ -97,6 +104,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _ApplicantId;
 
         [DataMember]
+        [Display(Name = "Applicant")]
         public Applicant Applicant
         {
             get { return _Applicant; }

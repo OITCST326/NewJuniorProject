@@ -25,7 +25,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         }
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Applicant ID")]
         public int ApplicantId
         {
             get { return _applicantId; }
@@ -40,7 +40,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int _applicantId;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Education ID")]
         public int? EducationId
         {
             get { return _EducationId; }
@@ -55,7 +55,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _EducationId;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Job History ID")]
         public int? JobHistoryId
         {
             get { return _JobHistoryId; }
@@ -70,7 +70,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _JobHistoryId;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Reference ID")]
         public int? ReferenceId
         {
             get { return _ReferenceId; }
@@ -85,7 +85,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _ReferenceId;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "User ID")]
         public int? UserId
         {
             get { return _UserId; }
@@ -100,7 +100,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _UserId;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Application ID")]
         public int? ApplicationId
         {
             get { return _ApplicationId; }
@@ -115,7 +115,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _ApplicationId;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Answer ID")]
         public int? AnswerId
         {
             get { return _AnswerId; }
@@ -130,7 +130,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _AnswerId;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Hours ID")]
         public int? HoursId
         {
             get { return _HoursId; }
@@ -145,7 +145,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private int? _HoursId;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Applicant Question Answers")]
         public ChangeTrackingCollection<ApplicantQuestionAnswer> ApplicantQuestionAnswers
         {
             get { return _ApplicantQuestionAnswers; }
@@ -160,7 +160,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<ApplicantQuestionAnswer> _ApplicantQuestionAnswers;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Applications")]
         public ChangeTrackingCollection<Application> Applications
         {
             get { return _Applications; }
@@ -175,7 +175,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Application> _Applications;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Educations")]
         public ChangeTrackingCollection<Education> Educations
         {
             get { return _Educations; }
@@ -190,7 +190,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Education> _Educations;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Job Histories")]
         public ChangeTrackingCollection<JobHistory> JobHistories
         {
             get { return _JobHistories; }
@@ -205,7 +205,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<JobHistory> _JobHistories;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Hours")]
         public ChangeTrackingCollection<Hour> Hours
         {
             get { return _Hours; }
@@ -220,7 +220,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Hour> _Hours;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "References")]
         public ChangeTrackingCollection<Reference> References
         {
             get { return _References; }
@@ -235,7 +235,7 @@ namespace AIM.Web.Admin.Models.EntityModels
         private ChangeTrackingCollection<Reference> _References;
 
         [DataMember]
-        [Display(Name = "")]
+        [Display(Name = "Users")]
         public ChangeTrackingCollection<User> Users
         {
             get { return _Users; }
