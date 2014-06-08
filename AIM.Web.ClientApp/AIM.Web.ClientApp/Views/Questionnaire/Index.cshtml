@@ -1,8 +1,15 @@
-﻿@{
+﻿@model AIM.Web.ClientApp.Models.EntityModels.Questionnaire
+
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Questionnaire</h2>
+
+@foreach (var item in Model.Questions)
+{
+    @Html.DisplayFor(qu => qu.Questions.Select(q => q.QJsonText))
+}
 
 <form id="form-3" action="#">
     <h1>Account</h1>
