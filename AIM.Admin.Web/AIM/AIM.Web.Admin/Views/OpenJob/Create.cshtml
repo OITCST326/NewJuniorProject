@@ -32,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StoreId, "StoreId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StoreId)
+                @Html.EditorFor(model => model.StoreId) 
                 @Html.ValidationMessageFor(model => model.StoreId)
             </div>
         </div>
@@ -41,7 +41,7 @@
             @Html.LabelFor(model => model.RegionId, "RegionId", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RegionId)
-                @Html.ValidationMessageFor(model => model.RegionId)
+                @Html.ValidationMessageFor(model => model.RegionId)           
             </div>
         </div>
 

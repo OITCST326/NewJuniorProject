@@ -59,7 +59,6 @@ namespace AIM.Web.Admin.Controllers
 
             IEnumerable<OpenJob> jobs = null;
 
-
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
@@ -78,61 +77,7 @@ namespace AIM.Web.Admin.Controllers
             return View(jobs);
         }
      
-
-
-        private Store[] getDummyStoreData(int region)
-        {
-            Store[] storeArray = new Store[5];
-            for (int i = 0; i < 5; ++i)
-            {
-                storeArray[i] = new Store();               
-                storeArray[i].StoreId = i + 1;
-                storeArray[i].Name = "Some Store " + storeArray[i].StoreId.ToString();
-                storeArray[i].RegionId = region;
-            }
-
-            return storeArray;
-        }
-
-
-        private OpenJob[] getDummyOpenJobData(int store)
-        {
-            Job job1 = new Job();
-            job1.Position = "Cashier";
-            job1.JobId = 45;
-
-            Job job2 = new Job();
-            job2.Position = "Store Clerk";
-            job2.JobId = 43;
-
-            Store store2 = new Store();
-            store2.Name = "A Cool Store";
-            store2.StoreId = 23;
-
-            OpenJob[] array = new OpenJob[5];
-            for(int i = 0; i < 5; ++i)
-            {
-                array[i] = new OpenJob();
-                array[i].OpenJobsId = i + 1;
-                array[i].Store = store2;
-                array[i].StoreId = store2.StoreId;
-                array[i].IsApproved = false;
-
-                if (i % 2 == 1)
-                    array[i].Job = job1;
-
-                else
-                    array[i].Job = job2;
-            }
-
-            array[1].IsApproved = true;
-            array[4].IsApproved = true;
-
-            return array;
-        }
-
-
-        //
+        
         // GET: /OpenJob/Details/5
         public async Task<ViewResult> Details(int jobid)
         {
@@ -148,9 +93,7 @@ namespace AIM.Web.Admin.Controllers
             return View(job);
         }
 
-
-
-        //
+        
         // GET: /OpenJob/Create
         public async Task<ActionResult> Create()
         {
@@ -172,12 +115,11 @@ namespace AIM.Web.Admin.Controllers
             return View();
         }
 
-        //
+
         // POST: /OpenJob/Create
         [HttpPost]
         public async Task<ActionResult> Create([Bind(Include = "JobId,StoreId,RegionId")] OpenJob openjob)
         {
-            openjob.OpenJobsId = 32;
             openjob.IsApproved = false;
             try
             {
@@ -201,6 +143,7 @@ namespace AIM.Web.Admin.Controllers
             return RedirectToAction("Details", id);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Approve(int openjobid)
@@ -214,6 +157,7 @@ namespace AIM.Web.Admin.Controllers
             }
             return View("Details", job.OpenJobsId);
         }
+
 
         public async Task<ActionResult> Delete(int? id)
         {
@@ -287,8 +231,5 @@ namespace AIM.Web.Admin.Controllers
         //{
         //    return View();
         //}
-
-        ////
-
     }
 }
