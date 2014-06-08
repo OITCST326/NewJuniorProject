@@ -29,6 +29,17 @@ namespace AIM.Service.EF.Repositories
             return entities;
         }
 
+        public async Task<IEnumerable<Question>> GetQuestionsByQuestionnaireId(int questionnaireId)
+        {
+            IEnumerable<Question> entity = await _context.Questions
+                .Where(t => t.QuestionnaireId == questionnaireId)
+                .Include(t => t.Questionnaires)
+                .Include(t => t.InterviewQuestions)
+                .Include(t => t.ApplicantQuestionAnswers)
+                .ToListAsync();
+            return entity;
+        }
+
         public async Task<Question> GetQuestion(int id)
         {
             Question entity = await _context.Questions
