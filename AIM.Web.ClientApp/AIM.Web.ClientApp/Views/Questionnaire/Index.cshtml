@@ -1,10 +1,97 @@
-﻿@model AIM.Web.ClientApp.Models.EntityModels.Questionnaire
+﻿@using AIM.Web.ClientApp.Models.EntityModels
+@model IEnumerable<AIM.Web.ClientApp.Models.EntityModels.Question>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Questionnaire</h2>
+
+<div class="box-content">
+    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.QJsonText)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QJsonType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QJsonOptionList)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QJsonAnswerList)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="center">
+                        @Html.DisplayFor(modelItem => item.QJsonText)
+                    </td>
+                    <td class="center">
+                        @{
+                switch (item.QJsonType)
+                {
+                    case TypeEnum.MultipleChoice:
+                        <text>
+                            Multiple Choice
+                        </text>
+                        break;
+                    case TypeEnum.AllThatApply:
+                    <text>
+                        Select All That Apply
+                    </text>
+                        break;
+                    case TypeEnum.FreeForm:
+                    <text>
+                        Free Form Question
+                    </text>
+                        break;
+                    default:
+                    <text>
+                        Type Not Set
+                    </text>
+                        break;
+                }
+                        }
+                    </td>
+                    <td class="center">
+                        @for (var i = 0; i < item.QJsonOptionList.Count(); ++i)
+                        {
+                            if (i != item.QJsonOptionList.Count - 1)
+                            {
+                                <p>@item.QJsonOptionList[i], </p>
+                            }
+                            else
+                            {
+                                <p>@item.QJsonOptionList[i]</p>
+                            }
+                        }
+                    </td>
+                    <td class="center">
+                        @for (var i = 0; i < item.QJsonAnswerList.Count(); ++i)
+                        {
+                            if (i != item.QJsonAnswerList.Count - 1)
+                            {
+                                <p>@item.QJsonAnswerList[i], </p>
+                            }
+                            else
+                            {
+                                <p>@item.QJsonAnswerList[i]</p>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+    </table>
+    <div class="clearfix"></div>
+</div>
+
+
 
 <form id="form-3" action="#">
     <h1>Account</h1>
