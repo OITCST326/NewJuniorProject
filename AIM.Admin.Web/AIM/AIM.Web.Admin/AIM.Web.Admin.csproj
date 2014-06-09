@@ -682,6 +682,7 @@
     <Content Include="Views\OpenJob\Index.cshtml" />
     <Content Include="Views\OpenJob\OpenJobList.cshtml" />
     <Content Include="Views\OpenJob\StoreSelect.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
