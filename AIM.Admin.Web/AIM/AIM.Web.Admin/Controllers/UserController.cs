@@ -17,6 +17,7 @@ namespace AIM.Web.Admin.Controllers
     {
         private readonly UserServiceClient _client = new UserServiceClient();
         private ChangeTrackingCollection<User> _changeTracker = new ChangeTrackingCollection<User>();
+        private User _user = new User();
 
         public UserController()
         {
@@ -65,7 +66,7 @@ namespace AIM.Web.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                User postedUser = null;
+                User updatedUser = null;
 
                 using (var client = new HttpClient())
                 {
@@ -78,13 +79,15 @@ namespace AIM.Web.Admin.Controllers
                     HttpResponseMessage response = await client.PostAsJsonAsync(request, user);
                     if (response.IsSuccessStatusCode)
                     {
-                        postedUser = await response.Content.ReadAsAsync<User>();
+                        updatedUser = await response.Content.ReadAsAsync<User>();
                     }
                 }
 
-                if (postedUser != null)
-                    TempData["Message"] = "User " + postedUser.FirstName + " " + postedUser.LastName +
-                                          " has been created.";
+                if (user != null)
+                {
+                    TempData["Message"] = "User " + user.FirstName + " " + user.LastName +
+                                          " was successfully created.";
+                }
 
                 return RedirectToAction("Index");
             }
@@ -106,6 +109,7 @@ namespace AIM.Web.Admin.Controllers
 
             // Start change-tracking the model
             _changeTracker = new ChangeTrackingCollection<User>(user);
+            _user = user;
 
             if (user == null)
             {
@@ -125,6 +129,34 @@ namespace AIM.Web.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                User postedUser = null;
+
+                // Modify user details for tracker
+                _user = modifiedUser;
+                User changedUser = _changeTracker.GetChanges().SingleOrDefault();
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // HTTP GET
+                    string request = "api/User";
+                    HttpResponseMessage response = await client.PutAsJsonAsync(request, changedUser);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        postedUser = await response.Content.ReadAsAsync<User>();
+                    }
+
+                    _changeTracker.MergeChanges(postedUser);
+                }
+
+                if (modifiedUser != null)
+                {
+                    TempData["Message"] = "User " + modifiedUser.FirstName + " " + modifiedUser.LastName +
+                                          " was successfully created.";
+                }
                 //// Modify user details for tracker
                 //initialUser = modifiedUser;
 
@@ -137,6 +169,7 @@ namespace AIM.Web.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
+
             return View(modifiedUser);
         }
 
@@ -169,12 +202,10 @@ namespace AIM.Web.Admin.Controllers
             User deletedUser = await _client.GetUserById(id);
             if (deletedUser == null)
             {
-                bool deleted = true;
                 TempData["Message"] = "User was successfully deleted.";
             }
             else
             {
-                bool deleted = false;
                 TempData["Message"] = "User was not deleted.";
             }
 

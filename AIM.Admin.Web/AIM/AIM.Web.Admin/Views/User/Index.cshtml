@@ -34,10 +34,8 @@
 @{
     if (message != "")
     {
-        <div id="myAlert" class="alert success fade" data-alert="alert">
-            <h3>
-                @message
-            </h3>
+        <div id="myAlert" class="alert alert-info" style="margin-bottom: 0;" data-alert="alert">
+            <strong>Message! </strong> @message
         </div>
 
         <script type="text/javascript">
@@ -45,9 +43,7 @@
                 $("#myAlert").addClass("in");
             }
 
-            window.setTimeout(function () {
-                showAlert();
-            }, 500);
+            window.setTimeout(function () { $("#myAlert").alert('close'); }, 2000);
         </script>
     }
 }
