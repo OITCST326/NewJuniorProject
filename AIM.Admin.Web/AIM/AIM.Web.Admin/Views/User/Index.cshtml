@@ -8,25 +8,8 @@
     var ActivePermissions = TempData["ActivePermissions"];
     TempData["ActivePermissions"] = ActivePermissions;
 
-    if (TempData.ContainsKey("creadedMessage"))
-    {
-        var creadedMessage = TempData["creadedMessage"].ToString();
-
-
-        @*if (!string.IsNullOrEmpty(ViewBag.DeletedMessage)) {
-            <script type="text/javascript">
-                alert('ViewBag.DeletedMessage');
-            </script>
-        }*@
-
-        if (!string.IsNullOrEmpty(creadedMessage))
-        {
-            <script type="text/javascript">
-                alert(TempData["creadedMessage"].ToString());
-            </script>
-        }
-    }
-} 
+    var message = TempData["Message"] == null ? "" : TempData["Message"].ToString();
+}
 
 <!-- This view's content starts HERE-->
 <div>
@@ -46,6 +29,28 @@
         Create New
     </a>
 </div>
+
+
+@{
+    if (message != "")
+    {
+        <div id="myAlert" class="alert success fade" data-alert="alert">
+            <h3>
+                @message
+            </h3>
+        </div>
+
+        <script type="text/javascript">
+            function showAlert() {
+                $("#myAlert").addClass("in");
+            }
+
+            window.setTimeout(function () {
+                showAlert();
+            }, 500);
+        </script>
+    }
+}
 
 <div class="row-fluid sortable">
     <div class="box span12">

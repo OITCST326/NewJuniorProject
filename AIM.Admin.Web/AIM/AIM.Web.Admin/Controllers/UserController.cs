@@ -79,10 +79,12 @@ namespace AIM.Web.Admin.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         postedUser = await response.Content.ReadAsAsync<User>();
-                        TempData["createdMessage"] = "User " + postedUser.FirstName + " " + postedUser.LastName +
-                                              " has been created";
                     }
                 }
+
+                if (postedUser != null)
+                    TempData["Message"] = "User " + postedUser.FirstName + " " + postedUser.LastName +
+                                          " has been created.";
 
                 return RedirectToAction("Index");
             }
@@ -164,12 +166,17 @@ namespace AIM.Web.Admin.Controllers
             await _client.DeleteUser(id);
 
             // Verify order was deleted
-            //var deleted = VerifyUserDeleted(id);
-            //response = _client.GetAsync(request).Result;
-            //response.Result.EnsureSuccessStatusCode();
-            //ViewBag.DeletedMessage(deleted ?
-            //    "User was successfully deleted" :
-            //    "User was not deleted");
+            User deletedUser = await _client.GetUserById(id);
+            if (deletedUser == null)
+            {
+                bool deleted = true;
+                TempData["Message"] = "User was successfully deleted.";
+            }
+            else
+            {
+                bool deleted = false;
+                TempData["Message"] = "User was not deleted.";
+            }
 
             return RedirectToAction("Index");
         }
