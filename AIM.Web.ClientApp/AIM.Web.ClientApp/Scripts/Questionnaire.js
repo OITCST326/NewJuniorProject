@@ -1,5 +1,6 @@
 ﻿$(function () {
     $("#form-3").steps({
+        titleTemplate: "#title#",
         bodyTag: "fieldset",
         onStepChanging: function (event, currentIndex, newIndex) {
             // Always allow going backward even if the current step contains invalid fields!

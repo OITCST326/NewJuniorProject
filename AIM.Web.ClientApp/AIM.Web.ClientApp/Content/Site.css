@@ -13,7 +13,9 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
+    /*width: 100%;*/
+    width: auto;
 }
 
 /* styles for validation helpers */
