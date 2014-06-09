@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using AIM.Web.Admin.Client;
 using AIM.Web.Admin.Models.EntityModels;
-using TrackableEntities.Client;
-using WebApiRestService;
 
 namespace AIM.Web.Admin.Controllers
 {
     public class UserController : Controller
     {
         private readonly UserServiceClient _client = new UserServiceClient();
-        private ChangeTrackingCollection<User> _changeTracker = new ChangeTrackingCollection<User>();
+        private User _user = new User();
 
         public UserController()
         {
@@ -65,7 +63,7 @@ namespace AIM.Web.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                User postedUser = null;
+                User updatedUser = null;
 
                 using (var client = new HttpClient())
                 {
@@ -78,15 +76,17 @@ namespace AIM.Web.Admin.Controllers
                     HttpResponseMessage response = await client.PostAsJsonAsync(request, user);
                     if (response.IsSuccessStatusCode)
                     {
-                        postedUser = await response.Content.ReadAsAsync<User>();
+                        updatedUser = await response.Content.ReadAsAsync<User>();
                     }
                 }
 
-                if (postedUser != null)
-                    TempData["Message"] = "User " + postedUser.FirstName + " " + postedUser.LastName +
-                                          " has been created.";
+                if (user != null)
+                {
+                    TempData["Message"] = "User " + user.FirstName + " " + user.LastName +
+                                          " was successfully created.";
+                }
 
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
             }
 
             var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
@@ -105,7 +105,7 @@ namespace AIM.Web.Admin.Controllers
             User user = await _client.GetUserById(id);
 
             // Start change-tracking the model
-            _changeTracker = new ChangeTrackingCollection<User>(user);
+            _user = user;
 
             if (user == null)
             {
@@ -121,23 +121,36 @@ namespace AIM.Web.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber," +
                                                    "PersonalInfoId,ApplicantId,ApplicationId,EmployeeId,UserName," +
-                                                   "Password,AspNetUsersId")] User modifiedUser)
+                                                   "Password,AspNetUsersId")] User user)
         {
             if (ModelState.IsValid)
             {
-                //// Modify user details for tracker
-                //initialUser = modifiedUser;
+                User updatedUser = user;
 
-                //// Submit changes
-                //var changedUser = _changeTracker.GetChanges().SingleOrDefault();
-                var updatedUser = await _client.EditUser(modifiedUser);
+                await _client.DeleteUser(user.UserId);
 
-                // Merge changes
-                _changeTracker.MergeChanges(updatedUser);
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // HTTP GET
+                    string request = "api/User";
+                    HttpResponseMessage response = await client.PostAsJsonAsync(request, user);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        updatedUser = await response.Content.ReadAsAsync<User>();
+                    }
+                }
+
+                TempData["Message"] = "User " + user.FirstName + " " + user.LastName +
+                                          " was successfully updated.";
 
                 return RedirectToAction("Index");
             }
-            return View(modifiedUser);
+
+            return View(user);
         }
 
         // GET: /User/Delete/5
@@ -169,12 +182,10 @@ namespace AIM.Web.Admin.Controllers
             User deletedUser = await _client.GetUserById(id);
             if (deletedUser == null)
             {
-                bool deleted = true;
                 TempData["Message"] = "User was successfully deleted.";
             }
             else
             {
-                bool deleted = false;
                 TempData["Message"] = "User was not deleted.";
             }
 

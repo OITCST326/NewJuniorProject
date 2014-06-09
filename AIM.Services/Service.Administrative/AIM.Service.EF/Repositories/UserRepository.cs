@@ -48,7 +48,7 @@ namespace AIM.Service.EF.Repositories
         {
             User entity = await _context.Users
                         .Where(u => u.UserName.Equals(userName) && 
-                            u.UserName.Equals(password))
+                            u.Password.Equals(password))
                         .Include(u => u.Applicant)
                         .Include(u => u.Employee)
                         .Include(u => u.PersonalInfo)

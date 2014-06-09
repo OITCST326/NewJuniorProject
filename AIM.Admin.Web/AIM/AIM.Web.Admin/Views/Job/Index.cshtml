@@ -6,6 +6,8 @@
     TempData["ActiveUserName"] = ActiveUserName;
     var ActivePermissions = TempData["ActivePermissions"];
     TempData["ActivePermissions"] = ActivePermissions;
+
+    var message = TempData["Message"] == null ? "" : TempData["Message"].ToString();
 }
 <!-- This view's content starts HERE-->
 <div>
@@ -25,6 +27,23 @@
         Create New
     </a>
 </div>
+
+@{
+    if (message != "")
+    {
+        <div id="myAlert" class="alert alert-info" style="margin-bottom: 0;" data-alert="alert">
+            <strong>Message! </strong> @message
+        </div>
+
+        <script type="text/javascript">
+            function showAlert() {
+                $("#myAlert").addClass("in");
+            }
+
+            window.setTimeout(function () { $("#myAlert").alert('close'); }, 2000);
+        </script>
+    }
+}
 
 <div class="row-fluid sortable">
     <div class="box span12">

@@ -34,6 +34,15 @@ namespace AIM.Web.Admin.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Logout(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            TempData["ActiveUserName"] = null;
+            TempData["ActivePermissions"] = null;
+            return View();
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]

@@ -1,68 +1,87 @@
 ﻿@model AIM.Web.Admin.Models.EntityModels.OpenJob
 
 @{
-    ViewBag.Title = "Details";
-    var userName = TempData["userName"];
-    TempData["userName"] = userName;
-    var permissions = TempData["Permissions"];
-    TempData["Permissions"] = permissions;
+	ViewBag.Title = "Details";
+	var userName = TempData["userName"];
+	TempData["userName"] = userName;
+	var permissions = TempData["Permissions"];
+	TempData["Permissions"] = permissions;
+
+	var message = TempData["Message"] == null ? "" : TempData["Message"].ToString();
 }
 
 <h2>Details</h2>
 
+@{
+	if (message != "")
+	{
+		<div id="myAlert" class="alert alert-info" style="margin-bottom: 0;" data-alert="alert">
+			<strong>Message! </strong> @message
+		</div>
+
+		<script type="text/javascript">
+			function showAlert() {
+				$("#myAlert").addClass("in");
+			}
+
+			window.setTimeout(function () { $("#myAlert").alert('close'); }, 2000);
+		</script>
+	}
+}
+
 <div>
-    <h4>Job Opening</h4>
+	<h4>Job Opening</h4>
 	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Job.Position)
-        </dt>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Job.Position)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Job.Position)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Job.Position)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Store.Name)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Store.Name)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Store.Name)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Store.Name)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Region.RegionName)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Region.RegionName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Region.RegionName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Region.RegionName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsApproved)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.IsApproved)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsApproved)
-        </dd>
-        
+		<dd>
+			@Html.DisplayFor(model => model.IsApproved)
+		</dd>
+		
 
-    </dl>
+	</dl>
 
-    <a class="btn btn-success" href="@Url.Action("Delete", "OpenJob", new { id = Model.OpenJobsId })">
-        <i class="icon-zoom-in icon-white"></i>
-        Delete Opening
-    </a>
+	<a class="btn btn-success" href="@Url.Action("Delete", "OpenJob", new { id = Model.OpenJobsId })">
+		<i class="icon-zoom-in icon-white"></i>
+		Delete Opening
+	</a>
 
-    @if(ViewBag.Approved == false)
-    { 
-        <a class="btn btn-success" href="@Url.Action("ApproveOpening", "OpenJob", new { id = Model.OpenJobsId })">
-            <i class="icon-zoom-in icon-white"></i>
-            Approve Opening
-        </a>
-    }
-    
-    @Html.ActionLink("Back to List", "OpenJobList", new { StoreId = Model.StoreId })
+	@if(ViewBag.Approved == false)
+	{ 
+		<a class="btn btn-success" href="@Url.Action("ApproveOpening", "OpenJob", new { id = Model.OpenJobsId })">
+			<i class="icon-zoom-in icon-white"></i>
+			Approve Opening
+		</a>
+	}
+	
+	@Html.ActionLink("Back to List", "OpenJobList", new { StoreId = Model.StoreId })
 </div>
 
 
