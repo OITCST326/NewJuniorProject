@@ -107,9 +107,16 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("Manage", "Account")">Profile</a></li>
+                        <!--<li><a href="@Url.Action("Manage", "Account")">Profile</a></li>-->
                         <li class="divider"></li>
-                        <li><a href="@Url.Action("Login", "Account")">Logout</a></li>
+                        @if(ActiveUserName == null)
+                        { 
+                        <li><a href="@Url.Action("Login", "Account")">Log In</a></li>
+                        }
+                        else
+                        {
+                        <li><a href="@Url.Action("Logout", "Account")">Log Out</a></li>    
+                        }
                     </ul>
                 </div>
                 <!-- user dropdown ends -->
