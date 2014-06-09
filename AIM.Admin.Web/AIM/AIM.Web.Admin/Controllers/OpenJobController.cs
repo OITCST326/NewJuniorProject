@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AIM.Web.Admin.Client;
+using AIM.Web.Admin.Models.EntityModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,13 +8,18 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using AIM.Web.Admin.Client;
-using AIM.Web.Admin.Models.EntityModels;
 
 namespace AIM.Web.Admin.Controllers
 {
     public class OpenJobController : Controller
     {
+        private readonly OpenJobServiceClient _client = new OpenJobServiceClient();
+
+        public OpenJobController()
+        {
+            _client = new OpenJobServiceClient();
+        }
+
         //
         // GET: /OpenJob/
         public async Task<ViewResult> Index()
@@ -26,7 +33,6 @@ namespace AIM.Web.Admin.Controllers
 
             return View(regions);
         }
-
 
         public async Task<ViewResult> StoreSelect(string RegionID)
         {
@@ -52,7 +58,6 @@ namespace AIM.Web.Admin.Controllers
             return View(stores);
         }
 
-
         public async Task<ViewResult> OpenJobList(string StoreId)
         {
             int storeId = Convert.ToInt32(StoreId);
@@ -76,13 +81,12 @@ namespace AIM.Web.Admin.Controllers
 
             return View(jobs);
         }
-     
-        
+
         // GET: /OpenJob/Details/5
         public async Task<ViewResult> Details(int jobid)
         {
             OpenJob job = null;
-            using(var client = new OpenJobServiceClient())
+            using (var client = new OpenJobServiceClient())
             {
                 job = await client.GetOpenJobById(jobid);
             }
@@ -93,12 +97,11 @@ namespace AIM.Web.Admin.Controllers
             return View(job);
         }
 
-        
         // GET: /OpenJob/Create
         public async Task<ActionResult> Create()
         {
             IEnumerable<Job> jobs = null;
-            using(var client = new JobServiceClient())
+            using (var client = new JobServiceClient())
             {
                 jobs = await client.GetJobs();
             }
@@ -108,13 +111,12 @@ namespace AIM.Web.Admin.Controllers
 
             TitleList.AddRange(TitlesQuery);
             var sl = new SelectList(TitleList);
-            
+
             ViewBag.JobTitles = sl;
             ViewBag.Jobs = jobs;
 
             return View();
         }
-
 
         // POST: /OpenJob/Create
         [HttpPost]
@@ -123,19 +125,41 @@ namespace AIM.Web.Admin.Controllers
             openjob.IsApproved = false;
             try
             {
-                using(var client = new OpenJobServiceClient())
+                if (ModelState.IsValid)
                 {
-                   await client.CreateOpenJob(openjob);
+                    OpenJob updatedOpenJob = null;
+
+                    using (var client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                        client.DefaultRequestHeaders.Accept.Clear();
+                        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                        // HTTP GET
+                        string request = "api/OpenJob";
+                        HttpResponseMessage response = await client.PostAsJsonAsync(request, openjob);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            updatedOpenJob = await response.Content.ReadAsAsync<OpenJob>();
+                        }
+                    }
+
+                    if (openjob != null)
+                    {
+                        TempData["Message"] = "The " + openjob.Job.Position + " was successfully submitted.";
+                    }
+
+                    return RedirectToAction("Details", openjob.JobId);
                 }
-                return RedirectToAction("Details", openjob.OpenJobsId);
             }
             catch (Exception e)
             {
                 ViewBag.Message = e.ToString();
                 return View("Error");
             }
-        }
 
+            return View("Error");
+        }
 
         public async Task<ActionResult> ApproveOpening(int id)
         {
@@ -143,21 +167,40 @@ namespace AIM.Web.Admin.Controllers
             return RedirectToAction("Details", id);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Approve(int openjobid)
         {
-            OpenJob job = null;
-            using(var client = new OpenJobServiceClient() )
-            {
-                job = await client.GetOpenJobById(openjobid);
-                job.IsApproved = true;
-                await client.EditOpenJob(job);
-            }
-            return View("Details", job.OpenJobsId);
-        }
+            OpenJob updatedOpenJob = await _client.GetOpenJobById(openjobid);
+            updatedOpenJob.IsApproved = true;
 
+            await _client.DeleteOpenJob(openjobid);
+
+            if (ModelState.IsValid)
+            {
+                
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // HTTP Post
+                    string request = "api/OpenJob";
+                    HttpResponseMessage response = await client.PostAsJsonAsync(request, updatedOpenJob);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        await response.Content.ReadAsAsync<OpenJob>();
+                    }
+                }
+
+                TempData["Message"] = "Job " + updatedOpenJob.Job.Position + " was successfully updated.";
+
+                return RedirectToAction("Details", updatedOpenJob.JobId);
+            }
+
+            return RedirectToAction("Details", updatedOpenJob.JobId);
+        }
 
         public async Task<ActionResult> Delete(int? id)
         {
@@ -194,42 +237,20 @@ namespace AIM.Web.Admin.Controllers
                 store = temp.StoreId;
 
                 await client.DeleteOpenJob(id);
+
+                OpenJob deletedOpenJob = await _client.GetOpenJobById(id);
+                if (deletedOpenJob == null)
+                {
+                    TempData["Message"] = "Job was successfully removed.";
+                }
+                else
+                {
+                    TempData["Message"] = "Job was not removed.";
+                }
             }
 
             return RedirectToAction("OpenJobList", store);
         }
 
-
-
-        ////
-        //// GET: /OpenJob/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        ////
-        //// POST: /OpenJob/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        ////
-        //// GET: /OpenJob/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
     }
 }

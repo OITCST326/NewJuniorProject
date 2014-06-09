@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using AIM.Web.Admin.Client;
 using AIM.Web.Admin.Models.EntityModels;
-using TrackableEntities.Client;
-using WebApiRestService;
 
 namespace AIM.Web.Admin.Controllers
 {
     public class UserController : Controller
     {
         private readonly UserServiceClient _client = new UserServiceClient();
-        private ChangeTrackingCollection<User> _changeTracker = new ChangeTrackingCollection<User>();
         private User _user = new User();
 
         public UserController()
@@ -89,7 +86,7 @@ namespace AIM.Web.Admin.Controllers
                                           " was successfully created.";
                 }
 
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
             }
 
             var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
@@ -108,7 +105,6 @@ namespace AIM.Web.Admin.Controllers
             User user = await _client.GetUserById(id);
 
             // Start change-tracking the model
-            _changeTracker = new ChangeTrackingCollection<User>(user);
             _user = user;
 
             if (user == null)
@@ -125,15 +121,13 @@ namespace AIM.Web.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "UserId,FirstName,MiddleName,LastName,Email,SocialSecurityNumber," +
                                                    "PersonalInfoId,ApplicantId,ApplicationId,EmployeeId,UserName," +
-                                                   "Password,AspNetUsersId")] User modifiedUser)
+                                                   "Password,AspNetUsersId")] User user)
         {
             if (ModelState.IsValid)
             {
-                User postedUser = null;
+                User updatedUser = user;
 
-                // Modify user details for tracker
-                _user = modifiedUser;
-                User changedUser = _changeTracker.GetChanges().SingleOrDefault();
+                await _client.DeleteUser(user.UserId);
 
                 using (var client = new HttpClient())
                 {
@@ -143,34 +137,20 @@ namespace AIM.Web.Admin.Controllers
 
                     // HTTP GET
                     string request = "api/User";
-                    HttpResponseMessage response = await client.PutAsJsonAsync(request, changedUser);
+                    HttpResponseMessage response = await client.PostAsJsonAsync(request, user);
                     if (response.IsSuccessStatusCode)
                     {
-                        postedUser = await response.Content.ReadAsAsync<User>();
+                        updatedUser = await response.Content.ReadAsAsync<User>();
                     }
-
-                    _changeTracker.MergeChanges(postedUser);
                 }
 
-                if (modifiedUser != null)
-                {
-                    TempData["Message"] = "User " + modifiedUser.FirstName + " " + modifiedUser.LastName +
-                                          " was successfully created.";
-                }
-                //// Modify user details for tracker
-                //initialUser = modifiedUser;
-
-                //// Submit changes
-                //var changedUser = _changeTracker.GetChanges().SingleOrDefault();
-                var updatedUser = await _client.EditUser(modifiedUser);
-
-                // Merge changes
-                _changeTracker.MergeChanges(updatedUser);
+                TempData["Message"] = "User " + user.FirstName + " " + user.LastName +
+                                          " was successfully updated.";
 
                 return RedirectToAction("Index");
             }
 
-            return View(modifiedUser);
+            return View(user);
         }
 
         // GET: /User/Delete/5

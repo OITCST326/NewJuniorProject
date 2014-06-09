@@ -1,14 +1,9 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Net;
-//using System.Threading.Tasks;
-//using System.Web.Mvc;
-//using AIM.Web.Admin.Client;
-//using AIM.Web.Admin.Models.EntityModels;
-
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AIM.Web.Admin.Client;
@@ -18,6 +13,13 @@ namespace AIM.Web.Admin.Controllers
 {
     public class JobController : Controller
     {
+        private readonly JobServiceClient _client = new JobServiceClient();
+
+        public JobController()
+        {
+            _client = new JobServiceClient();
+        }
+
 
         // GET: /Job/
         public async Task<ViewResult> Index()
@@ -71,13 +73,32 @@ namespace AIM.Web.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                using (var client = new JobServiceClient())
+                Job updatedJob = null;
+
+                using (var client = new HttpClient())
                 {
-                    await client.CreateJob(job);               
+                    client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // HTTP GET
+                    string request = "api/Job";
+                    HttpResponseMessage response = await client.PostAsJsonAsync(request, job);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        updatedJob = await response.Content.ReadAsAsync<Job>();
+                    }
                 }
 
-                return RedirectToAction("Details", job.JobId);
+                if (job != null)
+                {
+                    TempData["Message"] = "Job " + job.Position + " was successfully created.";
+                }
+
+                return RedirectToAction("Index");
             }
+
+            var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
 
             return View(job);
         }
@@ -117,8 +138,25 @@ namespace AIM.Web.Admin.Controllers
             {
                 using (var client = new JobServiceClient())
                 {
-                    await client.EditJob(job);
+                    await client.DeleteJob(job.JobId);
                 }
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // HTTP GET
+                    string request = "api/Job";
+                    HttpResponseMessage response = await client.PostAsJsonAsync(request, job);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        await response.Content.ReadAsAsync<Job>();
+                    }
+                }
+
+                TempData["Message"] = "Job " + job.Position + " was successfully updated.";
 
                 return RedirectToAction("Index");
             }
@@ -156,6 +194,16 @@ namespace AIM.Web.Admin.Controllers
             using (var client = new JobServiceClient())
             {
                 await client.DeleteJob(id);
+
+                Job deletedJob = await _client.GetJobById(id);
+                if (deletedJob == null)
+                {
+                    TempData["Message"] = "Job was successfully deleted.";
+                }
+                else
+                {
+                    TempData["Message"] = "Job was not deleted.";
+                }
             }
 
             return RedirectToAction("Index");
