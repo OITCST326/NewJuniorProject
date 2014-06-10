@@ -62,5 +62,18 @@ namespace AIM.Web.ClientApp.Controllers
             }
             return View(questionnaireQuestions);
         }
+
+
+        public async Task<ActionResult> Failed()
+        {
+            return View();
+        }
+
+
+        public async Task<ActionResult> Passed()
+        {
+            return View();
+        }
+
     }
 }
