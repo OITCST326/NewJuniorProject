@@ -149,10 +149,10 @@
                         <li><a class="ajax-link" href="@Url.Action("Index", "Home")"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
                        @if(ActivePermissions != null)
                        { 
-                            //if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringManager" || ActivePermissions.ToString() == "HiringSpecialist")
-                            //{ 
+                            if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringManager" || ActivePermissions.ToString() == "HiringSpecialist")
+                            { 
                                 <li><a class="ajax-link" href="@Url.Action("Index", "User")"><i class="icon-user"></i><span class="hidden-tablet"> Users</span></a></li>
-                            //}
+                            }
                             
                        
                         <!--@{
@@ -161,20 +161,20 @@
                                 <li><a class="ajax-link" href="@Url.Action("Register", "Account")"><i class="icon-user"></i><span class="hidden-tablet"> User Logins</span></a></li>
                             }
                         }-->
-                            //if(ActivePermissions.ToString() != "HiringSpecialist" && ActivePermissions.ToString() != "Employee")
-                            //{ 
+                            if(ActivePermissions.ToString() != "HiringSpecialist" && ActivePermissions.ToString() != "Employee")
+                            { 
                                 <li><a class="ajax-link" href="@Url.Action("Index", "Job")"><i class="icon-briefcase"></i><span class="hidden-tablet"> Jobs</span></a></li>
-                            //}
+                            }
                            
-                            //if(ActivePermissions.ToString() == "HiringManager" || ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager")
-                            //{ 
+                            if(ActivePermissions.ToString() == "HiringManager" || ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager")
+                            { 
                                 <li><a class="ajax-link" href="@Url.Action("Index", "OpenJob")"><i class="icon-briefcase"></i><span class="hidden-tablet"> Job Openings</span></a></li>
-                            //}
+                            }
                            
-                            //if(ActivePermissions.ToString() == "StaffingExpert" || ActivePermissions.ToString() == "SystemAdmin")
-                            //{ 
+                            if(ActivePermissions.ToString() == "StaffingExpert" || ActivePermissions.ToString() == "SystemAdmin")
+                            { 
                                 <li><a class="ajax-link" href="@Url.Action("Index", "Question")"><i class="icon-question-sign"></i><span class="hidden-tablet"> Questions</span></a></li>
-                            //}
+                            }
                            ////Who else needs access to personal info?
                             
                             if(ActivePermissions.ToString() != "Employee")
@@ -182,16 +182,16 @@
                                 <li><a class="ajax-link" href="@Url.Action("Index", "PersonalInfo")"><i class="icon-question-sign"></i><span class="hidden-tablet"> Personal Info</span></a></li>
                             }
                             
-                            //if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringSpecialist")
-                            //{ 
+                            if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringSpecialist")
+                            { 
                                 <li><a class="ajax-link" href="@Url.Action("Index", "Application")"><i class="icon-question-sign"></i><span class="hidden-tablet"> Applications</span></a></li>
-                            //}
+                            }
                             <li class="nav-header hidden-tablet">Coming Soon</li>
                             
-                            //if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StaffingExpert")
-                            //{ 
+                            if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StaffingExpert")
+                            { 
                                 <li><a class="ajax-link" href="#"><i class="icon-align-justify"></i><span class="hidden-tablet"> Questionnaires</span></a></li>
-                            //}
+                            }
                            <li><a class="ajax-link" href="#"><i class="icon-align-justify"></i><span class="hidden-tablet"> Interviews</span></a></li>
                         <li><a class="ajax-link" href="#"><i class="icon-align-justify"></i><span class="hidden-tablet"> Permissions</span></a></li>
                        }
