@@ -147,7 +147,7 @@
                     <ul class="nav nav-tabs nav-stacked main-menu">
                         <li class="nav-header hidden-tablet">Administrative</li>
                         <li><a class="ajax-link" href="@Url.Action("Index", "Home")"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-                       @if(ActivePermissions != null || ActivePermissions == null)
+                       @if(ActivePermissions != null)
                        { 
                             //if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringManager" || ActivePermissions.ToString() == "HiringSpecialist")
                             //{ 
@@ -161,7 +161,7 @@
                                 <li><a class="ajax-link" href="@Url.Action("Register", "Account")"><i class="icon-user"></i><span class="hidden-tablet"> User Logins</span></a></li>
                             }
                         }-->
-                            //if(ActivePermissions.ToString() != "HiringSpecialist")
+                            //if(ActivePermissions.ToString() != "HiringSpecialist" && ActivePermissions.ToString() != "Employee")
                             //{ 
                                 <li><a class="ajax-link" href="@Url.Action("Index", "Job")"><i class="icon-briefcase"></i><span class="hidden-tablet"> Jobs</span></a></li>
                             //}
@@ -176,10 +176,11 @@
                                 <li><a class="ajax-link" href="@Url.Action("Index", "Question")"><i class="icon-question-sign"></i><span class="hidden-tablet"> Questions</span></a></li>
                             //}
                            ////Who else needs access to personal info?
-                            //if(ActivePermissions.ToString() == "SystemAdmin")
-                            //{ 
+                            
+                            if(ActivePermissions.ToString() != "Employee")
+                            {  
                                 <li><a class="ajax-link" href="@Url.Action("Index", "PersonalInfo")"><i class="icon-question-sign"></i><span class="hidden-tablet"> Personal Info</span></a></li>
-                            //}
+                            }
                             
                             //if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringSpecialist")
                             //{ 
