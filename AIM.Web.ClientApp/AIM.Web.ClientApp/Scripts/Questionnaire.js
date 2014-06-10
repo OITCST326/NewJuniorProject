@@ -63,16 +63,26 @@ $(function () {
         onFinished: function (event, currentIndex) {
             var form  = $(this);
 
-            var passed = true;
+            var passed = false;
 
+            // check that the selected radio-buttons are the correct answers ("true")
             $("input[type=radio]:checked").each(function () {
-                if( this.value == "false" )
+                if( this.value == "true" )
                 {
-                    passed = false;
+                    passed = true;
                 }
             });
+
+            // check that all SELECTED check-boxes are the correct answers ("true")
             $("input[type=checkbox]:checked").each(function () {
-                if (this.value == "false") {
+                if (this.value == "true") {
+                    passed = true;
+                }
+
+            // check that all NON-SELECTED check-boxes are the correct answers ("true")
+            });
+            $("input[type=checkbox]:not(:checked)").each(function () {
+                if (this.value == "true") {
                     passed = false;
                 }
             });
