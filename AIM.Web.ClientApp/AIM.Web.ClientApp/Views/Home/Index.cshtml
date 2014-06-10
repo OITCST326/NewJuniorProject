@@ -6,26 +6,26 @@
 }
 
 <div class="jumbotron">
-    <h1>AES</h1>
-    <p class="leadDefault1">Sales pitch goes here.</p>
+    <img src="~/Image/logo.png" />
+    <p class="leadDefault1" style="padding-top: 20px;">Sales pitch goes here.</p>
 </div>
 
-<center>
-        @using(Html.BeginForm("Index", "OpenJob", FormMethod.Get))
-        {
-            <fieldset>
-                Select region: <select name="RegionId">
-                    @foreach(var item in Model)
-                    {
-                        <option value=@item.RegionId>@item.RegionName</option>
-                    }
-                </select>
-                <p></p>
-                <p>
-                    <input type="submit" value="View Job Openings" class="btn btn-success icon-zoom-in icon-white" />
-                </p>
-            </fieldset>            
-        }
-</center>
+<div style="text-align: center;" >
+    @using(Html.BeginForm("Index", "OpenJob", FormMethod.Get))
+    {
+        <fieldset>
+            <h2>Select region:</h2> <select name="RegionId" class="form-control input-lg">
+                                        @foreach(var item in Model)
+                                        {
+                                            <option value=@item.RegionId>@item.RegionName</option>
+                                        }
+                                    </select>
+            <p></p>
+            <p>
+                <input type="submit" value="View Job Openings" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />
+            </p>
+        </fieldset>            
+    }
+</div>
 
 
