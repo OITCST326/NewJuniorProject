@@ -223,7 +223,7 @@
 .wizard > .content > .body label.error
 {
     color: #8a1f11;
-    display: inline-block;
+    display: block;
     margin-left: 1.5em;
 }
 

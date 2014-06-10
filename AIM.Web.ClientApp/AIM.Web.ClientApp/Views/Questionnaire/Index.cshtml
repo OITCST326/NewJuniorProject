@@ -108,11 +108,11 @@
     <fieldset>
         <legend><h2>Your future begins with a few simple questions...</h2></legend>
         <p>
-            <h4>Please answer the following questions.</h4>
+            <h4>Please complete the following questionnaire.</h4>
             <h4>Your answers will determine your employment eligibility.</h4>
             <hr />
             <hr />
-            <h4>Use the "Next" button below to begin the questionnaire.</h4>
+            <h4>Use the "Next" button below to begin...</h4>
         </p>
     </fieldset>
 
@@ -122,26 +122,7 @@
     questionNumber++;
         
     // set the fieldname to the current question number string... ie: "question1" - "question 5"    
-    if( questionNumber == 1)
-    {
-        currentQuestion = "question1";
-    }
-    else if (questionNumber == 2)
-    {
-        currentQuestion = "question2";
-    }
-    else if (questionNumber == 3)
-    {
-        currentQuestion = "question3";
-    }
-    else if (questionNumber == 4)
-    {
-        currentQuestion = "question4";
-    }
-    else if (questionNumber == 5)
-    {
-        currentQuestion = "question5";
-    }
+    currentQuestion = "question" + questionNumber.ToString();
         
     <h1>Question @questionNumber</h1> @*Question Title ...if needed*@
     <fieldset>
@@ -155,7 +136,7 @@
 
                 for (int i = 0; i < item.QJsonOptionList.Count(); ++i)
                 {
-                    <input id="@item.QJsonOptionList[i]" name="@currentQuestion" type="radio">
+                    <input id="@item.QJsonOptionList[i]" name="@currentQuestion" type="radio" value="@item.QJsonAnswerList[i]" class="required">
                     <label for="@currentQuestion">@item.QJsonOptionList[i]</label>
                     <br />
                 }
@@ -171,7 +152,7 @@
                 <hr />
                 for (int i = 0; i < item.QJsonOptionList.Count(); ++i)
                 {
-                    <input id="@item.QJsonOptionList[i]" name="@currentQuestion" type="checkbox">
+                    <input id="@item.QJsonOptionList[i]" name="@currentQuestion" type="checkbox" value="@item.QJsonAnswerList[i]" class="required">
                     <label for="@currentQuestion">@item.QJsonOptionList[i]</label>
                     <br />
                 }
@@ -179,7 +160,7 @@
             case TypeEnum.FreeForm:
                 correctAnswers.Add("true");
 
-                <textarea id="@currentQuestion" rows="15"></textarea>
+                <textarea id="@currentQuestion" rows="15" class="required"></textarea>
                 break;
             default:
             <text>
@@ -194,18 +175,21 @@
 
     <h1 style="">...SUBMIT</h1>
     <fieldset>
-        <legend><h2>VERIFY AND SUBMIT</h2></legend>
+        <legend><h2>Verify and Submit</h2></legend>
 
         <div>Please verify your answers and then click the "SUBMIT" button.</div>
 
         <a class="btn btn-success" href="@Url.Action("Index", "Application")">
             <i class="icon-zoom-in icon-white"></i>
-            SUBMIT
+            Submit
         </a>
 
     </fieldset>
 
 </form>
+
+
+
 
 @*<form id="form-3" action="#">
     <h1>Account</h1>

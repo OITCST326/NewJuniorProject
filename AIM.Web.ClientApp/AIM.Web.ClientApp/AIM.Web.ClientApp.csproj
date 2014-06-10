@@ -273,6 +273,7 @@
   <ItemGroup>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Content\jquery.steps.css" />
+    <Content Include="Image\AEShome.png" />
     <Content Include="Image\logo.png" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -358,6 +359,8 @@
     <Content Include="Views\OpenJob\Details.cshtml" />
     <Content Include="Views\OpenJob\Index.cshtml" />
     <Content Include="Views\Questionnaire\Index.cshtml" />
+    <Content Include="Views\Questionnaire\Failed.cshtml" />
+    <Content Include="Views\Questionnaire\Passed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
