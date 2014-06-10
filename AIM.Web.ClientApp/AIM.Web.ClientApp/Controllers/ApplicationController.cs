@@ -1,127 +1,70 @@
-﻿using AIM.Web.ClientApp.Client;
+﻿using System.Collections.Generic;
+using AIM.Web.ClientApp.Client;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using AIM.Web.ClientApp.Models;
+using AIM.Web.ClientApp.Models.EntityModels;
 
 namespace AIM.Web.ClientApp.Controllers
 {
     public class ApplicationController : Controller
     {
-        private readonly ApplicationServiceClient _client = new ApplicationServiceClient();
+        private readonly ApplicationServiceClient _applicationClient = new ApplicationServiceClient();
+        private readonly JobServiceClient _jobClient = new JobServiceClient();
 
         // GET: /Application/
-        public async Task<ActionResult> Index()
+        public ActionResult Index(int jobId = 1)
         {
-            var applications = await _client.GetApplications();
-
-            return View(applications);
-        }
-
-        // GET: /Application/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
+            var job = new Job()
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+                JobId = jobId,
+                Position = "Sales Associate",
+                Description = "Customer Service, Stocking, Cashier",
+                FullPartTime = "Part-time",
+                SalaryRange = "$8.00 - $10.00 hourly",
+                QuestionnaireId = 1,
+                HoursId = 1
+            };
 
-            Models.EntityModels.Application application = await _client.GetApplicationById(id);
+            var applicant = new Applicant();
+            var applicantQuestionAnswer = new ApplicantQuestionAnswer();
+            var educations = new List<Education>();
+            var jobHistories = new List<JobHistory>();
+            var hour = new Hour();
+            var references = new List<Reference>();
+            var user = new User();
+            var personalInfo = new PersonalInfo();
 
-            if (application == null)
+            var viewModel = new ApplicationViewModel()
             {
-                return HttpNotFound();
-            }
-            return View(application);
+                Application = new Models.EntityModels.Application()
+                {
+                    DateCreated = DateTime.Now.Date,
+                    JobId = jobId,
+                },
+                
+                Job = job,
+                Applicant = applicant,
+                ApplicantQuestionAnswer = applicantQuestionAnswer,
+                Education = educations,
+                JobHistory = jobHistories,
+                Hour = hour,
+                Reference = references,
+                User = user,
+                PersonalInfo = personalInfo
+            };
+
+            return View(viewModel);
         }
 
-        // GET: /Application/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: /Application/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Models.EntityModels.Application application)
+        public JsonResult SaveApplicationDetails(ApplicationViewModel viewModel)
         {
-            if (ModelState.IsValid)
-            {
-                await _client.CreateApplication(application);
-                return RedirectToAction("Index");
-            }
+            // TODO: Save logic goes here.
 
-            return View(application);
-        }
-
-        // GET: /Application/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Models.EntityModels.Application application = await _client.GetApplicationById(id);
-
-            if (application == null)
-            {
-                return HttpNotFound();
-            }
-            return View(application);
-        }
-
-        // POST: /Application/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "applicantId,educationId,jobHistoryId,referenceId,userId,applicationId,answerId,hoursId")] Models.EntityModels.Application application)
-        {
-            if (ModelState.IsValid)
-            {
-                await _client.EditApplication(application);
-                return RedirectToAction("Index");
-            }
-            return View(application);
-        }
-
-        // GET: /Application/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Models.EntityModels.Application application = await _client.GetApplicationById(id);
-
-            if (application == null)
-            {
-                return HttpNotFound();
-            }
-            return View(application);
-        }
-
-        // POST: /Application/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            await _client.DeleteApplication(id);
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            var dispose = _client as IDisposable;
-            if (dispose != null)
-            {
-                dispose.Dispose();
-            }
-        }
+            return Json(new { });
+        } 
     }
 }
