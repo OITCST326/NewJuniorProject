@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Failed";
+    ViewBag.Title = "Passed";
 }
 
 <div style="text-align: center;">
@@ -9,11 +9,11 @@
             <div class="jumbotron">
                 @*<img src="~/Image/AEShome.png" style="width:1000px; height:280px;" />*@
                 @*<img src="~/Image/logo.png" style="margin-bottom: 25px;" />*@
-                <h2 style="width: 100%; font-size: 150px; display: inline-block; color: darkblue;">SORRY</h2>
+                <h2 style="width: 100%; font-size: 110px; display: inline-block; color: darkblue;">CONGRATULATIONS</h2>
                 <hr style="border-top: 1px solid white" />
 
                 <div>
-                    <h2 style="width: 100%; height: 46px; display: inline-block;">You do not meet the qualifications for this position. </h2>
+                    <h2 style="width: 100%; height: 46px; display: inline-block;">You meet the qualifications for this position. </h2>
 
                     @*<select name="RegionId" class="form-control input-lg" style="width: 65%; display: inline-block">
                         @foreach (var item in Model)
@@ -28,9 +28,9 @@
             </div>
             <p>
                 @*<input type="submit" value="New Search" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />*@
-                <a class="btn btn-success" style="width: 100%" href="@Url.Action("Index", "Home")">
+                <a class="btn btn-success" style="width: 100%" href="@Url.Action("Index", "Application")">
                     <i class="icon-zoom-in icon-white"></i>
-                    New Search
+                    Proceed to Application
                 </a>
             </p>
         </fieldset>

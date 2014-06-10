@@ -360,6 +360,7 @@
     <Content Include="Views\OpenJob\Index.cshtml" />
     <Content Include="Views\Questionnaire\Index.cshtml" />
     <Content Include="Views\Questionnaire\Failed.cshtml" />
+    <Content Include="Views\Questionnaire\Passed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

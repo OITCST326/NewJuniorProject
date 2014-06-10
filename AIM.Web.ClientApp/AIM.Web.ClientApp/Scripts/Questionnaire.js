@@ -79,7 +79,7 @@ $(function () {
 
             if (passed == true)
             {
-                form.submit(window.location.href = '/Application/Index/');
+                form.submit(window.location.href = '/Questionnaire/Passed/');
             }
             else
             {

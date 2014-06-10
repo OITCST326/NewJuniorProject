@@ -69,5 +69,11 @@ namespace AIM.Web.ClientApp.Controllers
             return View();
         }
 
+
+        public async Task<ActionResult> Passed()
+        {
+            return View();
+        }
+
     }
 }
