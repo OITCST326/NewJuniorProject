@@ -5,22 +5,14 @@
     ViewBag.Title = "Home Page";
 }
 
-@*<div style="width:100%">
-    <img src="~/Image/AEShome.png" style="width:1000px" />
-</div>*@
-<div class="jumbotron">
 
-    <div class="span12 center login-header">
-        <div class="img-thumbnail">
-            <img src="~/Image/AEShome.png" style="width:1000px; height:280px;" />
-        </div>
-    </div><!--/span-->
+@*<div class="jumbotron">*@
 
+        @*<img src="~/Image/logo.png" />*@
+        @*<img src="~/Image/AEShome.png" style="width:1000px" />*@
+        @*<p class="leadDefault1" style="padding-top: 20px;">Sales pitch goes here.</p>*@
 
-    @*<img src="~/Image/logo.png" />*@
-    @*<img src="~/Image/AEShome.png" style="width:1000px" />*@
-    @*<p class="leadDefault1" style="padding-top: 20px;">Sales pitch goes here.</p>*@
-</div>
+@*</div>*@
 
 @*<div style="text-align: center;" >
     @using(Html.BeginForm("Index", "OpenJob", FormMethod.Get))
@@ -42,10 +34,14 @@
 
 <div style="text-align: center;">
     @using (Html.BeginForm("Index", "OpenJob", FormMethod.Get))
-    {
-        <hr />
-        <fieldset>
-            @*<div style="border: 1px solid #ccc; border-radius: 6px;">*@
+{
+    <fieldset>
+        <div class="jumbotron" >
+            @*<img src="~/Image/AEShome.png" style="width:1000px; height:280px;" />*@
+            <img src="~/Image/logo.png" style="margin-bottom: 25px;" />
+
+            <hr style="border-top: 1px solid white" />
+
             <div>
                 <h2 style="width: 25%; height: 46px; display: inline-block; text-align: left;">Select Region: </h2>
 
@@ -57,11 +53,12 @@
                 </select>
             </div>
 
-            <p></p>
-            <hr />
-            <p>
-                <input type="submit" value="View Job Openings" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />
-            </p>
-        </fieldset>
-    }
+            <hr style="border-top: 1px solid white; margin-bottom: 10px;" />
+
+        </div>
+        <p>
+            <input type="submit" value="View Job Openings" class="btn btn-success btn-lg btn-block icon-zoom-in icon-white" />
+        </p>
+    </fieldset>
+}
 </div>
