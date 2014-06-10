@@ -79,12 +79,12 @@ $(function () {
 
             if (passed == true)
             {
-                form.submit(window.location.href = '/OpenJob/Index/');
+                form.submit(window.location.href = '/Application/Index/');
             }
             else
             {
                 // Submit form input
-                form.submit();
+                form.submit(window.location.href = '/Questionnaire/Failed/');
             }
             
         }
@@ -99,11 +99,17 @@ $(function () {
         }
     });
 
-    function foo() {
+    function fail() {
         //var url = '@Url.Action("Index", "Home")';
         //window.location.href = url;
 
-        window.location.href = '/OpenJob/Index/';
+        window.location.href = '/Questionnaire/Failed/';
+    }
+    function pass() {
+        //var url = '@Url.Action("Index", "Home")';
+        //window.location.href = url;
+
+        window.location.href = '/Questionnaire/Failed/';
     }
 
     //$('form input[type="radio"]').each(function(){
