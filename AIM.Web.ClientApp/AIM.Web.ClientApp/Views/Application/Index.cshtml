@@ -1,69 +1,479 @@
-﻿@model IEnumerable<AIM.Web.ClientApp.Models.EntityModels.Application>
+﻿@model AIM.Web.ClientApp.Models.ApplicationViewModel
+@using AIM.Web.ClientApp.Helper
+@using AIM.Web.ClientApp.Models.EntityModels
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<link href="~/Content/Application.css" rel="stylesheet" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.educationId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.jobHistoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.referenceId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.userId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.applicationId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.answerId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hoursId)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.educationId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.jobHistoryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.referenceId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.applicationId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.answerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hoursId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.applicantId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.applicantId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.applicantId })
-        </td>
-    </tr>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/application.js"></script>
+    <script type="text/javascript">
+        Application.SaveUrl = '@Url.Action("SaveApplicationDetails", "Application")';
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Application)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Applicant)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Job)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.ApplicantQuestionAnswer)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Education)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.JobHistory)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Hour)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.Reference)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.User)));
+        Application.ViewModel = ko.mapping.fromJS(@Html.Raw(Json.Encode(Model.PersonalInfo)));
+    </script>
 }
 
-</table>
+<h2>Application</h2>
+
+
+<p>Creating Apllication on @Html.DisplayFor(model => model.Application.DateCreated)</p>
+
+<form id="application-form" action="#">
+
+    <!----------------------  Personal section of Application form  ---------------------->
+
+    <h1>Personal:</h1>
+    <fieldset>
+        <legend>Personal Information</legend>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>First name: *</label>
+                            <input data-bind="User: FirstName" name="User.FirstName" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Middle name: *</label>
+                            <input data-bind="User: MiddleName" name="User.MiddleName" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Last name: *</label>
+                            <input data-bind="User: LastName" name="User.LastName" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Email: *</label>
+                            <input data-bind="User: Email" name="User.Email" type="email" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Social Security Number: *</label>
+                            <input data-bind="User: SocialSecurityNumber" name="User.SocialSecurityNumber" type="password" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>User name: *</label>
+                            <input data-bind="User: UserName" name="User.UserName" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Password: *</label>
+                            <input data-bind="User: Password" name="User.Password" type="password" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Street Address: *</label>
+                            <input data-bind="PersonalInfo: Street" name="PersonalInfo.Street" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Street Address addtional:</label>
+                            <input data-bind="PersonalInfo: Street2" name="PersonalInfo.Street2" type="password" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>City: *</label>
+                            <input data-bind="PersonalInfo: City" name="PersonalInfo.City" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>State: *</label>
+                            <input data-bind="PersonalInfo: State" name="PersonalInfo.State" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Zip: *</label>
+                            <input data-bind="UserPersonalInfo: Zip" name="PersonalInfo.Zip" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Primary Phone: *</label>
+                            <input data-bind="PersonalInfo: Phone" name="PersonalInfo.Phone" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Other name known by:</label>
+                            <input data-bind="PersonalInfo: Street2" name="PersonalInfo.street2" type="password" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <p>(*) Mandatory</p>
+    </fieldset>
+
+    <!----------------------  Position section of Application form ---------------------->
+
+    <h1>Position:</h1>
+    <fieldset>
+        <legend>Position Information</legend>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Postion Applying for:  </label>
+                            @Html.DisplayFor(model => model.Job.Position)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>position is a :</label>
+                           @Html.DisplayFor(model => model.Job.FullPartTime) position
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Salary Expectation: *</label>
+                            <input data-bind="Application: SalaryExpectation" name="Application.SalaryExpectation" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <label>Days? : </label>
+                            <input data-bind="Application: IsDays" name="Application.IsDays" type="checkbox" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <label>Eveings? : </label>
+                            <input data-bind="Application: IsEvenings" name="Application.IsEvenings" type="checkbox" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <label>Weekends? : </label>
+                            <input data-bind="Application: IsWeekends" name="Application.IsWeekends" type="checkbox" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <label>Available Hours </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <label>From: </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <input data-bind="Hour: MonOpen" name="Hour.MonOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: TueOpen" name="Hour.TueOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: WedOpen" name="Hour.WedOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: ThursOpen" name="Hour.ThursOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: FriOpen" name="Hour.FriOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: SatOpen" name="Hour.SatOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: SunOpen" name="Hour.SunOpen" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <label> </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <label>To: </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: MonClose" name="Hour.MonClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: TueClose" name="Hour.TueClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: WedClose" name="Hour.WedClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: ThursClose" name="Hour.ThursClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: FriClose" name="Hour.FriClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: SatClose" name="Hour.SatClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1 col-md-1">
+                        <div class="form-group">
+                            <input data-bind="Hour: SunClose" name="Hour.SunClose" type="time" class=" col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Straeet Address: *</label>
+                            <input data-bind="PersonalInfo: Street" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Street Address addtional:</label>
+                            <input data-bind="PersonalInfo: Street2" type="password" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>City: *</label>
+                            <input data-bind="PersonalInfo: City" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>State: *</label>
+                            <input data-bind="PersonalInfo: State" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Zip: *</label>
+                            <input data-bind="UserPersonalInfo: Zip" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Primary Phone: *</label>
+                            <input data-bind="PersonalInfo: Phone" type="text" class="required col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Other name known by:</label>
+                            <input data-bind="PersonalInfo: Street2" type="password" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <p>(*) Mandatory</p>
+    </fieldset>
+
+    <!----------------------  Job History section of Application form  ---------------------->
+
+    <h1>Job History:</h1>
+    <fieldset>
+        <legend>You are to young</legend>
+
+        <p>Please go away ;-)</p>
+    </fieldset>
+
+    <!----------------------  Education section of Application form   ---------------------->
+
+    <h1>Education:</h1>
+    <fieldset>
+        <legend>You are to young</legend>
+
+        <p>Please go away ;-)</p>
+    </fieldset>
+
+    <!----------------------  References section of Application form  ---------------------->
+
+    <h1>References:</h1>
+    <fieldset>
+        <legend>You are to young</legend>
+
+        <p>Please go away ;-)</p>
+    </fieldset>
+
+    <!----------------------  Review and submission section of Application form  ---------------------->
+
+    <h1>Review:</h1>
+    <fieldset>
+        <legend>Terms and Conditions</legend>
+
+        <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+    </fieldset>
+
+</form><!----------------------  end of Application form  ---------------------->
+
+<script src="~/Scripts/applicationform.js"></script>
