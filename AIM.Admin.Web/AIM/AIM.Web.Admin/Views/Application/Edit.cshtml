@@ -8,9 +8,14 @@
     TempData["ActivePermissions"] = ActivePermissions;
 }
 
+@if(ActiveUserName != null)
+{
+	if(ActivePermissions.ToString() == "SystemAdmin" || ActivePermissions.ToString() == "StoreManager" || ActivePermissions.ToString() == "HiringSpecialist")
+        {
+
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -119,3 +124,81 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+    
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+                    
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+}
+}
+else
+{
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="row-fluid">
+            <div class="span12 center login-header" style="margin-bottom: 150px">
+                <h2>Welcome to AIM Admin</h2>
+                <div class="img-thumbnail">
+                    <img src="~/img/AIMTitlePageLogo.png" height="170" width="240" />
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+        <div class="row-fluid">
+            <div class="well span5 center login-box">
+                <div class="alert alert-info">
+                    You are not authorized to view this page.
+                </div>
+
+                <section id="loginForm">
+                    <div>
+                        <a class="btn btn-success" href="@Url.Action("Index", "Home")">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Home
+                        </a>
+                    </div>
+                    
+                </section>
+
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+}
