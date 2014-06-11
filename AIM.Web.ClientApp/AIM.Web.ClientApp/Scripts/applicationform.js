@@ -77,7 +77,7 @@ $(function () {
             });
 
             if (passed == true) {
-                form.submit(window.location.href = '/OpenJob/Index/');
+                form.submit(window.location.href = '/Application/Call/');
             }
             else {
                 // Submit form input

@@ -64,13 +64,13 @@ namespace AIM.Web.ClientApp.Controllers
         }
 
 
-        public async Task<ActionResult> Failed()
+        public ActionResult Failed()
         {
             return View();
         }
 
 
-        public async Task<ActionResult> Passed()
+        public ActionResult Passed()
         {
             return View();
         }

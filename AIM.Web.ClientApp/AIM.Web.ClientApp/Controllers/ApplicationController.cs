@@ -65,6 +65,11 @@ namespace AIM.Web.ClientApp.Controllers
             // TODO: Save logic goes here.
 
             return Json(new { });
-        } 
+        }
+
+        public ActionResult Call()
+        {
+            return View();
+        }
     }
 }

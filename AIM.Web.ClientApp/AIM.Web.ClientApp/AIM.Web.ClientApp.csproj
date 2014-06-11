@@ -428,6 +428,7 @@
     <Content Include="Views\OpenJob\Details.cshtml" />
     <Content Include="Views\OpenJob\Index.cshtml" />
     <Content Include="Views\Questionnaire\Index.cshtml" />
+    <Content Include="Views\Application\Call.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
