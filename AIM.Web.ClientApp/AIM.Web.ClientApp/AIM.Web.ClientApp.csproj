@@ -274,6 +274,7 @@
     <Compile Include="WebApiHttpClient\WebApiLogHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\AIMApplication.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Content\Application.css" />
     <Content Include="Content\jquery.steps.css" />
