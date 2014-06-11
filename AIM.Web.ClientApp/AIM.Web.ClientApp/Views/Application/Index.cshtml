@@ -368,7 +368,7 @@
     @for (var i = 0; i < 3; ++i)
     {
         num = i + 1;
-        <h1>Job History:</h1>
+        <h1>Work @num:</h1>
         <fieldset>
             <legend style="margin-bottom: -30px;">Job History @num :</legend>
 
@@ -508,118 +508,126 @@
 
 
     <!----------------------  Education section of Application form   ---------------------->
+    
+    @{ num = 0;}
 
-    <h1>Education:</h1>
+    @for (var j = 0; j < 3; ++j)
+    {
+        num = j + 1;
+
+
+    <h1>Edu @num:</h1>
     <fieldset>
-        <legend style="margin-bottom: -30px;">Education:</legend>
+        <legend style="margin-bottom: -30px;">Education @num:</legend>
 
-        @{ num = 0;}
 
-        @for (var j = 0; j < 3; ++j)
-        {
-            num = j + 1;
-
-            <div class="row">
+        <div class="row">
+            <div class="form-group">
                 <div class="form-group">
-                    <div class="form-group">
-                        <div class="col-lg-4 col-md-4">
-                            <div class="form-group">
-                                <label>School Name: </label>
-                                <input name="Education[i].SchoolName" type="text" class="col-lg-12 col-md-12">
-                            </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>School Name: </label>
+                            <input name="Education[i].SchoolName" type="text" class="col-lg-12 col-md-12">
                         </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <div class="form-group">
-                                <label>Years Attended:</label>
-                                <input name="Education[i].YearsAttended" type="text" class="col-lg-12 col-md-12">
-                            </div>
-                        </div>
-
                     </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Years Attended:</label>
+                            <input name="Education[i].YearsAttended" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
-            <div class="row">
+        <div class="row">
+            <div class="form-group">
                 <div class="form-group">
-                    <div class="form-group">
-                        <div class="col-lg-4 col-md-4">
-                            <div class="form-group">
-                                <label>Date Graduated: *</label>
-                                <input name="Education[i].Graduated" type="date" class="col-lg-12 col-md-12">
-                            </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Date Graduated: *</label>
+                            <input name="Education[i].Graduated" type="date" class="col-lg-12 col-md-12">
                         </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <div class="form-group">
-                                <label>Earned Degree:</label>
-                                <input name="Education[i].Degree" type="text" class="col-lg-12 col-md-12">
-                            </div>
-                        </div>
-
                     </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Earned Degree:</label>
+                            <input name="Education[i].Degree" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
-            <p>(*) Mandatory</p>
-        }
+        <p>(*) Mandatory</p>
     </fieldset>
+
+    }
 
 
     <!----------------------  References section of Application form  ---------------------->
+    
+    @{ num = 0;}
 
-    <h1>Reference:</h1>
+    @for (var k = 0; k < 3; ++k)
+    {
+
+        num = k + 1;
+
+    <h1>Ref @num:</h1>
     <fieldset style="margin-bottom: -30px;">
-        <legend>Reference:</legend>
+        <legend style="margin-bottom: -30px;">Reference @num:</legend>
 
-        @for (var k = 0; k < 3; ++k)
-        {
-
-            <div class="row">
+       
+        <div class="row">
+            <div class="form-group">
                 <div class="form-group">
-                    <div class="form-group">
-                        <div class="col-lg-4 col-md-4">
-                            <div class="form-group">
-                                <label>Reference's Full Name: </label>
-                                <input name="Reference[i].RefFullName" type="text" class="col-lg-12 col-md-12">
-                            </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Reference's Full Name: </label>
+                            <input name="Reference[i].RefFullName" type="text" class="col-lg-12 col-md-12">
                         </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <div class="form-group">
-                                <label>Reference Phone:</label>
-                                <input name="Reference[i].RefPhone" type="text" class="col-lg-12 col-md-12">
-                            </div>
-                        </div>
-
                     </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Reference Phone:</label>
+                            <input name="Reference[i].RefPhone" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
-            <div class="row">
+        <div class="row">
+            <div class="form-group">
                 <div class="form-group">
-                    <div class="form-group">
-                        <div class="col-lg-4 col-md-4">
-                            <div class="form-group">
-                                <label>Reference Company:</label>
-                                <input name="Reference[i].RefCompany" type="text" class="col-lg-12 col-md-12">
-                            </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Reference Company:</label>
+                            <input name="Reference[i].RefCompany" type="text" class="col-lg-12 col-md-12">
                         </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <div class="form-group">
-                                <label>Reference Title:</label>
-                                <input name="Reference[i].RefTitle" type="text" class="col-lg-12 col-md-12">
-                            </div>
-                        </div>
-
                     </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Reference Title:</label>
+                            <input name="Reference[i].RefTitle" type="text" class="col-lg-12 col-md-12">
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
-            <p>(*) Mandatory</p>
-        }
+        <p>(*) Mandatory</p>
     </fieldset>
+}
 
 
     <!----------------------  Review and submission section of Application form  ---------------------->
@@ -628,22 +636,31 @@
     <fieldset style="margin-bottom: -30px;">
         <legend>Terms and Conditions</legend>
         
-        <div class="col-lg-4 col-md-4">
-            <div class="form-group">
-                <label>I hearby affirm that the information given by me on this application for employment is complete and accurate.  I understand that any omission of falsification of information will be immediate grounds for dismissal.</label>
-                
-                <p>Plese type your full name to agree to the above statement</p>
-                <input name="Reference[i].PreEmploymentStatement" type="text" class="col-lg-12 col-md-12">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <label>I hearby affirm that the information given by me on this application for employment is complete and accurate.  I understand that any omission of falsification of information will be immediate grounds for dismissal.</label>
+                </div>
             </div>
         </div>
         
-        <p></p>
-        <p></p>
         
-        <p>Please review your application before submitting</p>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <p>Plese type your full name to agree to the above statement</p>
+                    <input name="Reference[i].PreEmploymentStatement" type="text" class="col-lg-12 col-md-12">
+                </div>
+            </div>
+        </div>
 
-        <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
-    </fieldset>
+            <p></p>
+            <p></p>
+
+            <p>Please review your application before submitting</p>
+
+            <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+</fieldset>
 
 </form><!----------------------  end of Application form  ---------------------->
 
