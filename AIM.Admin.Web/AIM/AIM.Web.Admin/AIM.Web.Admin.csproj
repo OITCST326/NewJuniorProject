@@ -31,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -431,6 +432,7 @@
     <Content Include="img\ui-icons_888888_256x240.png" />
     <Content Include="img\ui-icons_cd0a0a_256x240.png" />
     <Content Include="img\uploadify-cancel.png" />
+    <None Include="Properties\PublishProfiles\aimadmin.pubxml" />
     <None Include="Resources\AIMLogo.png" />
     <Content Include="Scripts\bootstrap-alert.js" />
     <Content Include="Scripts\bootstrap-button.js" />

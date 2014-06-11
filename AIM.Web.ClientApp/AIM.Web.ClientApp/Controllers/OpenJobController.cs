@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -20,12 +23,31 @@ namespace AIM.Web.ClientApp.Controllers
         private readonly RegionServiceClient _regionClient = new RegionServiceClient();
 
         // GET: /OpenJob/
-        public async Task<ViewResult> Index(string regionId)
+        public async Task<ViewResult> Index(string RegionId)
         {
-            int id = Convert.ToInt32(regionId);
 
-            ViewBag.RegionName = await _regionClient.GetRegionById(id);
-            var openJobs = await _openJobClient.GetOpenJobs();
+            IEnumerable<OpenJob> openJobs = null;
+
+            int regionId = Convert.ToInt32(RegionId);
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://aimadminstrativeservice.cloudapp.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // HTTP GET
+                string request = "api/OpenJob?regionId=" + regionId;
+                HttpResponseMessage response = await client.GetAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    openJobs = await response.Content.ReadAsAsync<IEnumerable<OpenJob>>();
+                }
+            }
+
+            var region = await _regionClient.GetRegionById(regionId);
+            ViewBag.RegionName = region.RegionName;
+
             return View(openJobs);
         }
 
